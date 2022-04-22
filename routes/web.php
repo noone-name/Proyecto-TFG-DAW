@@ -18,18 +18,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
-    Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
-});
+Route::group( [config('jetstream.auth_session'),'middleware' => ['auth','verified']], function(){
 
-Route::group( ['middleware' => 'auth'], function(){
-Route::get('register-step2',
-                [\App\Http\Controllers\RegisterStepTwoController::class, 'create'])
-                    ->name('register-step2.create');
-Route::post('register-step2',
-                [\App\Http\Controllers\RegisterStepTwoController::class, 'store'])
-                    ->name('register-step2.post');
-
-
+    Route::group(['middleware'=>['registration_completed']], function(){ 
+        Route::get('/dashboard', function () {
+            return view('dashboard');
+        })->name('dashboard');
     });
 
+    Route::get('register-step2',
+            [\App\Http\Controllers\RegisterStepTwoController::class, 'create'])
+                ->name('register-step2.create');
+    Route::post('register-step2',
+            [\App\Http\Controllers\RegisterStepTwoController::class, 'store'])
+                ->name('register-step2.post');
+
+
+});

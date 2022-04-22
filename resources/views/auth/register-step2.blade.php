@@ -6,7 +6,7 @@
 
         <x-jet-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register-step2.post') }}">
+        <form method="POST" action="{{ route('register-step2.post') }}" enctype="multipart/form-data" >
             @csrf
 
             <div class="mt-4">
@@ -30,6 +30,10 @@
 
             </div>
 
+            <div class="mt-4">
+                <x-jet-label for="city_id" value="{{ __('Foto de Perfil') }}" />
+                    <input  type="file" name="photo"  /> 
+            </div>
 
             <div class="flex items-center justify-end mt-4">
  

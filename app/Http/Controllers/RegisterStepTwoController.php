@@ -12,7 +12,19 @@ class RegisterStepTwoController extends Controller
         return view('auth.register-step2', compact('cities'));
     }
 
-    public function store(Request $request){
-        
+    public function store(Request $request)
+    {
+        auth()->user()->update([
+            'phone' => $request->phone,
+            'address'=> $request->address,
+            'city_id'=> $request->city_id,
+        ]);
+
+        if ( $request->hasFile('photo') ) {
+            auth()->user()->updateProfilePhoto($request->photo);
+        }
+
+
+        return redirect()->route('dashboard');
     }
 }
