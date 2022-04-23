@@ -29,14 +29,14 @@ class RolesTableSeeder extends Seeder
             1 => 
             array (
                 'id' => 2,
-                'name' => 'Student',
+                'name' => 'Cliente',
                 'created_at' => '2022-04-23 17:31:14',
                 'updated_at' => '2022-04-23 17:31:14',
             ),
             2 => 
             array (
                 'id' => 3,
-                'name' => 'Teacher',
+                'name' => 'Abogado',
                 'created_at' => '2022-04-23 17:31:14',
                 'updated_at' => '2022-04-23 17:31:14',
             ),
