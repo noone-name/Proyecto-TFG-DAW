@@ -31,7 +31,7 @@
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="city_id" value="{{ __('Foto de Perfil') }}" />
+                <x-jet-label for="photo" value="{{ __('Foto de Perfil') }}" />
                     <input  type="file" name="photo"  /> 
             </div>
 
