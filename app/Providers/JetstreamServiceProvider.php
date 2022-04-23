@@ -5,6 +5,9 @@ namespace App\Providers;
 use App\Actions\Jetstream\DeleteUser;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Jetstream\Jetstream;
+use Laravel\Fortify\Fortify;
+use App\Models\Gender;
+
 
 class JetstreamServiceProvider extends ServiceProvider
 {
@@ -28,6 +31,12 @@ class JetstreamServiceProvider extends ServiceProvider
         $this->configurePermissions();
 
         Jetstream::deleteUsersUsing(DeleteUser::class);
+
+        Fortify::registerView(function () {
+            $gender = Gender::all();
+            return view('auth.register',compact('gender'));
+        });
+    
     }
 
     /**
