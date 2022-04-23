@@ -27,6 +27,24 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
+
+        'client_dni',
+        'client_birth_date',
+        'client_declarated_address',
+        'client_home_address',
+        'client_mobile_phone',
+        'client_gender',
+
+        'lawyer_dni',
+        'lawyer_mobile_phone',
+        'lawyer_licence_number',
+        'lawyer_specialty',
+        'lawyer_office_name',
+        'lawyer_biography',
+        'lawyer_work_days',
+
+
     ];
 
     /**

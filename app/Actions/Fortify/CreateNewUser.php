@@ -31,6 +31,24 @@ class CreateNewUser implements CreatesNewUsers
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'role_id' => $input['role_id'],
+        
+            'client_dni' => $input['client_dni'] ?? null,
+            'client_birth_date' => $input['client_birth_date'] ?? null,
+            'client_declarated_address' => $input['client_declarated_address'] ?? null,
+            'client_home_address' => $input['client_home_address'] ?? null,
+            'client_mobile_phone' => $input['client_mobile_phone'] ?? null,
+            'client_gender' => $input['client_gender'] ?? null,
+
+            'lawyer_dni' => $input['lawyer_dni'] ?? null,
+            'lawyer_mobile_phone' => $input['lawyer_mobile_phone'] ?? null,
+            'lawyer_licence_number' => $input['lawyer_licence_number'] ?? null,
+            'lawyer_specialty' => $input['lawyer_specialty'] ?? null,
+            'lawyer_office_name' => $input['lawyer_office_name'] ?? null,
+            'lawyer_biography' => $input['lawyer_biography'] ?? null,
+            'lawyer_work_days' => $input['lawyer_work_days'] ?? null,
+
+
         ]);
     }
 }
