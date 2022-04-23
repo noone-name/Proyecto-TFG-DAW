@@ -6884,7 +6884,7 @@ class CitiesTableSeeder extends Seeder
             480 => 
             array (
                 'id' => 981,
-                'name' => 'Parres',
+                'name' => 'Parres ',
                 'created_at' => '2022-04-22 16:16:40',
                 'updated_at' => '2022-04-22 16:16:40',
             ),
