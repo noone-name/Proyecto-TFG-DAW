@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->foreignId('role_id')->constrained();
-            
-            
+
+            $table->foreignId('gender_id')->constrained();
+
             $table->string('client_dni')->nullable();
             $table->date('client_birth_date')->nullable();
             $table->string('client_declarated_address')->nullable();
             $table->string('client_home_address')->nullable();
             $table->string('client_mobile_phone')->nullable();
-            $table->string('client_gender')->nullable();
 
             $table->string('lawyer_dni')->nullable();
             $table->string('lawyer_mobile_phone')->nullable();

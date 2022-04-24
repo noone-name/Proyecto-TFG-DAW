@@ -34,7 +34,7 @@ class CreateNewUser implements CreatesNewUsers
             'role_id' => $input['role_id'],
         
             'client_dni' => $input['client_dni'] ?? null,
-            'client_gender' => $input['client_gender'] ?? null,
+            'gender_id' => $input['gender_id'],
             'client_birth_date' => $input['client_birth_date'] ?? null,
             'client_home_address' => $input['client_home_address'] ?? null,
             'client_mobile_phone' => $input['client_mobile_phone'] ?? null,

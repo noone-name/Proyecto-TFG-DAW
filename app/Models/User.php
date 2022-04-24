@@ -34,7 +34,7 @@ class User extends Authenticatable
         'client_declarated_address',
         'client_home_address',
         'client_mobile_phone',
-        'client_gender',
+        'gender_id',
 
         'lawyer_dni',
         'lawyer_mobile_phone',

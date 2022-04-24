@@ -46,8 +46,8 @@
             </div>
 
             <div class="mt-4" x-show="role_id == 2">
-                <x-jet-label for="client_gender" value="{{ __('Sexo') }}" />
-                <select name="client_gender" id="client_gender" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                <x-jet-label for="gender_id" value="{{ __('Sexo') }}" />
+                <select name="gender_id" id="gender_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                     @foreach ($gender as $gender )
                         <option value="{{$gender->id}}" >{{$gender->name}}</option>
                     @endforeach
