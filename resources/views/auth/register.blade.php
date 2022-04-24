@@ -31,6 +31,14 @@
             </div>
 
             <div class="mt-4">
+                <x-jet-label for="gender_id" value="{{ __('Sexo') }}" />
+                <select name="gender_id" id="gender_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                    @foreach ($gender as $gender )
+                        <option value="{{$gender->id}}" >{{$gender->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mt-4">
                 <x-jet-label for="role_id" value="{{ __('Register as:') }}" />
                 <select  name="role_id" x-model="role_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                 <option value="2">Cliente</option>
@@ -45,14 +53,7 @@
                 <x-jet-input id="client_dni" class="block mt-1 w-full" type="text"  name="client_dni" />
             </div>
 
-            <div class="mt-4" x-show="role_id == 2">
-                <x-jet-label for="gender_id" value="{{ __('Sexo') }}" />
-                <select name="gender_id" id="gender_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                    @foreach ($gender as $gender )
-                        <option value="{{$gender->id}}" >{{$gender->name}}</option>
-                    @endforeach
-                </select>
-            </div>
+  
             
             <div class="mt-4" x-show="role_id == 2">
                 <x-jet-label for="client_birth_date" value="{{ __('Fecha de Nacimiento') }}" />
