@@ -53,19 +53,17 @@
         
             <div class="mt-4" x-show="role_id == 2">
                 <x-jet-label for="client_dni" value="{{ __('Dni / Nif') }}" />
-                <x-jet-input id="client_dni" class="block mt-1 w-full" type="text"  name="client_dni" />
+                <x-jet-input id="client_dni" class="block mt-1 w-full" type="text"  name="client_dni" required/>
             </div>
 
-  
-            
             <div class="mt-4" x-show="role_id == 2">
                 <x-jet-label for="client_birth_date" value="{{ __('Fecha de Nacimiento') }}" />
-                <x-jet-input id="client_birth_date" :value="old('client_birth_date')" class="block mt-1 w-full" type="date" name="client_birth_date" />
+                <x-jet-input id="client_birth_date" :value="old('client_birth_date')" class="block mt-1 w-full" type="date" name="client_birth_date" required/>
             </div>
 
             <div class="mt-4" x-show="role_id == 2">
                 <x-jet-label for="client_home_address" value="{{ __('Domicilio / Residencia') }}" />
-                <x-jet-input id="client_home_address"  :value="old('client_home_address')" class="block mt-1 w-full" type="text" name="client_home_address" />
+                <x-jet-input id="client_home_address"  :value="old('client_home_address')" class="block mt-1 w-full" type="text" name="client_home_address" required/>
             </div>
 
             <div class="mt-4" x-show="role_id == 2">
@@ -84,22 +82,22 @@
 
             <div class="mt-4" x-show="role_id == 3">
                 <x-jet-label for="lawyer_dni" value="{{ __('Dni / Nif') }}" />
-                <x-jet-input id="lawyer_dni" :value="old('lawyer_dni')"  class="block mt-1 w-full" type="text" name="lawyer_dni" />
+                <x-jet-input id="lawyer_dni" :value="old('lawyer_dni')"  class="block mt-1 w-full" type="text" name="lawyer_dni" required/>
             </div>
 
             <div class="mt-4" x-show="role_id == 3">
                 <x-jet-label for="lawyer_mobile_phone" value="{{ __('Teléfono Móvil') }}" />
-                <x-jet-input id="lawyer_mobile_phone" :value="old('lawyer_mobile_phone')" class="block mt-1 w-full" type="text" name="lawyer_mobile_phone" />
+                <x-jet-input id="lawyer_mobile_phone" :value="old('lawyer_mobile_phone')" class="block mt-1 w-full" type="text" name="lawyer_mobile_phone" required/>
             </div>
 
             <div class="mt-4" x-show="role_id == 3">
                 <x-jet-label for="lawyer_licence_number" value="{{ __('N. Colegiado') }}" />
-                <x-jet-input id="lawyer_licence_number" :value="old('lawyer_licence_number')" class="block mt-1 w-full" type="text" name="lawyer_licence_number" />
+                <x-jet-input id="lawyer_licence_number" :value="old('lawyer_licence_number')" class="block mt-1 w-full" type="text" name="lawyer_licence_number" required/>
             </div>
             
             <div class="mt-4" x-show="role_id == 3">
                 <x-jet-label for="lawyer_specialty" value="{{ __('Especialidad') }}" />
-                <x-jet-input id="lawyer_specialty" :value="old('lawyer_specialty')" class="block mt-1 w-full" type="text" name="lawyer_specialty" />
+                <x-jet-input id="lawyer_specialty" :value="old('lawyer_specialty')" class="block mt-1 w-full" type="text" name="lawyer_specialty" required/>
             </div>
 
             <div class="mt-4" x-show="role_id == 3">

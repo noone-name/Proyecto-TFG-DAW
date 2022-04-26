@@ -18,15 +18,15 @@ return new class extends Migration
 
             $table->foreignId('gender_id')->constrained();
 
-            $table->string('client_dni')->nullable();
+            $table->string('client_dni')->unique();
             $table->date('client_birth_date')->nullable();
             $table->string('client_declarated_address')->nullable();
-            $table->string('client_home_address')->nullable();
+            $table->string('client_home_address');
             $table->string('client_mobile_phone')->nullable();
 
-            $table->string('lawyer_dni')->nullable();
+            $table->string('lawyer_dni')->unique();
             $table->string('lawyer_mobile_phone')->nullable();
-            $table->string('lawyer_licence_number')->nullable();
+            $table->string('lawyer_licence_number')->unique();
             $table->string('lawyer_specialty')->nullable();
             $table->string('lawyer_office_name')->nullable();
             $table->text('lawyer_biography')->nullable();
