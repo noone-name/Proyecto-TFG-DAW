@@ -18,6 +18,12 @@ return new class extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreignId('gender_id')->constrained()->cascadeOnDelete();
+
+        });
+
     }
 
     /**
