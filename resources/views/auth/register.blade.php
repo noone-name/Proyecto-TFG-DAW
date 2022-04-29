@@ -134,9 +134,9 @@
 
   
           
-            <div class="flex items-center justify-end mt-4" >
+            <div class="flex items-center justify-between mt-4" >
                         
-                <a class="ml-4 underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('welcome') }}" x-show="role_id == 0" >
+                <a class="ml-4 underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('welcome') }}" >
                     {{ __('Volver') }}
                 </a>
 
@@ -144,7 +144,7 @@
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-jet-button class="ml-4" x-show="role_id == 2  || role_id == 3" >
+                <x-jet-button class="ml-4" x-show="role_id != 0" >
                     {{ __('Register') }}
                 </x-jet-button>
 
