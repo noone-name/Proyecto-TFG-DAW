@@ -7,40 +7,42 @@
         <x-jet-validation-errors class="mb-4" />
 
  
-        <form method="POST" action="{{ route('register') }}"  @if (old('role_id')==3 ) x-data="{role_id: 3}"  @elseif (old('role_id')==2 ) x-data="{role_id: 2}"    @endif    x-data="{role_id: 0}">
+        <form method="POST" id='register_form' action="{{ route('register') }}"  @if (old('role_id')==3 ) x-data="{role_id: 3}"  @elseif (old('role_id')==2 ) x-data="{role_id: 2}"    @endif    x-data="{role_id: 0}">
             @csrf
             <div class="mt-4">
                 <x-jet-label for="role_id" value="{{ __('Register as:') }}" />
-                <select  id="selectOpt" require  name="role_id" x-model="role_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                <option value="0" hidden>Registrarse como:</option>
+                <select require onchange="notify()" name="role_id" x-model="role_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                <option value="" selected `:disabled>Registrarse como:</option>
                 <option value="2">Cliente</option>
                 <option value="3">Abogado</option>
                 </select>
             </div>
-            
+      
+    
+
             <div class="mt-4" x-show="role_id != 0">
                 <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                <x-jet-input id="name" class="clear-input block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
 
             <div class="mt-4" x-show="role_id != 0">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <x-jet-input id="email" class="clear-input block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
 
             <div class="mt-4" x-show="role_id != 0">
                 <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                <x-jet-input id="password" class="clear-input block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>
 
             <div class="mt-4" x-show="role_id != 0">
                 <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+                <x-jet-input id="password_confirmation" class="clear-input block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 
             <div class="mt-4" x-show="role_id != 0">
                 <x-jet-label for="gender_id" value="{{ __('Sexo') }}" />
-                <select name="gender_id" id="gender_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                <select name="gender_id" id="gender_id" class="clear-input block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                     @foreach ($gender as $gender )
                         <option value="{{$gender->id}}" >{{$gender->name}}</option>
                     @endforeach
@@ -50,27 +52,27 @@
 
             <div class="mt-4" x-show="role_id == 2">
                 <x-jet-label for="client_dni" value="{{ __('Dni / Nif') }}" />
-                <x-jet-input id="client_dni" class="block mt-1 w-full" type="text"  name="client_dni"/>
+                <x-jet-input id="client_dni" class="clear-input block mt-1 w-full" type="text"  name="client_dni"/>
             </div>
 
             <div class="mt-4" x-show="role_id == 2">
                 <x-jet-label for="client_birth_date" value="{{ __('Fecha de Nacimiento') }}" />
-                <x-jet-input id="client_birth_date" :value="old('client_birth_date')" class="block mt-1 w-full" type="date" name="client_birth_date"/>
+                <x-jet-input id="client_birth_date" :value="old('client_birth_date')" class="clear-input block mt-1 w-full" type="date" name="client_birth_date"/>
             </div>
 
             <div class="mt-4" x-show="role_id == 2">
                 <x-jet-label for="client_home_address" value="{{ __('Domicilio / Residencia') }}" />
-                <x-jet-input id="client_home_address"  :value="old('client_home_address')" class="block mt-1 w-full" type="text" name="client_home_address"/>
+                <x-jet-input id="client_home_address"  :value="old('client_home_address')" class="clear-input block mt-1 w-full" type="text" name="client_home_address"/>
             </div>
 
             <div class="mt-4" x-show="role_id == 2">
                 <x-jet-label for="client_mobile_phone" value="{{ __('Teléfono Móvil') }}" />
-                <x-jet-input id="client_mobile_phone"  :value="old('client_mobile_phone')" class="block mt-1 w-full" type="text" name="client_mobile_phone" />
+                <x-jet-input id="client_mobile_phone"  :value="old('client_mobile_phone')" class="clear-input block mt-1 w-full" type="text" name="client_mobile_phone" />
             </div>
 
             <div class="mt-4" x-show="role_id == 2">
                 <x-jet-label for="client_declarated_address" value="{{ __('Dirección de Facturación') }}" />
-                <x-jet-input id="client_declarated_address"  :value="old('client_declarated_address')" class="block mt-1 w-full" type="text" name="client_declarated_address" />
+                <x-jet-input id="client_declarated_address"  :value="old('client_declarated_address')" class="clear-input block mt-1 w-full" type="text" name="client_declarated_address" />
             </div>
             
             
@@ -79,37 +81,37 @@
 
             <div class="mt-4" x-show="role_id == 3">
                 <x-jet-label for="lawyer_dni" value="{{ __('Dni / Nif') }}" />
-                <x-jet-input id="lawyer_dni" :value="old('lawyer_dni')"  class="block mt-1 w-full" type="text" name="lawyer_dni"/>
+                <x-jet-input id="lawyer_dni" :value="old('lawyer_dni')"  class="clear-input block mt-1 w-full" type="text" name="lawyer_dni"/>
             </div>
 
             <div class="mt-4" x-show="role_id == 3">
                 <x-jet-label for="lawyer_mobile_phone" value="{{ __('Teléfono Móvil') }}" />
-                <x-jet-input id="lawyer_mobile_phone" :value="old('lawyer_mobile_phone')" class="block mt-1 w-full" type="text" name="lawyer_mobile_phone"/>
+                <x-jet-input id="lawyer_mobile_phone" :value="old('lawyer_mobile_phone')" class="clear-input block mt-1 w-full" type="text" name="lawyer_mobile_phone"/>
             </div>
 
             <div class="mt-4" x-show="role_id == 3">
                 <x-jet-label for="lawyer_licence_number" value="{{ __('N. Colegiado') }}" />
-                <x-jet-input id="lawyer_licence_number" :value="old('lawyer_licence_number')" class="block mt-1 w-full" type="text" name="lawyer_licence_number"/>
+                <x-jet-input id="lawyer_licence_number" :value="old('lawyer_licence_number')" class="clear-input block mt-1 w-full" type="text" name="lawyer_licence_number"/>
             </div>
             
             <div class="mt-4" x-show="role_id == 3">
                 <x-jet-label for="lawyer_specialty" value="{{ __('Especialidad') }}" />
-                <x-jet-input id="lawyer_specialty" :value="old('lawyer_specialty')" class="block mt-1 w-full" type="text" name="lawyer_specialty"/>
+                <x-jet-input id="lawyer_specialty" :value="old('lawyer_specialty')" class="clear-input block mt-1 w-full" type="text" name="lawyer_specialty"/>
             </div>
 
             <div class="mt-4" x-show="role_id == 3">
                 <x-jet-label for="lawyer_office_name" value="{{ __('Despacho de Abogado') }}" />
-                <x-jet-input id="lawyer_office_name" :value="old('lawyer_office_name')" class="block mt-1 w-full" type="text" name="lawyer_office_name" />
+                <x-jet-input id="lawyer_office_name" :value="old('lawyer_office_name')" class="clear-input block mt-1 w-full" type="text" name="lawyer_office_name" />
             </div>
 
             <div class="mt-4" x-show="role_id == 3">
                 <x-jet-label for="lawyer_biography" value="{{ __('Biografía / Presentación') }}" />
-                <x-jet-input id="lawyer_biography" :value="old('lawyer_biography')" class="block mt-1 w-full" type="text" name="lawyer_biography" />
+                <x-jet-input id="lawyer_biography" :value="old('lawyer_biography')" class="clear-input block mt-1 w-full" type="text" name="lawyer_biography" />
             </div>
 
             <div class="mt-4" x-show="role_id == 3">
                 <x-jet-label for="lawyer_work_days" value="{{ __('Disponibilidad') }}" />
-                <x-jet-input id="lawyer_work_days" :value="old('lawyer_work_days')" class="block mt-1 w-full" type="text" name="lawyer_work_days" />
+                <x-jet-input id="lawyer_work_days" :value="old('lawyer_work_days')" class="clear-input block mt-1 w-full" type="text" name="lawyer_work_days" />
             </div>
 
 
