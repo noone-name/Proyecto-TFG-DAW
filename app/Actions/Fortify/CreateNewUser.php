@@ -27,11 +27,10 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        return User::create([
+        $user =  User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
-            'role_id' => $input['role_id'],
             'gender_id' => $input['gender_id'],
         
             'client_dni' => $input['client_dni'] ?? null,
@@ -47,8 +46,11 @@ class CreateNewUser implements CreatesNewUsers
             'lawyer_office_name' => $input['lawyer_office_name'] ?? null,
             'lawyer_biography' => $input['lawyer_biography'] ?? null,
             'lawyer_work_days' => $input['lawyer_work_days'] ?? null,
-
-
         ]);
+    
+
+        $user->assignRole($input['role_id']);
+
+        return $user;
     }
 }

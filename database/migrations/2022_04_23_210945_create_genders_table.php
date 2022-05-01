@@ -20,7 +20,7 @@ return new class extends Migration
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('gender_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('gender_id')->after('password')->constrained()->cascadeOnDelete();
 
         });
 
