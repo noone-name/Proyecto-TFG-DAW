@@ -12,7 +12,7 @@
             <div class="mt-4">
                 <x-jet-label for="role_id" value="{{ __('Register as:') }}" />
                 <select require onchange="notify()" name="role_id" x-model="role_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                <option value="" selected `:disabled>Registrarse como:</option>
+                <option value="" selected :disabled="true">Registrarse como:</option>
                 <option value="2">Cliente</option>
                 <option value="3">Abogado</option>
                 </select>
