@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Users List') }}
@@ -10,4 +10,4 @@
             Accessible only for administrators.
         </div>
     </div>
-</x-admin-layout>
+</x-app-layout>

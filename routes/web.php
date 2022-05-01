@@ -24,10 +24,10 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
 
 Route::group(['middleware' => 'auth'], function() {
     Route::group(['middleware' => 'role:client', 'prefix' => 'client', 'as' => 'client.'], function() {
-        Route::resource('lessons', \App\Http\Controllers\Clients\ListingController::class);
+        Route::resource('listings', \App\Http\Controllers\Clients\ListingController::class);
     });
    Route::group(['middleware' => 'role:lawyer', 'prefix' => 'lawyer', 'as' => 'lawyer.'], function() {
-       Route::resource('courses', \App\Http\Controllers\Lawyer\ManageController::class);
+       Route::resource('manages', \App\Http\Controllers\Lawyer\ManageController::class);
    });
     Route::group(['middleware' => 'role:admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
         Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
