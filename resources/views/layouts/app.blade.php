@@ -16,9 +16,9 @@
         @livewireStyles
 
         <!-- Scripts -->
-        <script src="{{ ('js/jquery-3.6.0.min.js') }}" defer></script>
+
         <script src="{{ mix('js/app.js') }}" defer></script>
-        <script src="{{ ('js/Scripts.js') }}" defer></script>
+
 
     </head>
     <body class="font-sans antialiased">

@@ -13,8 +13,9 @@
                 <x-jet-label for="role_id" value="{{ __('Register as:') }}" />
                 <select require onchange="notify()" name="role_id" x-model="role_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                 <option value="" selected :disabled="true">Registrarse como:</option>
-                <option value="client">Cliente</option>
-                <option value="lawyer">Abogado</option>
+                  @foreach ($roles as $role )
+                        <option value="{{$role->name}}" >{{$role->name}}</option>
+                    @endforeach
                 </select>
             </div>
       

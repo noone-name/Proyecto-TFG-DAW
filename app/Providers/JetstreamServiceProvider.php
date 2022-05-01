@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Jetstream\Jetstream;
 use Laravel\Fortify\Fortify;
 use App\Models\Gender;
-
+use Spatie\Permission\Models\Role;
 
 class JetstreamServiceProvider extends ServiceProvider
 {
@@ -34,7 +34,9 @@ class JetstreamServiceProvider extends ServiceProvider
 
         Fortify::registerView(function () {
             $gender = Gender::all();
-            return view('auth.register',compact('gender'));
+            $roles = Role::whereIn('name', ['lawyer', 'client'])->get();
+
+            return view('auth.register',compact('roles'),compact('gender'));
         });
     
     }

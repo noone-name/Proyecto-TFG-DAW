@@ -23,6 +23,7 @@
                                     <tbody class="bg-white divide-y divide-gray-200">
                                         @foreach ($users as $user)
                                             <tr>
+                                                
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="flex items-center">
                                                         {{ $user->name }}
@@ -38,9 +39,6 @@
                                                         <div class="flex space-x-2">
                                                             <a href="{{ route('admin.users.show', $user->id) }}"
                                                                 class="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md">Roles</a>
-                                                                
-                                                            <a href="{{ route('admin.users.show', $user->id) }}"
-                                                                class="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md">Permission</a>
                                                             <form
                                                                 class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-md"
                                                                 method="POST"
