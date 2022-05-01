@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('client_dni')->nullable();
             $table->date('client_birth_date')->nullable();
             $table->string('client_declarated_address')->nullable();
-            $table->string('client_home_address');
+            $table->string('client_home_address')->nullable();
             $table->string('client_mobile_phone')->nullable();
 
             $table->string('lawyer_dni')->nullable();
