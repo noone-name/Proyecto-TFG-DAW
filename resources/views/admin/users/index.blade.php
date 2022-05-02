@@ -23,7 +23,12 @@
                                     <tbody class="bg-white divide-y divide-gray-200">
                                         @foreach ($users as $user)
                                             <tr>
-                                                
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="flex items-center">
+                                                        <img class="h-8 w-8 rounded-full object-cover" src="{{$user->profile_photo_url }}" alt="{{ $user->name }}" />
+                                                    </div>
+                                                </td>
+
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="flex items-center">
                                                         {{ $user->name }}
