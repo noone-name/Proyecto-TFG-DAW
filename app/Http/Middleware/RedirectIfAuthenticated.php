@@ -6,9 +6,14 @@ use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Traits\HasRoles;
+
+
+
 
 class RedirectIfAuthenticated
 {
+    use HasRoles;
     /**
      * Handle an incoming request.
      *
