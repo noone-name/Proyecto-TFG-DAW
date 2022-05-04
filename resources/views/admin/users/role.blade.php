@@ -5,25 +5,7 @@
                 <div class="flex p-2">
                     <a href="{{ route('admin.users.index') }}" class="px-4 py-2 bg-green-700 hover:bg-green-500 text-slate-100 rounded-md">Users Index</a>
                 </div>
-                <div class="flex flex-col p-2 bg-slate-100">
-                   
-                        <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                            @if (Laravel\Fortify\Features::canUpdateProfileInformation())
-                            @livewire('profile.update-profile-information-form')
 
-                            <x-jet-section-border />
-                            @endif
-
-                            @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
-                            <div class="mt-10 sm:mt-0">
-                                @livewire('profile.update-password-form')
-                            </div>
-
-                            <x-jet-section-border />
-                            @endif
-                        </div>
-                   
-                </div>
 
                 <div class="mt-6 p-2 bg-slate-100">
                     <h2 class="text-2xl font-semibold">Roles</h2>
