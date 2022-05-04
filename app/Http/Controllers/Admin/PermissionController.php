@@ -6,12 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Livewire\WithPagination;
 
 class PermissionController extends Controller
 {
+        use WithPagination;
+
     public function index()
     {
-        $permissions = Permission::all();
+        $permissions = Permission::paginate(5);
         return view('admin.permissions.index', compact('permissions'));
     }
 
@@ -22,7 +25,7 @@ class PermissionController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate(['name'=>['required','min:3','unique:permissions']]); 
+        $validated = $request->validate(['name'=>['required','min:3','unique:permissions']]);
 
         Permission::create($validated);
 
@@ -31,13 +34,13 @@ class PermissionController extends Controller
 
     public function edit(Permission $permission)
     {
-        $roles = Role::all();
+        $roles = Role::paginate(5);
         return view('admin.permissions.edit', compact('permission', 'roles'));
     }
 
     public function update(Request $request, Permission $permission)
     {
-        $validated = $request->validate(['name'=>['required','min:3','unique:permissions']]); 
+        $validated = $request->validate(['name'=>['required','min:3','unique:permissions']]);
         $permission->update($validated);
 
         return to_route('admin.permissions.index')->with('message', 'Permission updated.');

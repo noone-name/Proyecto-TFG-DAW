@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Livewire\WithPagination;
 
 class RoleController extends Controller
 {
+        use WithPagination;
+
     public function index()
     {
         $roles = Role::whereNotIn('name', ['admin'])->get();
@@ -22,7 +25,7 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate(['name'=>['required','min:3','unique:roles']]); 
+        $validated = $request->validate(['name'=>['required','min:3','unique:roles']]);
         Role::create($validated);
 
         return to_route('admin.roles.index')->with('message', 'Role Created successfully.');
@@ -30,13 +33,13 @@ class RoleController extends Controller
 
     public function edit(Role $role)
     {
-        $permissions = Permission::all();
+        $permissions = Permission::paginate(5);
         return view('admin.roles.edit', compact('role', 'permissions'));
     }
 
     public function update(Request $request, Role $role)
     {
-        $validated = $request->validate(['name'=>['required','min:3','unique:roles']]); 
+        $validated = $request->validate(['name'=>['required','min:3','unique:roles']]);
         $role->update($validated);
 
         return to_route('admin.roles.index')->with('message', 'Role Updated successfully.');

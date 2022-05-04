@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\IndexController;
+use App\Http\Controllers\Admin\AdminIndexController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
@@ -29,13 +29,13 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
 Route::group(['middleware' => 'auth'], function() {
     Route::group(['middleware' => 'role:client', 'prefix' => 'client', 'as' => 'client.'], function() {
         Route::resource('listings', \App\Http\Controllers\Clients\ListingController::class);
-    }); 
+    });
    Route::group(['middleware' => 'role:lawyer', 'prefix' => 'lawyer', 'as' => 'lawyer.'], function() {
        Route::resource('manages', \App\Http\Controllers\Lawyer\ManageController::class);
    });
 
     Route::group(['middleware' => 'role:admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
-        Route::get('/', [IndexController::class, 'index'])->name('index');
+        Route::get('/', [AdminIndexController::class, 'index'])->name('index');
         Route::resource('/roles', RoleController::class);
         Route::post('/roles/{role}/permissions', [RoleController::class, 'givePermission'])->name('roles.permissions');
         Route::delete('/roles/{role}/permissions/{permission}', [RoleController::class, 'revokePermission'])->name('roles.permissions.revoke');

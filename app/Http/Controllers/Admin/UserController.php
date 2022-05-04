@@ -7,20 +7,23 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Livewire\WithPagination;
 
 class UserController extends Controller
 {
+    use WithPagination;
+
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(10);
 
         return view('admin.users.index', compact('users'));
     }
 
     public function show(User $user)
     {
-        $roles = Role::all();
-        $permissions = Permission::all();
+        $roles = Role::paginate(5);
+        $permissions = Permission::paginate(5);
 
         return view('admin.users.role', compact('user', 'roles', 'permissions'));
     }

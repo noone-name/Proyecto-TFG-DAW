@@ -28,6 +28,7 @@
                         </form>
                     </div>
                 </div>
+
                 <div class="mt-6 p-2 bg-slate-100">
                     <h2 class="text-2xl font-semibold">Role Permissions</h2>
                     <div class="flex space-x-2 mt-4 p-2">

@@ -12,10 +12,7 @@ class RedirectController extends Controller
 {
       public function index()
      {
-         $user =
-        if (condition) {
-            # code...
-        }
+
 
 
      }
