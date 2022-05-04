@@ -41,9 +41,9 @@
                                                     <div class="flex justify-end">
                                                         <div class="flex space-x-2">
                                                             <a href="{{ route('admin.users.show', $user->id) }}"
-                                                                class="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md">Roles</a>
+                                                                class="inline-block px-6 py-2.5 bg-blue-400 text-white font-medium text-xs leading-tight  rounded-full shadow-md hover:bg-blue-500 hover:shadow-lg focus:bg-blue-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-600 active:shadow-lg transition duration-150 ease-in-out">Roles</a>
                                                             <form
-                                                                class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-md"
+                                                                class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out"
                                                                 method="POST"
                                                                 action="{{ route('admin.users.destroy', $user->id) }}"
                                                                 onsubmit="return confirm('Are you sure?');">

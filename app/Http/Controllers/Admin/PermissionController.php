@@ -14,7 +14,7 @@ class PermissionController extends Controller
 
     public function index()
     {
-        $permissions = Permission::paginate(5);
+        $permissions = Permission::paginate(4);
         return view('admin.permissions.index', compact('permissions'));
     }
 
@@ -34,7 +34,7 @@ class PermissionController extends Controller
 
     public function edit(Permission $permission)
     {
-        $roles = Role::paginate(5);
+        $roles = Role::all();
         return view('admin.permissions.edit', compact('permission', 'roles'));
     }
 
