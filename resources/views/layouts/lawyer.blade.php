@@ -8,30 +8,25 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
-    <!-- Styles para FullCalendar -->
-    <link rel="stylesheet" href="{{ asset('css/fullcalendar/main.css') }}">
-
-
-
     @livewireStyles
 
 
-
     <!-- Scripts -->
-    <script src="{{ asset('js/jquery-3.6.0.min.js') }}" defer></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}" defer></script>
 
 
     <!-- Scripts para FullCalendar-->
-    <script src="{{ asset('js/fullcalendar/main.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/fullcalendar/main.css') }}">
+    <script src="{{ asset('js/fullcalendar/main.js') }}" defer></script>
+    <script src="{{ asset('js/fullcalendar/locales-all.js') }}" defer></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/locales-all.js"></script>
 
 </head>
 
@@ -55,14 +50,17 @@
             {{ $slot }}
         </main>
     </div>
+    <script src="{{ asset('js/fullcalendar/schedule.js') }}" defer></script>
+    <script src="{{ asset('js/Scripts.js') }}" defer></script>
 
 
 
     @stack('modals')
 
-    <script src="{{ asset('js/fullcalendar/schedule.js') }}" defer></script>
 
     @livewireScripts
+
+
 </body>
 
 </html>
