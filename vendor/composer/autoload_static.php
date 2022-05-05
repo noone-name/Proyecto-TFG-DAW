@@ -601,6 +601,7 @@ class ComposerStaticInit7638287e5c30175fb955fa12de0a680d
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\Gender' => __DIR__ . '/../..' . '/app/Models/Gender.php',
+        'App\\Models\\Laywer\\FullCalendarEvents' => __DIR__ . '/../..' . '/app/Models/Laywer/FullCalendarEvents.php',
         'App\\Models\\Role' => __DIR__ . '/../..' . '/app/Models/Role.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
