@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Lawyer;
 
-use App\Models\FullCalendarEvents;
+//use App\Models\FullCalendarEvents;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class FullCalendarEventsController extends Controller
@@ -15,6 +16,7 @@ class FullCalendarEventsController extends Controller
     public function index()
     {
         //
+        return view('lawyer.calendar.index');
     }
 
     /**

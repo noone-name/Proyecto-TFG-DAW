@@ -12,13 +12,17 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <link href='fullcalendar/main.css' rel='stylesheet' />
 
         @livewireStyles
 
         <!-- Scripts -->
         <script src="{{ ('js/jquery-3.6.0.min.js') }}" defer></script>
         <script src="{{ mix('js/app.js') }}" defer></script>
-        <script src="{{ ('js/Scripts.js') }}" defer></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/locales-all.js"></script>
+        <script src='fullcalendar/main.js'></script>
+
 
     </head>
     <body class="font-sans antialiased">
@@ -41,6 +45,9 @@
                 {{ $slot }}
             </main>
         </div>
+
+        <script src="{{ asset('js/schedule.js') }}" defer></script>
+
 
         @stack('modals')
 

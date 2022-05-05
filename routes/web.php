@@ -4,6 +4,10 @@ use App\Http\Controllers\Admin\AdminIndexController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+
+use App\Http\Controllers\Lawyer\FullCalendarEventsController;
+
+
 use App\Http\Controllers\Clients\ClientIndexController;
 
 
@@ -39,6 +43,8 @@ Route::group(['middleware' => 'auth'], function() {
     });
    Route::group(['middleware' => 'role:lawyer', 'prefix' => 'lawyer', 'as' => 'lawyer.'], function() {
        Route::resource('manages', \App\Http\Controllers\Lawyer\ManageController::class);
+       Route::get('/schedule', [FullCalendarEventsController::class, 'index'])->name('calendar.index');
+
    });
 
     Route::group(['middleware' => 'role:admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
