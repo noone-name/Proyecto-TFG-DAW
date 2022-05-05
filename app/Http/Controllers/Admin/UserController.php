@@ -15,15 +15,15 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::role('Abogado')->paginate(10);
+        $users = User::paginate(10);
 
         return view('admin.users.index', compact('users'));
     }
 
     public function show(User $user)
     {
-        $roles = Role::paginate(5);
-        $permissions = Permission::paginate(5);
+        $roles = Role::all();
+        $permissions = Permission::all();
 
         return view('admin.users.role', compact('user', 'roles', 'permissions'));
     }
