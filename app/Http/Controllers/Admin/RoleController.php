@@ -33,7 +33,7 @@ class RoleController extends Controller
 
     public function edit(Role $role)
     {
-        $permissions = Permission::paginate(5);
+        $permissions = Permission::all();
         return view('admin.roles.edit', compact('role', 'permissions'));
     }
 
