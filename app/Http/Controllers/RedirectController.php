@@ -19,15 +19,15 @@ class RedirectController extends Controller
                 return view('admin.index');
             }
 
-            if( Auth::user()->hasRole('client') ){
+            if( Auth::user()->hasRole('Cliente') ){
                 return view('client.index');
             }
 
-            if( Auth::user()->hasRole('lawyer') ){
+            if( Auth::user()->hasRole('Abogado') ){
                 return view('lawyer.index');
             }
         }
 
-        return view('home');
+        return view('/');
     }
 }

@@ -43,22 +43,22 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'unpublish real estate articles']);
 
         $role = Role::create(['name' => 'admin'])->givePermissionTo(Permission::all());
-        $role = Role::create(['name' => 'client']);
-        $role = Role::create(['name' => 'lawyer'])->givePermissionTo(Permission::all());
+        $role = Role::create(['name' => 'Cliente']);
+        $role = Role::create(['name' => 'Abogado'])->givePermissionTo(Permission::all());
 
-        $role = Role::create(['name' => 'lawyer_economic'])
+        $role = Role::create(['name' => 'Derecho Civil'])
                 ->givePermissionTo(['edit economic articles', 'delete economic articles', 'publish economic articles', 'unpublish economic articles']);
 
-        $role = Role::create(['name' => 'lawyer_criminal'])
+        $role = Role::create(['name' => 'Penal'])
                 ->givePermissionTo(['edit criminal articles', 'delete criminal articles', 'publish criminal articles', 'unpublish criminal articles']);
 
-        $role = Role::create(['name' => 'lawyer_labor'])
+        $role = Role::create(['name' => 'Laboral'])
                 ->givePermissionTo(['edit labor articles', 'delete labor articles', 'publish labor articles', 'unpublish labor articles']);
 
-        $role = Role::create(['name' => 'lawyer_administrative'])
+        $role = Role::create(['name' => 'Derecho Administrativo'])
                 ->givePermissionTo(['edit administrative articles', 'delete administrative articles', 'publish administrative articles', 'unpublish administrative articles']);
 
-        $role = Role::create(['name' => 'lawyer_real_estate'])
+        $role = Role::create(['name' => 'Derecho Patrimonial'])
                 ->givePermissionTo(['edit real estate articles', 'delete real estate articles', 'publish real estate articles', 'unpublish real estate articles']);
 
 

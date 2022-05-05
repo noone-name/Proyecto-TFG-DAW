@@ -25,11 +25,11 @@ class AdminsSeeder extends Seeder
         ])->assignRole('admin');
 
         User::factory(50)->clients()->create()->each(function ($user) {
-            $user->assignRole('client'); // assuming 'supscription' was a typo
+            $user->assignRole('Cliente'); // assuming 'supscription' was a typo
         });
 
         User::factory(100)->lawyers()->create()->each(function ($user) {
-            $user->assignRole('lawyer'); // assuming 'supscription' was a typo
+            $user->assignRole('Abogado'); // assuming 'supscription' was a typo
         });
     }
 

@@ -34,11 +34,12 @@ class JetstreamServiceProvider extends ServiceProvider
 
         Fortify::registerView(function () {
             $gender = Gender::all();
-            $roles = Role::whereIn('name', ['lawyer', 'client'])->get();
+            $roles = Role::whereIn('name', ['Abogado', 'Cliente'])->get();
+            $lawyers_roles = Role::whereNotIn('name',['admin','Cliente','Abogado'])->get();
 
-            return view('auth.register',compact('roles'),compact('gender'));
+            return view('auth.register',compact('roles','gender','lawyers_roles'));
         });
-    
+
     }
 
     /**

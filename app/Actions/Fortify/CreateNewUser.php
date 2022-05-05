@@ -11,7 +11,7 @@ use Laravel\Jetstream\Jetstream;
 class CreateNewUser implements CreatesNewUsers
 {
     use PasswordValidationRules;
-    
+
     /**
      * Validate and create a newly registered user.
      *
@@ -32,7 +32,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
             'gender_id' => $input['gender_id'],
-        
+
             'client_dni' => $input['client_dni'] ?? null,
             'client_birth_date' => $input['client_birth_date'] ?? null,
             'client_home_address' => $input['client_home_address'] ?? null,
@@ -46,8 +46,8 @@ class CreateNewUser implements CreatesNewUsers
             'lawyer_office_name' => $input['lawyer_office_name'] ?? null,
             'lawyer_biography' => $input['lawyer_biography'] ?? null,
             'lawyer_work_days' => $input['lawyer_work_days'] ?? null,
-        ])->assignRole($input['role_id']);
+        ])->assignRole([$input['role_id'], $input['lawyer_specialty'] ?? null]);
 
-        
+
     }
 }
