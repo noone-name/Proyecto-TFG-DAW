@@ -44,7 +44,6 @@
             <div class="mt-4" x-show="role_id != 0">
                 <x-jet-label for="gender_id" value="{{ __('Sexo') }}" />
                 <select name="gender_id" id="gender_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                    <option value="" selected :disabled="true">Género: </option>
                     @foreach ($gender as $gender )
                         <option value="{{$gender->id}}" >{{$gender->name}}</option>
                     @endforeach

@@ -90,14 +90,12 @@ class UserFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             $workDays = ['I, III, V', 'II, IV'];
-            $specialty = ['Derecho Civil', 'Penal', 'Laboral', 'Derecho Administrativo', 'Derecho Patrimonial'];
-
 
             return [
                 'lawyer_dni' => $this->faker->randomNumber(9),
                 'lawyer_mobile_phone' => $this->faker->phoneNumber(),
-                'lawyer_specialty' => $specialty[mt_rand(0,count($specialty)-1)],
                 'lawyer_licence_number' => $this->faker->randomNumber(6),
+                'lawyer_specialty' => $this->faker->words(rand(2,3), true),
                 'lawyer_office_name' => $this->faker->catchPhrase(),
                 'lawyer_biography' => $this->faker->text(200),
                 'lawyer_work_days' => $workDays[mt_rand(0,count($workDays)-1)],
