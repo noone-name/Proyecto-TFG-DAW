@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use SebastianBergmann\Environment\Console;
 
 class AdminsSeeder extends Seeder
 {
@@ -16,7 +15,6 @@ class AdminsSeeder extends Seeder
      */
     public function run()
     {
-
         User::create([
                 'name' => 'admin',
                 'email' => 'admin@admin.es',
@@ -26,17 +24,13 @@ class AdminsSeeder extends Seeder
 
         ])->assignRole('admin');
 
+        User::factory(50)->clients()->create()->each(function ($user) {
+            $user->assignRole('Cliente'); // assuming 'supscription' was a typo
+        });
 
         User::factory(100)->lawyers()->create()->each(function ($user) {
-            $user->assignRole($user->lawyer_specialty);
-            $user->givePermissionTo($user->getPermissionsViaRoles());
+            $user->assignRole('Abogado'); // assuming 'supscription' was a typo
         });
-
-        User::factory(50)->clients()->create()->each(function ($user) {
-            $user->assignRole('Cliente');
-        });
-
-
     }
 
 

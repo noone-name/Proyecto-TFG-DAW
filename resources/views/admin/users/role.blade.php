@@ -36,7 +36,6 @@
                                 <label for="role" class="block text-sm font-medium text-gray-700">Roles</label>
                                 <select id="role" name="role" autocomplete="role-name"
                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option value="" disabled selected>Elige un rol</option>
                                     @foreach ($roles as $role)
                                         <option value="{{ $role->name }}">{{ $role->name }}</option>
                                     @endforeach
@@ -58,10 +57,10 @@
 
 
                     <h2 class="text-2xl font-semibold">Permissions</h2>
-                    <div class="space-x-2 mt-4 p-2">
+                    <div class="flex space-x-2 mt-4 p-2">
                         @if ($user->permissions)
                             @foreach ($user->permissions as $user_permission)
-                                <form class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" method="POST"
+                                <form class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-md" method="POST"
                                     action="{{ route('admin.users.permissions.revoke', [$user->id, $user_permission->id]) }}"
                                     onsubmit="return confirm('Are you sure?');">
                                     @csrf
@@ -80,7 +79,6 @@
                                     class="block text-sm font-medium text-gray-700">Permission</label>
                                 <select id="permission" name="permission" autocomplete="permission-name"
                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option value="" disabled selected>Elige un permiso</option>
                                     @foreach ($permissions as $permission)
                                         <option value="{{ $permission->name }}">{{ $permission->name }}</option>
                                     @endforeach
@@ -89,16 +87,13 @@
                             @error('name')
                                 <span class="text-red-400 text-sm">{{ $message }}</span>
                             @enderror
-
-                            <div class="sm:col-span-6 pt-5">
-                                <button type="submit"
-                                    class="inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out">Assign</button>
-                            </div>
-                            </form>
-
                     </div>
 
-
+                    <div class="sm:col-span-6 pt-5">
+                        <button type="submit"
+                            class="inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out">Assign</button>
+                    </div>
+                    </form>
 
                 </div>
             </div>
