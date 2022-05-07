@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="{{ asset('css/fullcalendar/main.css') }}">
     <script src="{{ asset('js/fullcalendar/main.js') }}" defer></script>
     <script src="{{ asset('js/fullcalendar/locales-all.js') }}" defer></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js" ></script>
 
 </head>
 

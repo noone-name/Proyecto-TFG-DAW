@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Lawyer;
 
-//use App\Models\FullCalendarEvents;
+use App\Models\FullCalendarEvents;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Fascades\Validator;
 
 class FullCalendarEventsController extends Controller
 {
@@ -16,6 +17,17 @@ class FullCalendarEventsController extends Controller
     public function index()
     {
         //
+        $events = array();
+        $citas = FullCalendarEvents::all();
+        foreach($citas as $cita) {
+
+            $events[] = [
+                'id'   => $cita->id,
+                'title' => $cita->title,
+                'start' => $cita->start_date,
+                'end' => $cita->end_date,
+            ];
+        }
         return view('lawyer.calendar.index');
     }
 
@@ -27,6 +39,8 @@ class FullCalendarEventsController extends Controller
     public function create()
     {
         //
+
+
     }
 
     /**
@@ -37,7 +51,8 @@ class FullCalendarEventsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
     }
 
     /**

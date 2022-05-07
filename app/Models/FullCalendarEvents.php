@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class FullCalendarEvents extends Model
 {
     use HasFactory;
+
+    protected $fillable=[
+        'title',
+        'start',
+        'end',
+        'allDay',
+        'color',
+        'textColor',
+    ];
 }

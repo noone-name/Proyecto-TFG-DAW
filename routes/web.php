@@ -38,6 +38,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
 });
 
 
+
 Route::group(['middleware' => 'auth'], function() {
     Route::group(['middleware' => 'role:Client', 'prefix' => 'client', 'as' => 'client.'], function() {
         Route::resource('listings', \App\Http\Controllers\Clients\ListingController::class);
@@ -46,6 +47,7 @@ Route::group(['middleware' => 'auth'], function() {
        Route::resource('/', ManageController::class);
 
        Route::get('/schedule', [FullCalendarEventsController::class, 'index'])->name('calendar.index');
+       Route::post('/schedule/store', [FullCalendarEventsController::class, 'store'])->name('calendar.create');
 
    });
 
