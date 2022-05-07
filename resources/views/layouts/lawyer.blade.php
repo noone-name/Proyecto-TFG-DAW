@@ -21,6 +21,11 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
 
+
+    <script src="https://unpkg.com/flowbite@1.4.5/dist/flowbite.js"></script>
+    <script src="https://unpkg.com/flowbite@1.4.5/dist/datepicker.js"></script>
+
+
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}" defer></script>
 
 
@@ -53,7 +58,6 @@
         </main>
     </div>
     <script src="{{ asset('js/fullcalendar/schedule.js') }}" defer></script>
-    <script src="{{ asset('js/Scripts.js') }}" defer></script>
 
 
 
