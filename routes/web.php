@@ -46,8 +46,6 @@ Route::group(['middleware' => 'auth'], function() {
    Route::group(['middleware' => 'role:Abogado', 'prefix' => 'lawyer', 'as' => 'lawyer.'], function() {
        Route::resource('/', ManageController::class);
 
-       Route::get('/schedule', [FullCalendarEventsController::class, 'index'])->name('calendar.index');
-       Route::post('/schedule/store', [FullCalendarEventsController::class, 'store'])->name('calendar.create');
 
    });
 

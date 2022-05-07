@@ -25,13 +25,7 @@
                 </div>
                 @endrole
 
-                @role('Abogado')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('lawyer.calendar.index') }}" :active="request()->routeIs('lawyer.calendar.index')">
-                            {{ __('Agenda') }}
-                        </x-jet-nav-link>
-                </div>
-                @endrole
+
 
             </div>
 

@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="modal-body relative p-4">
-                        <form id='dayClick' method="POST" action="{{ route('lawyer.calendar.create') }}">
+                        <form id='dayClick'>
                             @csrf
                             <label for="input-group-1"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Título de la
