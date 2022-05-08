@@ -4,18 +4,11 @@ namespace App\Http\Controllers\Lawyer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreChecklistGroupRequest;
+use App\Models\ChecklistGroup;
 
 class ChecklistGroupController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -30,47 +23,39 @@ class ChecklistGroupController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  StoreChecklistGroupRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreChecklistGroupRequest $request)
     {
-
+        ChecklistGroup::create($request->validated());
+        return redirect()->route('lawyer.index');
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  ChecklistGroup $ChecklistGroup
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ChecklistGroup $checklistGroup)
     {
-        //
+        return view('lawyer.checklist_group.edit', compact('checklistGroup'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  StoreChecklistGroupRequest  $request
+     * @param  ChecklistGroup $checklistGroup
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreChecklistGroupRequest $request, ChecklistGroup $checklistGroup)
     {
-        //
+        $checklistGroup->update($request->validated());
+        return redirect()->route('lawyer.index');
     }
 
     /**
@@ -79,8 +64,9 @@ class ChecklistGroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ChecklistGroup $checklistGroup)
     {
-        //
+        $checklistGroup->delete();
+        return redirect()->route('lawyer.index');
     }
 }

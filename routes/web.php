@@ -52,7 +52,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/', [LawyerIndexController::class, 'index'])->name('index');
     Route::resource('/manages', ManageController::class);
     Route::resource('checklist_groups', ChecklistGroupController::class);
-    Route::resource('checklist', ChecklistController::class);
+    Route::resource('checklist_groups.checklists', ChecklistController::class);
 
 
 
