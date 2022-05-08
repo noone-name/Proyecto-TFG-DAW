@@ -9,6 +9,10 @@ use App\Http\Controllers\Lawyer\LawyerIndexController;
 use App\Http\Controllers\Lawyer\FullCalendarEventsController;
 use App\Http\Controllers\Lawyer\ManageController;
 
+use App\Http\Controllers\Lawyer\ChecklistGroupController;
+use App\Http\Controllers\Lawyer\ChecklistController;
+
+
 
 use App\Http\Controllers\Clients\ClientIndexController;
 
@@ -47,6 +51,11 @@ Route::group(['middleware' => 'auth'], function() {
    Route::group(['middleware' => 'role:Abogado', 'prefix' => 'lawyer', 'as' => 'lawyer.'], function() {
     Route::get('/', [LawyerIndexController::class, 'index'])->name('index');
     Route::resource('/manages', ManageController::class);
+    Route::resource('checklist_groups', ChecklistGroupController::class);
+    Route::resource('checklist', ChecklistController::class);
+
+
+
 
 
    });
