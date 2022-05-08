@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 
+use App\Http\Controllers\Lawyer\LawyerIndexController;
 use App\Http\Controllers\Lawyer\FullCalendarEventsController;
 use App\Http\Controllers\Lawyer\ManageController;
 
@@ -44,7 +45,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('listings', \App\Http\Controllers\Clients\ListingController::class);
     });
    Route::group(['middleware' => 'role:Abogado', 'prefix' => 'lawyer', 'as' => 'lawyer.'], function() {
-       Route::resource('/', ManageController::class);
+    Route::get('/', [LawyerIndexController::class, 'index'])->name('index');
+    Route::resource('/manages', ManageController::class);
 
 
    });

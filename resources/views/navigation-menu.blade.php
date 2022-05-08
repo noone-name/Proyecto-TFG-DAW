@@ -25,6 +25,13 @@
                 </div>
                 @endrole
 
+                @role('Abogado')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('lawyer.manages.index') }}" :active="request()->routeIs('lawyer.manages.index')">
+                            {{ __('Manages') }}
+                        </x-jet-nav-link>
+                </div>
+                @endrole
 
 
             </div>
