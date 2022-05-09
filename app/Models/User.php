@@ -80,4 +80,16 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Get the user associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function gender(): HasOne
+    {
+        return $this->hasOne(Gender::class, 'gender_id', 'gender_id');
+    }
+
+
 }
