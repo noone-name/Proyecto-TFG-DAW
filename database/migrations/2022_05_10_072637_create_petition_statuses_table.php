@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('petition_statuses', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('petition_id');
+            $table->foreign('petition_id')->references('id')->on('petitions');
+
             $table->timestamps();
         });
     }

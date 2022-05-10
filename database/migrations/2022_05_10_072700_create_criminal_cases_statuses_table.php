@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('criminal_cases_statuses', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('criminal_cases_id');
+            $table->foreign('criminal_cases_id')->references('id')->on('criminal_cases');
+
             $table->timestamps();
         });
     }

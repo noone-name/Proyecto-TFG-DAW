@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('court_cases_statuses', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('court_cases_id');
+            $table->foreign('court_cases_id')->references('id')->on('court_cases');
+
             $table->timestamps();
         });
     }

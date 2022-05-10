@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('normal_cases_statuses', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('normal_cases_id');
+            $table->foreign('normal_cases_id')->references('id')->on('normal_cases');
+
             $table->timestamps();
         });
     }

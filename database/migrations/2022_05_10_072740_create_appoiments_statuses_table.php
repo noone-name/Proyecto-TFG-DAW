@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('appoiments_statuses', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('appoiments_id');
+            $table->foreign('appoiments_id')->references('id')->on('appoiments');
+
             $table->timestamps();
         });
     }
