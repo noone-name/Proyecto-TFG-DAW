@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Status_action;
+use App\Models\NormalCases;
 use Illuminate\Http\Request;
 
-class StatusActionController extends Controller
+class NormalCasesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class StatusActionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Status_action  $status_action
+     * @param  \App\Models\NormalCases  $normalCases
      * @return \Illuminate\Http\Response
      */
-    public function show(Status_action $status_action)
+    public function show(NormalCases $normalCases)
     {
         //
     }
@@ -52,10 +52,10 @@ class StatusActionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Status_action  $status_action
+     * @param  \App\Models\NormalCases  $normalCases
      * @return \Illuminate\Http\Response
      */
-    public function edit(Status_action $status_action)
+    public function edit(NormalCases $normalCases)
     {
         //
     }
@@ -64,10 +64,10 @@ class StatusActionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Status_action  $status_action
+     * @param  \App\Models\NormalCases  $normalCases
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Status_action $status_action)
+    public function update(Request $request, NormalCases $normalCases)
     {
         //
     }
@@ -75,10 +75,10 @@ class StatusActionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Status_action  $status_action
+     * @param  \App\Models\NormalCases  $normalCases
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Status_action $status_action)
+    public function destroy(NormalCases $normalCases)
     {
         //
     }

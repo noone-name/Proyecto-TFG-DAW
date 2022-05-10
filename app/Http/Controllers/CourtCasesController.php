@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TypeOrder;
+use App\Models\CourtCases;
 use Illuminate\Http\Request;
 
-class TypeOrderController extends Controller
+class CourtCasesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class TypeOrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TypeOrder  $typeOrder
+     * @param  \App\Models\CourtCases  $courtCases
      * @return \Illuminate\Http\Response
      */
-    public function show(TypeOrder $typeOrder)
+    public function show(CourtCases $courtCases)
     {
         //
     }
@@ -52,10 +52,10 @@ class TypeOrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\TypeOrder  $typeOrder
+     * @param  \App\Models\CourtCases  $courtCases
      * @return \Illuminate\Http\Response
      */
-    public function edit(TypeOrder $typeOrder)
+    public function edit(CourtCases $courtCases)
     {
         //
     }
@@ -64,10 +64,10 @@ class TypeOrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TypeOrder  $typeOrder
+     * @param  \App\Models\CourtCases  $courtCases
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TypeOrder $typeOrder)
+    public function update(Request $request, CourtCases $courtCases)
     {
         //
     }
@@ -75,10 +75,10 @@ class TypeOrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TypeOrder  $typeOrder
+     * @param  \App\Models\CourtCases  $courtCases
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TypeOrder $typeOrder)
+    public function destroy(CourtCases $courtCases)
     {
         //
     }

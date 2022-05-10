@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cases;
+use App\Models\Petition;
 use Illuminate\Http\Request;
 
-class CasesController extends Controller
+class PetitionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class CasesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cases  $cases
+     * @param  \App\Models\Petition  $petition
      * @return \Illuminate\Http\Response
      */
-    public function show(Cases $cases)
+    public function show(Petition $petition)
     {
         //
     }
@@ -52,10 +52,10 @@ class CasesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Cases  $cases
+     * @param  \App\Models\Petition  $petition
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cases $cases)
+    public function edit(Petition $petition)
     {
         //
     }
@@ -64,10 +64,10 @@ class CasesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cases  $cases
+     * @param  \App\Models\Petition  $petition
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cases $cases)
+    public function update(Request $request, Petition $petition)
     {
         //
     }
@@ -75,10 +75,10 @@ class CasesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Cases  $cases
+     * @param  \App\Models\Petition  $petition
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cases $cases)
+    public function destroy(Petition $petition)
     {
         //
     }
