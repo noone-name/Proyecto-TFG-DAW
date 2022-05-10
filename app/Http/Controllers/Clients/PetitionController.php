@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Clients;
 
+use App\Http\Controllers\Controller;
 use App\Models\Petition;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class PetitionController extends Controller
      */
     public function index()
     {
-        //
+        return view('client.petitions.index');
     }
 
     /**

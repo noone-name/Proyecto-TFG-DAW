@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Lawyer;
 
+use App\Http\Controllers\Controller;
 use App\Models\CriminalCasesStatus;
 use Illuminate\Http\Request;
 

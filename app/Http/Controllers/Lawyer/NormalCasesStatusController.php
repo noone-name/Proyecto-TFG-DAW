@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Lawyer;
 
+use App\Http\Controllers\Controller;
 use App\Models\NormalCasesStatus;
 use Illuminate\Http\Request;
 

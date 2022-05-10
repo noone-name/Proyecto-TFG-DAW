@@ -14,8 +14,8 @@ use App\Http\Controllers\Clients\CourtCasesController;
 use App\Http\Controllers\Clients\CriminalCasesController;
 use App\Http\Controllers\Clients\NormalCasesController;
 use App\Http\Controllers\Clients\PetitionController;
-
 use App\Http\Controllers\Clients\ClientIndexController;
+use App\Http\Controllers\Clients\ListingController;
 
 
 use App\Http\Controllers\RedirectController;
@@ -43,11 +43,10 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
 
 });
 
-
-
 Route::group(['middleware' => 'auth'], function() {
-    Route::group(['middleware' => 'role:Client', 'prefix' => 'client', 'as' => 'client.'], function() {
-        Route::resource('listings', \App\Http\Controllers\Clients\ListingController::class);
+    Route::group(['middleware' => 'role:Cliente', 'prefix' => 'client', 'as' => 'client.'], function() {
+        Route::get('/', [ClientIndexController::class, 'index'])->name('index');
+        Route::resource('/listings', ListingController::class);
         Route::resource('/appoiments', AppoimentsController::class);
         Route::resource('/court_cases', CourtCasesController::class);
         Route::resource('/criminal_cases', CriminalCasesController::class);

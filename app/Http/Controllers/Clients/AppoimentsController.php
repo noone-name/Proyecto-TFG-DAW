@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Clients;
 
+use App\Http\Controllers\Controller;
 use App\Models\Appoiments;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class AppoimentsController extends Controller
      */
     public function index()
     {
-        //
+        return view('client.appoiments.index');
     }
 
     /**
