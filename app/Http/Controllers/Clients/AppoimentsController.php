@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Clients;
 
-use App\Models\PetitionStatus;
+use App\Models\Appoiments;
 use Illuminate\Http\Request;
 
-class PetitionStatusController extends Controller
+class AppoimentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class PetitionStatusController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PetitionStatus  $petitionStatus
+     * @param  \App\Models\Appoiments  $appoiments
      * @return \Illuminate\Http\Response
      */
-    public function show(PetitionStatus $petitionStatus)
+    public function show(Appoiments $appoiments)
     {
         //
     }
@@ -52,10 +52,10 @@ class PetitionStatusController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PetitionStatus  $petitionStatus
+     * @param  \App\Models\Appoiments  $appoiments
      * @return \Illuminate\Http\Response
      */
-    public function edit(PetitionStatus $petitionStatus)
+    public function edit(Appoiments $appoiments)
     {
         //
     }
@@ -64,10 +64,10 @@ class PetitionStatusController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PetitionStatus  $petitionStatus
+     * @param  \App\Models\Appoiments  $appoiments
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PetitionStatus $petitionStatus)
+    public function update(Request $request, Appoiments $appoiments)
     {
         //
     }
@@ -75,10 +75,10 @@ class PetitionStatusController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PetitionStatus  $petitionStatus
+     * @param  \App\Models\Appoiments  $appoiments
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PetitionStatus $petitionStatus)
+    public function destroy(Appoiments $appoiments)
     {
         //
     }

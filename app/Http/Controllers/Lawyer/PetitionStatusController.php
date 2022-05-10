@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Lawyer;
 
-use App\Models\NormalCasesStatus;
+use App\Models\PetitionStatus;
 use Illuminate\Http\Request;
 
-class NormalCasesStatusController extends Controller
+class PetitionStatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class NormalCasesStatusController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\NormalCasesStatus  $normalCasesStatus
+     * @param  \App\Models\PetitionStatus  $petitionStatus
      * @return \Illuminate\Http\Response
      */
-    public function show(NormalCasesStatus $normalCasesStatus)
+    public function show(PetitionStatus $petitionStatus)
     {
         //
     }
@@ -52,10 +52,10 @@ class NormalCasesStatusController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\NormalCasesStatus  $normalCasesStatus
+     * @param  \App\Models\PetitionStatus  $petitionStatus
      * @return \Illuminate\Http\Response
      */
-    public function edit(NormalCasesStatus $normalCasesStatus)
+    public function edit(PetitionStatus $petitionStatus)
     {
         //
     }
@@ -64,10 +64,10 @@ class NormalCasesStatusController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\NormalCasesStatus  $normalCasesStatus
+     * @param  \App\Models\PetitionStatus  $petitionStatus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, NormalCasesStatus $normalCasesStatus)
+    public function update(Request $request, PetitionStatus $petitionStatus)
     {
         //
     }
@@ -75,10 +75,10 @@ class NormalCasesStatusController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\NormalCasesStatus  $normalCasesStatus
+     * @param  \App\Models\PetitionStatus  $petitionStatus
      * @return \Illuminate\Http\Response
      */
-    public function destroy(NormalCasesStatus $normalCasesStatus)
+    public function destroy(PetitionStatus $petitionStatus)
     {
         //
     }

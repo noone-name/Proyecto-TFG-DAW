@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Lawyer;
 
-use App\Models\NormalCases;
+use App\Models\AppoimentsStatus;
 use Illuminate\Http\Request;
 
-class NormalCasesController extends Controller
+class AppoimentsStatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class NormalCasesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\NormalCases  $normalCases
+     * @param  \App\Models\AppoimentsStatus  $appoimentsStatus
      * @return \Illuminate\Http\Response
      */
-    public function show(NormalCases $normalCases)
+    public function show(AppoimentsStatus $appoimentsStatus)
     {
         //
     }
@@ -52,10 +52,10 @@ class NormalCasesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\NormalCases  $normalCases
+     * @param  \App\Models\AppoimentsStatus  $appoimentsStatus
      * @return \Illuminate\Http\Response
      */
-    public function edit(NormalCases $normalCases)
+    public function edit(AppoimentsStatus $appoimentsStatus)
     {
         //
     }
@@ -64,10 +64,10 @@ class NormalCasesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\NormalCases  $normalCases
+     * @param  \App\Models\AppoimentsStatus  $appoimentsStatus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, NormalCases $normalCases)
+    public function update(Request $request, AppoimentsStatus $appoimentsStatus)
     {
         //
     }
@@ -75,10 +75,10 @@ class NormalCasesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\NormalCases  $normalCases
+     * @param  \App\Models\AppoimentsStatus  $appoimentsStatus
      * @return \Illuminate\Http\Response
      */
-    public function destroy(NormalCases $normalCases)
+    public function destroy(AppoimentsStatus $appoimentsStatus)
     {
         //
     }

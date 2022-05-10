@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Clients;
 
-use App\Models\Appoiments;
+use App\Models\NormalCases;
 use Illuminate\Http\Request;
 
-class AppoimentsController extends Controller
+class NormalCasesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class AppoimentsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Appoiments  $appoiments
+     * @param  \App\Models\NormalCases  $normalCases
      * @return \Illuminate\Http\Response
      */
-    public function show(Appoiments $appoiments)
+    public function show(NormalCases $normalCases)
     {
         //
     }
@@ -52,10 +52,10 @@ class AppoimentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Appoiments  $appoiments
+     * @param  \App\Models\NormalCases  $normalCases
      * @return \Illuminate\Http\Response
      */
-    public function edit(Appoiments $appoiments)
+    public function edit(NormalCases $normalCases)
     {
         //
     }
@@ -64,10 +64,10 @@ class AppoimentsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Appoiments  $appoiments
+     * @param  \App\Models\NormalCases  $normalCases
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Appoiments $appoiments)
+    public function update(Request $request, NormalCases $normalCases)
     {
         //
     }
@@ -75,10 +75,10 @@ class AppoimentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Appoiments  $appoiments
+     * @param  \App\Models\NormalCases  $normalCases
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Appoiments $appoiments)
+    public function destroy(NormalCases $normalCases)
     {
         //
     }

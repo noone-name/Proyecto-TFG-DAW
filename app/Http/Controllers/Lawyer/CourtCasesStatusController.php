@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Lawyer;
 
-use App\Models\AppoimentsStatus;
+use App\Models\CourtCasesStatus;
 use Illuminate\Http\Request;
 
-class AppoimentsStatusController extends Controller
+class CourtCasesStatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class AppoimentsStatusController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\AppoimentsStatus  $appoimentsStatus
+     * @param  \App\Models\CourtCasesStatus  $courtCasesStatus
      * @return \Illuminate\Http\Response
      */
-    public function show(AppoimentsStatus $appoimentsStatus)
+    public function show(CourtCasesStatus $courtCasesStatus)
     {
         //
     }
@@ -52,10 +52,10 @@ class AppoimentsStatusController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\AppoimentsStatus  $appoimentsStatus
+     * @param  \App\Models\CourtCasesStatus  $courtCasesStatus
      * @return \Illuminate\Http\Response
      */
-    public function edit(AppoimentsStatus $appoimentsStatus)
+    public function edit(CourtCasesStatus $courtCasesStatus)
     {
         //
     }
@@ -64,10 +64,10 @@ class AppoimentsStatusController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\AppoimentsStatus  $appoimentsStatus
+     * @param  \App\Models\CourtCasesStatus  $courtCasesStatus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AppoimentsStatus $appoimentsStatus)
+    public function update(Request $request, CourtCasesStatus $courtCasesStatus)
     {
         //
     }
@@ -75,10 +75,10 @@ class AppoimentsStatusController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\AppoimentsStatus  $appoimentsStatus
+     * @param  \App\Models\CourtCasesStatus  $courtCasesStatus
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AppoimentsStatus $appoimentsStatus)
+    public function destroy(CourtCasesStatus $courtCasesStatus)
     {
         //
     }

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Clients;
 
-use App\Models\CriminalCases;
+use App\Models\CourtCases;
 use Illuminate\Http\Request;
 
-class CriminalCasesController extends Controller
+class CourtCasesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class CriminalCasesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\CriminalCases  $criminalCases
+     * @param  \App\Models\CourtCases  $courtCases
      * @return \Illuminate\Http\Response
      */
-    public function show(CriminalCases $criminalCases)
+    public function show(CourtCases $courtCases)
     {
         //
     }
@@ -52,10 +52,10 @@ class CriminalCasesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\CriminalCases  $criminalCases
+     * @param  \App\Models\CourtCases  $courtCases
      * @return \Illuminate\Http\Response
      */
-    public function edit(CriminalCases $criminalCases)
+    public function edit(CourtCases $courtCases)
     {
         //
     }
@@ -64,10 +64,10 @@ class CriminalCasesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CriminalCases  $criminalCases
+     * @param  \App\Models\CourtCases  $courtCases
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CriminalCases $criminalCases)
+    public function update(Request $request, CourtCases $courtCases)
     {
         //
     }
@@ -75,10 +75,10 @@ class CriminalCasesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\CriminalCases  $criminalCases
+     * @param  \App\Models\CourtCases  $courtCases
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CriminalCases $criminalCases)
+    public function destroy(CourtCases $courtCases)
     {
         //
     }

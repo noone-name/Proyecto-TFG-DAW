@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Lawyer;
 
-use App\Models\Petition;
+use App\Models\CriminalCasesStatus;
 use Illuminate\Http\Request;
 
-class PetitionController extends Controller
+class CriminalCasesStatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class PetitionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Petition  $petition
+     * @param  \App\Models\CriminalCasesStatus  $criminalCasesStatus
      * @return \Illuminate\Http\Response
      */
-    public function show(Petition $petition)
+    public function show(CriminalCasesStatus $criminalCasesStatus)
     {
         //
     }
@@ -52,10 +52,10 @@ class PetitionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Petition  $petition
+     * @param  \App\Models\CriminalCasesStatus  $criminalCasesStatus
      * @return \Illuminate\Http\Response
      */
-    public function edit(Petition $petition)
+    public function edit(CriminalCasesStatus $criminalCasesStatus)
     {
         //
     }
@@ -64,10 +64,10 @@ class PetitionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Petition  $petition
+     * @param  \App\Models\CriminalCasesStatus  $criminalCasesStatus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Petition $petition)
+    public function update(Request $request, CriminalCasesStatus $criminalCasesStatus)
     {
         //
     }
@@ -75,10 +75,10 @@ class PetitionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Petition  $petition
+     * @param  \App\Models\CriminalCasesStatus  $criminalCasesStatus
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Petition $petition)
+    public function destroy(CriminalCasesStatus $criminalCasesStatus)
     {
         //
     }

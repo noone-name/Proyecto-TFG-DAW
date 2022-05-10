@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Lawyer;
 
-use App\Models\CriminalCasesStatus;
+use App\Models\NormalCasesStatus;
 use Illuminate\Http\Request;
 
-class CriminalCasesStatusController extends Controller
+class NormalCasesStatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class CriminalCasesStatusController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\CriminalCasesStatus  $criminalCasesStatus
+     * @param  \App\Models\NormalCasesStatus  $normalCasesStatus
      * @return \Illuminate\Http\Response
      */
-    public function show(CriminalCasesStatus $criminalCasesStatus)
+    public function show(NormalCasesStatus $normalCasesStatus)
     {
         //
     }
@@ -52,10 +52,10 @@ class CriminalCasesStatusController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\CriminalCasesStatus  $criminalCasesStatus
+     * @param  \App\Models\NormalCasesStatus  $normalCasesStatus
      * @return \Illuminate\Http\Response
      */
-    public function edit(CriminalCasesStatus $criminalCasesStatus)
+    public function edit(NormalCasesStatus $normalCasesStatus)
     {
         //
     }
@@ -64,10 +64,10 @@ class CriminalCasesStatusController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CriminalCasesStatus  $criminalCasesStatus
+     * @param  \App\Models\NormalCasesStatus  $normalCasesStatus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CriminalCasesStatus $criminalCasesStatus)
+    public function update(Request $request, NormalCasesStatus $normalCasesStatus)
     {
         //
     }
@@ -75,10 +75,10 @@ class CriminalCasesStatusController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\CriminalCasesStatus  $criminalCasesStatus
+     * @param  \App\Models\NormalCasesStatus  $normalCasesStatus
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CriminalCasesStatus $criminalCasesStatus)
+    public function destroy(NormalCasesStatus $normalCasesStatus)
     {
         //
     }
