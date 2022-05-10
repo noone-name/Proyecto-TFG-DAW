@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('type_orders', function (Blueprint $table) {
+        Schema::create('appoiments', function (Blueprint $table) {
             $table->id();
-            $table->string('type_name');
+            $table->unsignedBigInteger('user_id_cliente');
+            $table->unsignedBigInteger('user_id_abogado');
+
+            $table->foreign('user_id_cliente')->references('id')->on('users'); // cliente
+            $table->foreign('user_id_abogado')->references('id')->on('users');
 
             $table->timestamps();
         });
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_orders');
+        Schema::dropIfExists('appoiments');
     }
 };
