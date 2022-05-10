@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Lawyer;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\AppoimentsStatus;
+use App\Models\AppoimentCalendar;
 use Illuminate\Http\Request;
 
-class AppoimentsStatusController extends Controller
+class AppoimentCalendarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +41,10 @@ class AppoimentsStatusController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\AppoimentsStatus  $appoimentsStatus
+     * @param  \App\Models\AppoimentCalendar  $appoimentCalendar
      * @return \Illuminate\Http\Response
      */
-    public function show(AppoimentsStatus $appoimentsStatus)
+    public function show(AppoimentCalendar $appoimentCalendar)
     {
         //
     }
@@ -53,10 +52,10 @@ class AppoimentsStatusController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\AppoimentsStatus  $appoimentsStatus
+     * @param  \App\Models\AppoimentCalendar  $appoimentCalendar
      * @return \Illuminate\Http\Response
      */
-    public function edit(AppoimentsStatus $appoimentsStatus)
+    public function edit(AppoimentCalendar $appoimentCalendar)
     {
         //
     }
@@ -65,10 +64,10 @@ class AppoimentsStatusController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\AppoimentsStatus  $appoimentsStatus
+     * @param  \App\Models\AppoimentCalendar  $appoimentCalendar
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AppoimentsStatus $appoimentsStatus)
+    public function update(Request $request, AppoimentCalendar $appoimentCalendar)
     {
         //
     }
@@ -76,10 +75,10 @@ class AppoimentsStatusController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\AppoimentsStatus  $appoimentsStatus
+     * @param  \App\Models\AppoimentCalendar  $appoimentCalendar
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AppoimentsStatus $appoimentsStatus)
+    public function destroy(AppoimentCalendar $appoimentCalendar)
     {
         //
     }

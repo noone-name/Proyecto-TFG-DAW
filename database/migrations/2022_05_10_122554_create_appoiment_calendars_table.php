@@ -13,15 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('full_calendar_events', function (Blueprint $table) {
+        Schema::create('appoiment_calendars', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->dateTime('start');
-            $table->dateTime('end');
-            $table->integer('allDay');
-            $table->string('color');
-            $table->string('textColor');
-
             $table->timestamps();
         });
     }
@@ -33,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('full_calendar_events');
+        Schema::dropIfExists('appoiment_calendars');
     }
 };
