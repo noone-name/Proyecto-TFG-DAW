@@ -20,7 +20,11 @@ class Appoiments extends Model
         return $this->belongsToMany(Role::class, 'appoiments', 'user_id_abogado', 'user_id_cliente');
     }
 
+
+
+
 }
+
 
 
 

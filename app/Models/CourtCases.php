@@ -19,4 +19,10 @@ class CourtCases extends Model
         return $this->belongsToMany(Role::class, 'court_cases', 'user_id_abogado', 'user_id_cliente');
     }
 
+    public function courtstatus()
+    {
+        return $this->hasOne(CourtCasesStatus::class);
+    }
+
+
 }

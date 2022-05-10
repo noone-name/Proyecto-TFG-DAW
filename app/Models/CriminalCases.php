@@ -20,4 +20,8 @@ class CriminalCases extends Model
         return $this->belongsToMany(Role::class, 'criminal_cases', 'user_id_abogado', 'user_id_cliente');
     }
 
+    public function criminalstatus()
+    {
+        return $this->hasOne(CriminalCasesStatus::class);
+    }
 }

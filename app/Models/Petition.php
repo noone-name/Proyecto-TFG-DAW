@@ -18,4 +18,9 @@ class Petition extends Model
     {
         return $this->belongsToMany(Role::class, 'petitions', 'user_id_abogado', 'user_id_cliente');
     }
+
+    public function petitionstatus()
+    {
+        return $this->hasOne(PetitionStatus::class);
+    }
 }
