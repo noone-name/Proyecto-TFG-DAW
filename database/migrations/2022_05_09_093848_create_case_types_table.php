@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('court_cases_statuses', function (Blueprint $table) {
+        Schema::create('case_types', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('court_cases_id');
-            $table->foreign('court_cases_id')->references('id')->on('court_cases');
-
+            $table->string('name');
+            $table->enum('is_active',array('Yes','No'))->default('Yes');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('court_cases_statuses');
+        Schema::dropIfExists('case_types');
     }
 };

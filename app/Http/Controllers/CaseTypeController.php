@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Lawyer;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\CourtCasesStatus;
+use App\Models\CaseType;
 use Illuminate\Http\Request;
 
-class CourtCasesStatusController extends Controller
+class CaseTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +41,10 @@ class CourtCasesStatusController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\CourtCasesStatus  $courtCasesStatus
+     * @param  \App\Models\CaseType  $caseType
      * @return \Illuminate\Http\Response
      */
-    public function show(CourtCasesStatus $courtCasesStatus)
+    public function show(CaseType $caseType)
     {
         //
     }
@@ -53,10 +52,10 @@ class CourtCasesStatusController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\CourtCasesStatus  $courtCasesStatus
+     * @param  \App\Models\CaseType  $caseType
      * @return \Illuminate\Http\Response
      */
-    public function edit(CourtCasesStatus $courtCasesStatus)
+    public function edit(CaseType $caseType)
     {
         //
     }
@@ -65,10 +64,10 @@ class CourtCasesStatusController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CourtCasesStatus  $courtCasesStatus
+     * @param  \App\Models\CaseType  $caseType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CourtCasesStatus $courtCasesStatus)
+    public function update(Request $request, CaseType $caseType)
     {
         //
     }
@@ -76,10 +75,10 @@ class CourtCasesStatusController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\CourtCasesStatus  $courtCasesStatus
+     * @param  \App\Models\CaseType  $caseType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CourtCasesStatus $courtCasesStatus)
+    public function destroy(CaseType $caseType)
     {
         //
     }

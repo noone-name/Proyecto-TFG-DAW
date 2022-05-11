@@ -13,15 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('criminal_cases', function (Blueprint $table) {
+        Schema::create('courts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id_cliente');
-            $table->unsignedBigInteger('user_id_abogado');
+            $table->string('court_name');
+            $table->string('court_address');
+            $table->unsignedBigInteger('case_types_id');
 
-            $table->foreign('user_id_cliente')->references('id')->on('users'); // cliente
-            $table->foreign('user_id_abogado')->references('id')->on('users');
+            $table->foreign('case_types_id')->references('id')->on('case_types'); // cliente
 
+            $table->enum('is_active',array('Yes','No'))->default('Yes');
             $table->timestamps();
+
         });
     }
 
@@ -32,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('criminal_cases');
+        Schema::dropIfExists('courts');
     }
 };

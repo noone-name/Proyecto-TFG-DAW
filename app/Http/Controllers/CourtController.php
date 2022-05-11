@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Clients;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\CriminalCases;
+use App\Models\Court;
 use Illuminate\Http\Request;
 
-class CriminalCasesController extends Controller
+class CourtController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class CriminalCasesController extends Controller
      */
     public function index()
     {
-        return view('client.criminal_cases.index');
+        //
     }
 
     /**
@@ -42,10 +41,10 @@ class CriminalCasesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\CriminalCases  $criminalCases
+     * @param  \App\Models\Court  $court
      * @return \Illuminate\Http\Response
      */
-    public function show(CriminalCases $criminalCases)
+    public function show(Court $court)
     {
         //
     }
@@ -53,10 +52,10 @@ class CriminalCasesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\CriminalCases  $criminalCases
+     * @param  \App\Models\Court  $court
      * @return \Illuminate\Http\Response
      */
-    public function edit(CriminalCases $criminalCases)
+    public function edit(Court $court)
     {
         //
     }
@@ -65,10 +64,10 @@ class CriminalCasesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CriminalCases  $criminalCases
+     * @param  \App\Models\Court  $court
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CriminalCases $criminalCases)
+    public function update(Request $request, Court $court)
     {
         //
     }
@@ -76,10 +75,10 @@ class CriminalCasesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\CriminalCases  $criminalCases
+     * @param  \App\Models\Court  $court
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CriminalCases $criminalCases)
+    public function destroy(Court $court)
     {
         //
     }
