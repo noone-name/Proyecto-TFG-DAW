@@ -23,4 +23,10 @@ class NormalCases extends Model
     {
         return $this->hasOne(NormalCasesStatus::class);
     }
+
+    public function casetype()
+    {
+        return $this->hasMany(CaseType::class);
+    }
+
 }

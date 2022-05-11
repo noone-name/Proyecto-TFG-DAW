@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id_cliente');
             $table->unsignedBigInteger('user_id_abogado');
             $table->unsignedBigInteger('case_types_id');
+            $table->enum('client_position',array('Respondent','Petitioner'));
 
             $table->foreign('case_types_id')->references('id')->on('case_types'); // cliente
             $table->foreign('user_id_cliente')->references('id')->on('users'); // cliente
@@ -32,6 +33,7 @@ return new class extends Migration
             $table->text('description')->nullable()->default('text');
             $table->string('case_document');
 
+            $table->enum('is_active',array('Active','Cancelled','Rejected'))->default('Active');
 
 
             $table->timestamps();

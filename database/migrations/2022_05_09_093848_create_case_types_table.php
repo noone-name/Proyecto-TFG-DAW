@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('case_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->bigInteger('amount')->default('10');
             $table->enum('is_active',array('Yes','No'))->default('Yes');
             $table->timestamps();
         });

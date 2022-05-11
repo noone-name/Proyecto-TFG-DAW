@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Court;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -31,6 +32,15 @@ class AdminsSeeder extends Seeder
         User::factory(50)->clients()->create()->each(function ($user) {
             $user->assignRole('Cliente'); // assuming 'supscription' was a typo
         });
+
+
+       /*   Court::factory(1)->courtCase()->create()->each(function ($user) {
+        *
+        * });
+        */
+
+
+
 
     }
 

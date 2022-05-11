@@ -15,8 +15,22 @@ return new class extends Migration
     {
         Schema::create('normal_cases_statuses', function (Blueprint $table) {
             $table->id();
+
             $table->unsignedBigInteger('normal_cases_id');
+            $table->unsignedBigInteger('case_id_cliente');
+            $table->unsignedBigInteger('case_id_abogado');
+
+            $table->text('cancel_answer')->nullable();
+            $table->text('lawyer_docs_requirements')->nullable();
+            $table->text('potential_resolution')->nullable();
+            $table->text('extra_info')->nullable();
+            $table->enum('is_active',array('Active','Cancelled','Rejected'))->default('Active');
+
+
             $table->foreign('normal_cases_id')->references('id')->on('normal_cases');
+            $table->foreign('case_id_cliente')->references('user_id_cliente')->on('normal_cases'); // cliente
+            $table->foreign('case_id_abogado')->references('user_id_abogado')->on('normal_cases');
+
 
             $table->timestamps();
         });

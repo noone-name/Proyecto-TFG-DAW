@@ -9,6 +9,8 @@ class CourtCases extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['case_types_id','court_name','court_address'];
+
     public function lawyer()
     {
         return $this->belongsToMany(Role::class, 'court_cases', 'user_id_cliente', 'user_id_abogado');

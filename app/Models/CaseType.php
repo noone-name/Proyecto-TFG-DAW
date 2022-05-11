@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class CaseType extends Model
 {
     use HasFactory;
+
+    public function courts()
+    {
+        return $this->hasMany(Court::class);
+    }
+
+    public function normalcases()
+    {
+       return $this->belongsTo(NormalCases::class);
+    }
+
 }
