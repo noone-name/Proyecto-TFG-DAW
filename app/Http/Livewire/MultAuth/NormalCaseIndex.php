@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\CaseType;
 use App\Models\NormalCases;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,17 +15,20 @@ class NormalCaseIndex extends Component
 {
     use WithFileUploads;
 
+    public $normal_case;
+    public $showingCaseModal = false;
+    public $isEditMode = false;
+    public $newDoc;
+
+
     public $sections = null;
     public $selectedClass = null; //    case_types_id
     public $selectedSection = null; //  user_id_abogado
-
-    public $showingCaseModal = false;
     public $case_title;
-
     public $client_position;
-
     public $case_document;
     public $description;
+    public $oldDoc;
 
 
     public function updatedSelectedClass($class_id)
@@ -49,6 +53,7 @@ class NormalCaseIndex extends Component
 
     public function showCaseModal()
     {
+        $this->reset();
         $this->showingCaseModal = true;
     }
 
@@ -70,7 +75,6 @@ class NormalCaseIndex extends Component
 
         ]);
 
-
     NormalCases::create([
             'case_title'=>$this->case_title,
             'user_id_cliente'=>$user_id_cliente,
@@ -78,7 +82,7 @@ class NormalCaseIndex extends Component
             'user_id_abogado'=>$this->selectedSection,
             'client_position'=>$this->client_position,
             'description'=>$this->description,
-            'case_document'=>$this->case_document,
+            'case_document'=>$doc,
 
         ]);
 
@@ -86,7 +90,59 @@ class NormalCaseIndex extends Component
     }
 
 
+    public function showEditCaseModal($id)
+    {
+        $this->normal_case = NormalCases::findOrFail($id);
+        $this->case_title = $this->normal_case->case_title;
+        $this->selectedClass = $this->normal_case->case_types_id;
+        $this->selectedSection = $this->normal_case->user_id_abogado;
+        $this->client_position = $this->normal_case->client_position;
+        $this->description = $this->normal_case->description;
+        $this->oldDoc = $this->normal_case->case_document;
+        $this->isEditMode = true;
+        $this->showingCaseModal = true;
+    }
 
 
+public function updateCase()
+{
+    $this->validate([
+        'case_title'=>'required',
+        'selectedClass'=>'required',
+        'selectedSection'=>'required',
+        'client_position'=>'required',
+        'description'=>'required',
+        'case_document'=>'image|max:1024',
+
+
+    ]);
+
+    $doc =  $this->normal_case->case_document;
+    if ($this->case_document) {
+        $doc = $this->case_document->store('public/docs');
+    }
+
+    $user_id_cliente = Auth::user()->id;
+    $this->normal_case->update(
+        [
+            'case_title'=>$this->case_title,
+            'user_id_cliente'=>$user_id_cliente,
+            'case_types_id'=>$this->selectedClass,
+            'user_id_abogado'=>$this->selectedSection,
+            'client_position'=>$this->client_position,
+            'description'=>$this->description,
+            'case_document'=>$doc,
+    ]);
+    $this->reset();
+}
+
+
+public function deleteCase($id)
+{
+    $normal_case = NormalCases::findOrFail($id);
+    Storage::delete($normal_case->case_document);
+    $normal_case->delete();
+    $this->reset();
+}
 
 }

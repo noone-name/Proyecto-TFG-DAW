@@ -37,7 +37,10 @@
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         is_active
                     </th>
-
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        case_document
+                    </th>
 
                 </tr>
             </thead>
@@ -80,9 +83,15 @@
                                     {{ $case->is_active }}
                                 </div>
                             </td>
-
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <img class="w-8 h-8 rounded-full" src="{{ Storage::url($case->case_document) }}" />
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <x-jet-button wire:click='showEditCaseModal({{ $case->id }})'>{{__('Edit')}}</x-jet-button>
+                            </td>
+
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <x-jet-button class='bg-red-700' wire:click='deleteCase({{ $case->id }})'>{{__('Delete')}}</x-jet-button>
                             </td>
                         </tr>
                     @endforeach
@@ -97,8 +106,11 @@
 
     <div>
         <x-jet-dialog-modal wire:model='showingCaseModal'>
-            <x-slot name='title'>{{ __('Create a Legal case') }}</x-slot>
-
+            @if ($isEditMode)
+                <x-slot name='title'>{{ __('Edit a Legal case') }}</x-slot>
+            @else
+                <x-slot name='title'>{{ __('Create a Legal case') }}</x-slot>
+            @endif
 
             <x-slot name='content'>
                 <form>
@@ -182,6 +194,10 @@
                             Photo Preview:
                             <img src="{{ $case_document->temporaryUrl() }}">
                         @endif
+                        @if ($oldDoc)
+                        Old Doc:
+                        <img src="{{ Storage::url($oldDoc) }}">
+                    @endif
                         @error('case_document')
                             <span class="error">{{ $message }}</span>
                         @enderror
@@ -208,7 +224,11 @@
 
 
             <x-slot name='footer'>
-                <x-jet-button wire:click='storeCase'>{{ __('Store') }}</x-jet-button>
+                @if ($isEditMode)
+                    <x-jet-button wire:click='updateCase'>{{ __('Update') }}</x-jet-button>
+                @else
+                    <x-jet-button wire:click='storeCase'>{{ __('Save') }}</x-jet-button>
+                @endif
             </x-slot>
 
         </x-jet-dialog-modal>
