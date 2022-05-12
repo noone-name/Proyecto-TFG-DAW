@@ -10,6 +10,11 @@
             <div class="bg-white p-5 overflow-hidden shadow-xl sm:rounded-lg">
                 Accessible only for clients. Normal Cases
             </div>
+
+            <div class="mt-4 bg-white p-5 overflow-hidden shadow-xl sm:rounded-lg">
+                @livewire('mult-auth.normal-case-index')
+            </div>
+
         </div>
 
         </div>

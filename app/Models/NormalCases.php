@@ -8,6 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class NormalCases extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'case_title',
+        'user_id_cliente',
+        'user_id_abogado',
+        'case_types_id',
+        'client_position',
+        'description',
+        'case_document',];
+
+
+
 
     public function lawyer()
     {
@@ -24,9 +35,9 @@ class NormalCases extends Model
         return $this->hasOne(NormalCasesStatus::class);
     }
 
-    public function casetype()
+    public function casecategory()
     {
-        return $this->hasMany(CaseType::class);
+        return $this->hasOne(CaseCategory::class);
     }
 
 }

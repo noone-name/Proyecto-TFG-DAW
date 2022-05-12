@@ -13,15 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('case_types', function (Blueprint $table) {
+        Schema::create('case_categories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('case_categories_id');
-
-            $table->foreign('case_categories_id')->references('id')->on('case_categories'); // cliente
-
             $table->string('name');
-            $table->bigInteger('amount')->default('10');
-            $table->enum('is_active',array('Yes','No'))->default('Yes');
             $table->timestamps();
         });
     }
@@ -33,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('case_types');
+        Schema::dropIfExists('case_categories');
     }
 };

@@ -62,8 +62,6 @@ class RolesAndPermissionsSeeder extends Seeder
                 ->givePermissionTo(['edit real estate articles', 'delete real estate articles', 'publish real estate articles', 'unpublish real estate articles']);
 
 
-
-
         //
     }
 }

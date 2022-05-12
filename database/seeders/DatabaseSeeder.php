@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call(GendersTableSeeder::class);
 
 
-        $this->call(CaseTypesTableSeeder::class);
-        $this->call(AdminsSeeder::class);
+       // $this->call(CaseTypesTableSeeder::class);
+       $this->call(CaseCategoriesTableSeeder::class);
+       $this->call(AdminsSeeder::class);
     }
 }

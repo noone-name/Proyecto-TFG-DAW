@@ -9,14 +9,19 @@ class CaseType extends Model
 {
     use HasFactory;
 
+    protected $fillable =[
+        'name','case_categories_id','amount',
+    ];
+
+    public function normalcases()
+    {
+       return $this->belongsTo(CaseCategory::class);
+    }
+
     public function courts()
     {
         return $this->hasMany(Court::class);
     }
 
-    public function normalcases()
-    {
-       return $this->belongsTo(NormalCases::class);
-    }
 
 }

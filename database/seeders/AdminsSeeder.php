@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Court;
+use App\Models\CaseType;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -34,9 +35,9 @@ class AdminsSeeder extends Seeder
         });
 
 
-          Court::factory(500)->create()->each(function ($user) {
-        });
 
+        CaseType::factory(90)->create()->each(function ($user) { });
+        Court::factory(500)->create()->each(function ($user) { });
 
 
 

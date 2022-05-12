@@ -35,8 +35,8 @@
 
                 @role('Cliente')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('client.court_cases.index') }}" :active="request()->routeIs('client.court_cases.index')">
-                            {{ __('Court Cases') }}
+                        <x-jet-nav-link href="{{ route('client.normal_cases.index') }}" :active="request()->routeIs('client.court_cases.index')">
+                            {{ __('Normal Cases') }}
                         </x-jet-nav-link>
                 </div>
                 @endrole
