@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
 
 
        // $this->call(CaseTypesTableSeeder::class);
-       $this->call(CaseCategoriesTableSeeder::class);
        $this->call(AdminsSeeder::class);
     }
 }

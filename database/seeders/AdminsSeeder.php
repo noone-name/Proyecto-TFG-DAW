@@ -27,7 +27,9 @@ class AdminsSeeder extends Seeder
         ])->assignRole('admin');
 
         User::factory(100)->lawyers()->create()->each(function ($user) {
-            $user->assignRole('Abogado'); // assuming 'supscription' was a typo
+            $case_category = ['Derecho Civil','Derecho Penal','Derecho Laboral','Derecho Administrativo','Derecho Patrimonial'];
+
+            $user->assignRole($case_category[mt_rand(0,count($case_category)-1)]); // assuming 'supscription' was a typo
         });
 
         User::factory(50)->clients()->create()->each(function ($user) {
@@ -36,8 +38,8 @@ class AdminsSeeder extends Seeder
 
 
 
-        CaseType::factory(90)->create()->each(function ($user) { });
-        Court::factory(500)->create()->each(function ($user) { });
+        CaseType::factory(40)->create()->each(function ($user) { });
+        Court::factory(150)->create()->each(function ($user) { });
 
 
 

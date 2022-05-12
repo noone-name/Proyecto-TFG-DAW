@@ -20,10 +20,13 @@ class CaseTypeFactory extends Factory
      */
     public function definition()
     {
+        $case_category = ['Derecho Civil','Derecho Penal','Derecho Laboral','Derecho Administrativo','Derecho Patrimonial'];
+
         return [
-            'case_categories_id' => $this->faker->randomElement(CaseCategory::pluck('id')),
             "name"=>$this->faker->words($nb = 4, $asText = true),
             "amount"=>$this->faker->numberBetween($min = 100, $max = 800),
+            'case_category' => $case_category[mt_rand(0,count($case_category)-1)],
+
         ];
     }
 }

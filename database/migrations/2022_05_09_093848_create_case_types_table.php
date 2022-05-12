@@ -15,13 +15,12 @@ return new class extends Migration
     {
         Schema::create('case_types', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('case_categories_id');
-
-            $table->foreign('case_categories_id')->references('id')->on('case_categories'); // cliente
 
             $table->string('name');
-            $table->bigInteger('amount')->default('10');
+            $table->bigInteger('amount')->default('100');
+            $table->string('case_category');
             $table->enum('is_active',array('Yes','No'))->default('Yes');
+
             $table->timestamps();
         });
     }

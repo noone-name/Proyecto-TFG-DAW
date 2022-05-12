@@ -49,10 +49,10 @@ class RolesAndPermissionsSeeder extends Seeder
         $role = Role::create(['name' => 'Derecho Civil'])
                 ->givePermissionTo(['edit economic articles', 'delete economic articles', 'publish economic articles', 'unpublish economic articles']);
 
-        $role = Role::create(['name' => 'Penal'])
+        $role = Role::create(['name' => 'Derecho Penal'])
                 ->givePermissionTo(['edit criminal articles', 'delete criminal articles', 'publish criminal articles', 'unpublish criminal articles']);
 
-        $role = Role::create(['name' => 'Laboral'])
+        $role = Role::create(['name' => 'Derecho Laboral'])
                 ->givePermissionTo(['edit labor articles', 'delete labor articles', 'publish labor articles', 'unpublish labor articles']);
 
         $role = Role::create(['name' => 'Derecho Administrativo'])

@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('case_title');
             $table->unsignedBigInteger('user_id_cliente');
             $table->unsignedBigInteger('user_id_abogado');
-            $table->unsignedBigInteger('case_categories_id');
+            $table->unsignedBigInteger('case_types_id');
             $table->enum('client_position',array('Respondent','Petitioner'));
 
-            $table->foreign('case_categories_id')->references('id')->on('case_categories'); // cliente
+            $table->foreign('case_types_id')->references('id')->on('case_types'); // cliente
             $table->foreign('user_id_cliente')->references('id')->on('users'); // cliente
             $table->foreign('user_id_abogado')->references('id')->on('users');
 

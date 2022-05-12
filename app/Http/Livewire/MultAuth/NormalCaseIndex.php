@@ -14,27 +14,36 @@ class NormalCaseIndex extends Component
 {
     use WithFileUploads;
 
+    public $sections = null;
+    public $selectedClass = null; //    case_types_id
+    public $selectedSection = null; //  user_id_abogado
 
     public $showingCaseModal = false;
     public $case_title;
- //   public $user_id_cliente;
-    public $user_id_abogado;
-    public $case_types_id;
+
     public $client_position;
-  //  public $client_dni;
-  //  public $client_birth_date;
- //   public $client_declarated_address;
- //   public $client_home_address;
- //   public $client_mobile_phone;
+
     public $case_document;
     public $description;
 
+
+    public function updatedSelectedClass($class_id)
+    {
+        $caseCategory = CaseType::where('id',$class_id)->value('case_category');
+
+      $this->sections = User::role($caseCategory)->get();
+    }
+
     public function render()
     {
-        $lawyers = User::whereNotIn('name', ['admin','client'])->get();
         $case_types = CaseType::all();
+        $cases = NormalCases::where('user_id_cliente',Auth::user()->id)->get();;
 
-        return view('livewire.mult-auth.normal-case-index',compact('lawyers','case_types'));
+        return view('livewire.mult-auth.normal-case-index',
+        [
+            'classes' => $case_types,
+        ]
+        ,compact('cases','case_types'));
     }
 
 
@@ -46,12 +55,14 @@ class NormalCaseIndex extends Component
     public function storeCase()
     {
     $user_id_cliente = Auth::user()->id;
-    $doc = $this->case_document->store('public/docs');
+    if(!empty($this->case_document)){
+        $doc = $this->case_document->store('public/docs');
+    };
+
         $this->validate([
             'case_title'=>'required',
-        //    'user_id_cliente'=>'required',
-            'user_id_abogado'=>'required',
-            'case_types_id'=>'required',
+            'selectedClass'=>'required',
+            'selectedSection'=>'required',
             'client_position'=>'required',
             'description'=>'required',
             'case_document'=>'image|max:1024',
@@ -63,8 +74,8 @@ class NormalCaseIndex extends Component
     NormalCases::create([
             'case_title'=>$this->case_title,
             'user_id_cliente'=>$user_id_cliente,
-            'user_id_abogado'=>$this->user_id_abogado,
-            'case_types_id'=>$this->case_types_id,
+            'case_types_id'=>$this->selectedClass,
+            'user_id_abogado'=>$this->selectedSection,
             'client_position'=>$this->client_position,
             'description'=>$this->description,
             'case_document'=>$this->case_document,
