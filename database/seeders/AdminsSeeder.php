@@ -34,10 +34,9 @@ class AdminsSeeder extends Seeder
         });
 
 
-       /*   Court::factory(1)->courtCase()->create()->each(function ($user) {
-        *
-        * });
-        */
+          Court::factory(500)->create()->each(function ($user) {
+        });
+
 
 
 
