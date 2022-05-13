@@ -8,11 +8,10 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Lawyer\LawyerIndexController;
 use App\Http\Controllers\Lawyer\FullCalendarEventsController;
 use App\Http\Controllers\Lawyer\ManageController;
+use App\Http\Controllers\AppoimentCalendarController;
 
-use App\Http\Controllers\Clients\AppoimentsController;
 
 use App\Http\Controllers\Clients\NormalCasesController;
-
 use App\Http\Controllers\Clients\PetitionController;
 use App\Http\Controllers\Clients\ClientIndexController;
 use App\Http\Controllers\Clients\ListingController;
@@ -57,6 +56,7 @@ Route::group(['middleware' => 'auth'], function() {
    Route::group(['middleware' => 'role:Abogado', 'prefix' => 'lawyer', 'as' => 'lawyer.'], function() {
     Route::get('/', [LawyerIndexController::class, 'index'])->name('index');
     Route::resource('/manages', ManageController::class);
+    Route::resource('/appoiments', AppoimentCalendarController::class);
 
 
 

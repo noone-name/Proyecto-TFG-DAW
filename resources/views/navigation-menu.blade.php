@@ -30,6 +30,10 @@
                         <x-jet-nav-link href="{{ route('lawyer.manages.index') }}" :active="request()->routeIs('lawyer.manages.index')">
                             {{ __('Manages') }}
                         </x-jet-nav-link>
+
+                        <x-jet-nav-link href="{{ route('lawyer.appoiments.index') }}" :active="request()->routeIs('lawyer.manages.index')">
+                            {{ __('Appoiments') }}
+                        </x-jet-nav-link>
                 </div>
                 @endrole
 
