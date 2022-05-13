@@ -17,8 +17,6 @@ return new class extends Migration
             $table->id();
             $table->text('sub_total_amount');
             $table->unsignedBigInteger('normal_cases_id');      // caso
-            $table->unsignedBigInteger('invoice_assigned_to');  //cliente
-            $table->unsignedBigInteger('invoice_created_by');   // abogado
 
 
             $table->text('tax_amount')->default('21%');
@@ -29,8 +27,6 @@ return new class extends Migration
 
 
             $table->foreign('normal_cases_id')->references('id')->on('normal_cases_statuses');
-            $table->foreign('invoice_assigned_to')->references('case_id_cliente')->on('normal_cases_statuses'); // cliente
-            $table->foreign('invoice_created_by')->references('case_id_abogado')->on('normal_cases_statuses');
 
 
 

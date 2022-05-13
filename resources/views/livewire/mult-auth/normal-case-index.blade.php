@@ -41,7 +41,10 @@
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         case_document
                     </th>
-
+                    <th scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Acciones
+                </th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -86,11 +89,9 @@
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <img class="w-8 h-8 rounded-full" src="{{ Storage::url($case->case_document) }}" />
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
+                            <td>
                                 <x-jet-button wire:click='showEditCaseModal({{ $case->id }})'>{{__('Edit')}}</x-jet-button>
-                            </td>
 
-                            <td class="px-6 py-4 whitespace-nowrap">
                                 <x-jet-button class='bg-red-700' wire:click='deleteCase({{ $case->id }})'>{{__('Delete')}}</x-jet-button>
                             </td>
                         </tr>
