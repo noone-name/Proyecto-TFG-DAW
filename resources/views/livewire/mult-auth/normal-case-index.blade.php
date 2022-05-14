@@ -87,7 +87,14 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
+
+                                @if (strpos(Storage::url($case->case_document), '.pdf') !== false  )
+                                <a href="{{Storage::url($case->case_document)}}" target="_blank">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                </a>
+                                @else
                                 <img class="w-8 h-8 rounded-full" src="{{ Storage::url($case->case_document) }}" />
+                                @endif
                             </td>
                             <td>
                                 <x-jet-button wire:click='showEditCaseModal({{ $case->id }})'>{{__('Edit')}}</x-jet-button>
@@ -191,14 +198,20 @@
                         <input name="upload" wire:model.lazy="case_document" name="case_document"
                             class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             id="file_input" type="file">
-                        @if ($case_document)
-                            Photo Preview:
-                            <img src="{{ $case_document->temporaryUrl() }}">
-                        @endif
+
                         @if ($oldDoc)
-                        Old Doc:
-                        <img src="{{ Storage::url($oldDoc) }}">
+
+
+                        @if (strpos(Storage::url($oldDoc), '.pdf') !== false  )
+                        <a href="{{Storage::url($oldDoc)}}" target="_blank">
+                            <iframe src="{{ Storage::url($oldDoc) }}" width="100%" height="300"></iframe>
+                        </a>
+                        @else
+                        <img src="{{ Storage::url($oldDoc) }}" width="50%" height="200">
+                        @endif
+
                     @endif
+
                         @error('case_document')
                             <span class="error">{{ $message }}</span>
                         @enderror

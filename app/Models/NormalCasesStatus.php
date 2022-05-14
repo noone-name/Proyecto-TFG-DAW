@@ -9,6 +9,9 @@ class NormalCasesStatus extends Model
 {
     use HasFactory;
 
+    protected $fillable=[
+        'normal_cases_id'
+    ];
     public function normalcases()
     {
         return $this->belongsTo(NormalCases::class);

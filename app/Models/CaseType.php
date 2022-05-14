@@ -18,10 +18,6 @@ class CaseType extends Model
        return $this->belongsTo(CaseCategory::class);
     }
 
-    public function courts()
-    {
-        return $this->hasMany(Court::class);
-    }
 
 
 }

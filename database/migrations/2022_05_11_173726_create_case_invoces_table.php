@@ -26,7 +26,7 @@ return new class extends Migration
             $table->date('inv_date');
 
 
-            $table->foreign('normal_cases_id')->references('id')->on('normal_cases_statuses');
+            $table->foreign('normal_cases_id')->references('id')->on('normal_cases_statuses')->onDelete('cascade');;
 
 
 

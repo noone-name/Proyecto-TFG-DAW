@@ -60,7 +60,6 @@ class AdminsSeeder extends Seeder
 
 
         CaseType::factory(40)->create()->each(function ($user) { });
-        Court::factory(150)->create()->each(function ($user) { });
 
 
 

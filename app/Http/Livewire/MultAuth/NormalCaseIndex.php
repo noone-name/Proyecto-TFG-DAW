@@ -72,12 +72,12 @@ class NormalCaseIndex extends Component
             'selectedSection'=>'required',
             'client_position'=>'required',
             'description'=>'required',
-            'case_document'=>'image|max:1024',
+            'case_document'=>'mimes:jpg,jpeg,bmp,png,gif,svg,pdf|max:10240',
 
 
         ]);
 
-    NormalCases::create([
+    $caseId = NormalCases::create([
             'case_title'=>$this->case_title,
             'user_id_cliente'=>$user_id_cliente,
             'case_types_id'=>$this->selectedClass,
@@ -86,6 +86,12 @@ class NormalCaseIndex extends Component
             'description'=>$this->description,
             'case_document'=>$doc,
 
+        ]);
+
+        $id = $caseId->id;
+
+        NormalCasesStatus::create([
+            'normal_cases_id' =>$id
         ]);
 
         $this->reset();

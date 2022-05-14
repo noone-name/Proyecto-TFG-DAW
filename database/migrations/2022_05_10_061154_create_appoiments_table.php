@@ -25,8 +25,8 @@ return new class extends Migration
 
 
 
-            $table->foreign('user_id_solicitante')->references('id')->on('users'); // cliente
-            $table->foreign('user_id_solicitado')->references('id')->on('users');
+            $table->foreign('user_id_solicitante')->references('id')->on('users')->onDelete('cascade'); // cliente
+            $table->foreign('user_id_solicitado')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });
