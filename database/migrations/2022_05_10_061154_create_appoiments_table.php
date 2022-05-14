@@ -15,11 +15,18 @@ return new class extends Migration
     {
         Schema::create('appoiments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id_cliente');
-            $table->unsignedBigInteger('user_id_abogado');
+            $table->string('title_appoiment');
+            $table->unsignedBigInteger('user_id_solicitante');
+            $table->unsignedBigInteger('user_id_solicitado');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->boolean('checkbox_time')->nullable()->default(false);
+            $table->text('description');
 
-            $table->foreign('user_id_cliente')->references('id')->on('users'); // cliente
-            $table->foreign('user_id_abogado')->references('id')->on('users');
+
+
+            $table->foreign('user_id_solicitante')->references('id')->on('users'); // cliente
+            $table->foreign('user_id_solicitado')->references('id')->on('users');
 
             $table->timestamps();
         });

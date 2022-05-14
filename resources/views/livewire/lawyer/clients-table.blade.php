@@ -19,15 +19,13 @@
                 </select>
 
                 @if ($search !== '')
-
-
-                <button class="ml-6 form-input rounded-md shadow-sm mt-1 block " wire:click='clear'>
-                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                </button>
+                    <button class="ml-6 form-input rounded-md shadow-sm mt-1 block " wire:click='clear'>
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </button>
                 @endif
 
             </div>
@@ -54,9 +52,12 @@
                         </th>
                         <th scope="col"
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Correo
+                            Dni Cliente
                         </th>
-
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Teléfono
+                        </th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -86,12 +87,12 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
-                                    Link
+                                    <x-jet-button>Mostrar Casos</x-jet-button>
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
-                                   Link
+                                    <x-jet-button>Mostrar Citas</x-jet-button>
                                 </div>
                             </td>
 
@@ -105,7 +106,8 @@
             </div>
         @else
             <div class="bg-white px-4 py-3 border-t text-gray-500 border-grey-200 sm:px-6">
-                No hay resultados para tu busqueda "{{ $search }}" en la página {{$page}} al mostrar {{$perPage}}
+                No hay resultados para tu busqueda "{{ $search }}" en la página {{ $page }} al mostrar
+                {{ $perPage }}
             </div>
 
         @endif

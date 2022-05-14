@@ -5,6 +5,7 @@ namespace App\Http\Livewire\MultAuth;
 use Livewire\Component;
 use App\Models\CaseType;
 use App\Models\NormalCases;
+use App\Models\NormalCasesStatus;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Livewire\WithFileUploads;
@@ -42,6 +43,7 @@ class NormalCaseIndex extends Component
     {
         $case_types = CaseType::all();
         $cases = NormalCases::where('user_id_cliente',Auth::user()->id)->get();;
+
 
         return view('livewire.mult-auth.normal-case-index',
         [

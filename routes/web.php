@@ -45,18 +45,20 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
 Route::group(['middleware' => 'auth'], function() {
     Route::group(['middleware' => 'role:Cliente', 'prefix' => 'client', 'as' => 'client.'], function() {
         Route::get('/', [ClientIndexController::class, 'index'])->name('index');
-        Route::resource('/listings', ListingController::class);
-        Route::resource('/appoiments', AppoimentsController::class);
+       // Route::resource('/listings', ListingController::class);
+       //Route::resource('/petitions', PetitionController::class);
 
-        Route::resource('/normal_cases', NormalCasesController::class);
+       Route::resource('/normal_cases', NormalCasesController::class);
+       Route::resource('/appoiments', AppoimentCalendarController::class);
 
-        Route::resource('/petitions', PetitionController::class);
 
     });
+
    Route::group(['middleware' => 'role:Abogado', 'prefix' => 'lawyer', 'as' => 'lawyer.'], function() {
     Route::get('/', [LawyerIndexController::class, 'index'])->name('index');
     Route::resource('/manages', ManageController::class);
     Route::resource('/appoiments', AppoimentCalendarController::class);
+    Route::resource('/normal_cases', NormalCasesController::class);
 
 
 

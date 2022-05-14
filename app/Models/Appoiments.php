@@ -9,6 +9,17 @@ class Appoiments extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id_solicitante',
+        'user_id_solicitado',
+        'title_appoiment',
+        'start_date',
+        'end_date',
+        'checkbox_time',
+        'description',
+
+    ];
+
 
     public function lawyer()
     {

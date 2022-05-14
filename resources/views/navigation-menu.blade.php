@@ -31,7 +31,7 @@
                             {{ __('Manages') }}
                         </x-jet-nav-link>
 
-                        <x-jet-nav-link href="{{ route('lawyer.appoiments.index') }}" :active="request()->routeIs('lawyer.manages.index')">
+                        <x-jet-nav-link href="{{ route('lawyer.appoiments.index') }}" :active="request()->routeIs('lawyer.appoiments.index')">
                             {{ __('Appoiments') }}
                         </x-jet-nav-link>
                 </div>
@@ -43,6 +43,15 @@
                             {{ __('Normal Cases') }}
                         </x-jet-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('client.appoiments.index') }}" :active="request()->routeIs('client.appoiments.index')">
+                        {{ __('Appoiments') }}
+                    </x-jet-nav-link>
+            </div>
+
+
+
+
                 @endrole
 
 
