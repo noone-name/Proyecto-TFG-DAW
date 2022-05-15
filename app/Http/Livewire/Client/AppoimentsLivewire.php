@@ -3,27 +3,25 @@
 namespace App\Http\Livewire\Client;
 
 use Livewire\Component;
-use App\Models\CaseType;
-use App\Models\NormalCases;
 use App\Models\Appoiments;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
-use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 
 class AppoimentsLivewire extends Component
 {
-    use WithFileUploads;
 
     public $appoiment;
     public $showingAppoimentModal = false;
+    public $showingAppoimentInfoModal = false;
+    public $info;
+
     public $isEditMode = false;
 
 
     public $user_id_abogado; // al cual se le asignara la cita
     public $title_appoiment;
     public $start_date;
-    public $end_date;
     public $checkbox_time;
     public $description;
 
@@ -43,15 +41,17 @@ class AppoimentsLivewire extends Component
         $this->showingAppoimentModal = true;
     }
 
+
+
     public function storeAppoiment()
     {
     $user_id_solicitante= Auth::user()->id;
+    $formatDateStart = date('Y-m-d h:i', strtotime($this->start_date));
 
         $this->validate([
             'user_id_abogado'=>'required',
             'title_appoiment'=>'required',
             'start_date'=>'required|after_or_equal:today',
-            'end_date'=>'required|after_or_equal:start_date',
             'description'=>'required',
 
 
@@ -61,8 +61,8 @@ class AppoimentsLivewire extends Component
             'user_id_solicitante'=>$user_id_solicitante,
             'user_id_solicitado'=>$this->user_id_abogado,
             'title_appoiment'=>$this->title_appoiment,
-            'start_date'=>$this->start_date,
-            'end_date'=>$this->end_date,
+            'start_date'=>$formatDateStart,
+            'end_date'=>$formatDateStart,
             'checkbox_time'=>$this->checkbox_time,
             'description'=>$this->description,
 
@@ -80,7 +80,6 @@ class AppoimentsLivewire extends Component
         $this->user_id_abogado = $this->appoiment->user_id_abogado;
         $this->title_appoiment = $this->appoiment->title_appoiment;
         $this->start_date = $this->appoiment->start_date;
-        $this->end_date = $this->appoiment->end_date;
         $this->checkbox_time = $this->appoiment->checkbox_time;
         $this->description = $this->appoiment->description;
 
@@ -91,11 +90,11 @@ class AppoimentsLivewire extends Component
 
 public function updateAppoiment()
 {
+    $formatDateStart = date('Y-m-d h:i', strtotime($this->start_date));
     $this->validate([
         'user_id_abogado'=>'required',
         'title_appoiment'=>'required',
         'start_date'=>'required|after_or_equal:start_date',
-        'end_date'=>'required|after:start_date',
         'description'=>'required',
     ]);
 
@@ -105,8 +104,8 @@ public function updateAppoiment()
             'user_id_solicitante'=>$user_id_solicitante,
             'user_id_solicitado'=>$this->user_id_abogado,
             'title_appoiment'=>$this->title_appoiment,
-            'start_date'=>$this->start_date,
-            'end_date'=>$this->end_date,
+            'start_date'=>$formatDateStart,
+           'end_date'=>$formatDateStart,
             'checkbox_time'=>$this->checkbox_time,
             'description'=>$this->description,
     ]);
@@ -114,11 +113,28 @@ public function updateAppoiment()
 }
 
 
-public function deleteCase($id)
+public function deleteAppoiment($id)
 {
-    $normal_case = Appoiments::findOrFail($id);
-    $normal_case->delete();
+    $appoiment = Appoiments::findOrFail($id);
+    $appoiment->update([
+        'is_active'=>false,
+        'status'=>'Cancelled'
+    ]);
     $this->reset();
 }
+
+
+public function showAppoimentInfoModal($id)
+{
+    $this->reset();
+    $this->info = Appoiments::findOrFail($id);
+    $this->showingAppoimentInfoModal = true;
+}
+
+public function closeAppoimentInfoModal()
+{
+    $this->showingAppoimentInfoModal = false;
+}
+
 
 }

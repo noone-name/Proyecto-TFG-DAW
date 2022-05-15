@@ -17,6 +17,8 @@ class Appoiments extends Model
         'end_date',
         'checkbox_time',
         'description',
+        'is_active',
+        'status',
 
     ];
 

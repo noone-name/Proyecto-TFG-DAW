@@ -15,7 +15,9 @@ class NormalCasesStatusController extends Controller
      */
     public function index()
     {
-        //
+        return view('lawyer.normal_cases_status.index');
+
+
     }
 
     /**

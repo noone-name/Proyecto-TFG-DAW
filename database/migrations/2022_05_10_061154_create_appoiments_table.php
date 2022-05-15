@@ -18,10 +18,12 @@ return new class extends Migration
             $table->string('title_appoiment');
             $table->unsignedBigInteger('user_id_solicitante');
             $table->unsignedBigInteger('user_id_solicitado');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
             $table->boolean('checkbox_time')->nullable()->default(false);
             $table->text('description');
+            $table->enum('status',array('Pending','Active','Cancelled','Rejected'))->default('Pending');
+            $table->boolean('is_active')->nullable()->default(true);
 
 
 

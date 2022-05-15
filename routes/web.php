@@ -8,6 +8,10 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Lawyer\LawyerIndexController;
 use App\Http\Controllers\Lawyer\FullCalendarEventsController;
 use App\Http\Controllers\Lawyer\ManageController;
+use App\Http\Controllers\Lawyer\NormalCasesStatusController;
+
+
+
 use App\Http\Controllers\AppoimentCalendarController;
 
 
@@ -58,7 +62,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/', [LawyerIndexController::class, 'index'])->name('index');
     Route::resource('/manages', ManageController::class);
     Route::resource('/appoiments', AppoimentCalendarController::class);
-    Route::resource('/normal_cases', NormalCasesController::class);
+    Route::resource('/normal_cases_status', NormalCasesStatusController::class);
 
 
 
@@ -72,6 +76,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('/permissions', PermissionController::class);
         Route::post('/permissions/{permission}/roles', [PermissionController::class, 'assignRole'])->name('permissions.roles');
         Route::delete('/permissions/{permission}/roles/{role}', [PermissionController::class, 'removeRole'])->name('permissions.roles.remove');
+
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
         Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
         Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
