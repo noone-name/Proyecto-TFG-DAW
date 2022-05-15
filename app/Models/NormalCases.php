@@ -10,6 +10,8 @@ class NormalCases extends Model
     use HasFactory;
     protected $fillable = [
         'case_title',
+        'is_active',
+        'status',
         'user_id_cliente',
         'user_id_abogado',
         'case_types_id',

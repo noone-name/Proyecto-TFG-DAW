@@ -42,7 +42,7 @@ class NormalCaseIndex extends Component
     public function render()
     {
         $case_types = CaseType::all();
-        $cases = NormalCases::where('user_id_cliente',Auth::user()->id)->get();;
+        $cases = NormalCases::where([['user_id_cliente',Auth::user()->id],['is_active',true]])->get();;
 
 
         return view('livewire.mult-auth.normal-case-index',
@@ -61,40 +61,46 @@ class NormalCaseIndex extends Component
 
     public function storeCase()
     {
-    $user_id_cliente = Auth::user()->id;
-    if(!empty($this->case_document)){
-        $doc = $this->case_document->store('public/docs');
-    };
+        try {
 
-        $this->validate([
-            'case_title'=>'required',
-            'selectedClass'=>'required',
-            'selectedSection'=>'required',
-            'client_position'=>'required',
-            'description'=>'required',
-            'case_document'=>'mimes:jpg,jpeg,bmp,png,gif,svg,pdf|max:10240',
+            $user_id_cliente = Auth::user()->id;
+            if(!empty($this->case_document)){
+                $doc = $this->case_document->store('public/docs');
+            };
+
+                $this->validate([
+                    'case_title'=>'required',
+                    'selectedClass'=>'required',
+                    'selectedSection'=>'required',
+                    'client_position'=>'required',
+                    'description'=>'required',
+                    'case_document'=>'mimes:jpg,jpeg,bmp,png,gif,svg,pdf|max:10240',
 
 
-        ]);
+                ]);
 
-    $caseId = NormalCases::create([
-            'case_title'=>$this->case_title,
-            'user_id_cliente'=>$user_id_cliente,
-            'case_types_id'=>$this->selectedClass,
-            'user_id_abogado'=>$this->selectedSection,
-            'client_position'=>$this->client_position,
-            'description'=>$this->description,
-            'case_document'=>$doc,
+            $caseId = NormalCases::create([
+                    'case_title'=>$this->case_title,
+                    'user_id_cliente'=>$user_id_cliente,
+                    'case_types_id'=>$this->selectedClass,
+                    'user_id_abogado'=>$this->selectedSection,
+                    'client_position'=>$this->client_position,
+                    'description'=>$this->description,
+                    'case_document'=>$doc,
 
-        ]);
+                ]);
 
-        $id = $caseId->id;
+                $id = $caseId->id;
 
-        NormalCasesStatus::create([
-            'normal_cases_id' =>$id
-        ]);
+                NormalCasesStatus::create([
+                    'normal_cases_id' =>$id
+                ]);
 
-        $this->reset();
+                $this->reset();
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
 
@@ -120,7 +126,7 @@ public function updateCase()
         'selectedSection'=>'required',
         'client_position'=>'required',
         'description'=>'required',
-        'case_document'=>'image|max:1024',
+        'case_document'=>'mimes:jpg,jpeg,bmp,png,gif,svg,pdf|max:10240',
 
 
     ]);
@@ -149,7 +155,10 @@ public function deleteCase($id)
 {
     $normal_case = NormalCases::findOrFail($id);
     Storage::delete($normal_case->case_document);
-    $normal_case->delete();
+    $normal_case->update([
+        'is_active'=>false,
+        'status'=>'Cancelled'
+    ]);
     $this->reset();
 }
 

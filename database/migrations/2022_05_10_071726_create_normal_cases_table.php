@@ -31,7 +31,7 @@ return new class extends Migration
 
             $table->enum('status',array('Pending','Active','Cancelled','Rejected'))->default('Pending');
 
-            $table->boolean('is_active')->nullable()->default(false);
+            $table->boolean('is_active')->nullable()->default(true);
 
             $table->timestamps();
         });

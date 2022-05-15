@@ -14,37 +14,34 @@
 
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Nombre
+                        Titulo del Caso
                     </th>
+
 
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        user_id_cliente
+                        Abogado
                     </th>
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        user_id_abogado
+                        Tipo de Caso
                     </th>
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        case_types_id
+                        Situación en el Caso
                     </th>
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        description
+                        Descripción del caso
                     </th>
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        is_active
+                        Estado del caso
                     </th>
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        case_document
+                        Acciones
                     </th>
-                    <th scope="col"
-                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Acciones
-                </th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -59,7 +56,7 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
-                                    {{ $case->user_id_cliente }}
+                                    {{ $case->user_id_abogado }}
                                 </div>
                             </td>
 
@@ -83,24 +80,75 @@
 
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
-                                    {{ $case->is_active }}
+                                    @if ($case->status == 'Cancelled')
+                                        <span
+                                            class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+                                            <span aria-hidden
+                                                class="absolute inset-0 bg-red-600 opacity-50 rounded-full"></span>
+                                            <span class="relative">Borrado
+                                            </span>
+                                        </span>
+                                    @endif
+
+                                    @if ($case->status == 'Pending')
+                                    <span
+                                    class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
+                                    <span aria-hidden
+                                        class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"></span>
+                                    <span class="relative">Pendiente</span>
+                                </span>
+                                @endif
+
+                                @if ($case->status == 'Active')
+                                <span
+                                class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                <span aria-hidden
+                                    class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                                <span class="relative">Activo</span>
+                            </span>
+                            @endif
+
+
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
 
-                                @if (strpos(Storage::url($case->case_document), '.pdf') !== false  )
-                                <a href="{{Storage::url($case->case_document)}}" target="_blank">
-                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                                </a>
-                                @else
-                                <img class="w-8 h-8 rounded-full" src="{{ Storage::url($case->case_document) }}" />
-                                @endif
-                            </td>
-                            <td>
-                                <x-jet-button wire:click='showEditCaseModal({{ $case->id }})'>{{__('Edit')}}</x-jet-button>
+                            @if ($case->is_active != false)
+                                <td class="px-6 py-4 whitespace-nowrap">
 
-                                <x-jet-button class='bg-red-700' wire:click='deleteCase({{ $case->id }})'>{{__('Delete')}}</x-jet-button>
-                            </td>
+                                    @if (strpos(Storage::url($case->case_document), '.pdf') !== false)
+                                        <a href="{{ Storage::url($case->case_document) }}" target="_blank">
+                                            <svg class="w-8 h-8" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    @else
+                                        <img class="w-8 h-8 rounded-full"
+                                            src="{{ Storage::url($case->case_document) }}" />
+                                    @endif
+                                </td>
+                                <td>
+
+                                    <x-jet-button wire:click='showEditCaseModal({{ $case->id }})'>
+                                        {{ __('Edit') }}</x-jet-button>
+
+                                    <x-jet-button class='bg-red-700' wire:click='deleteCase({{ $case->id }})'>
+                                        {{ __('Delete') }}</x-jet-button>
+                                </td>
+                            @else
+                                <td>
+                                    <span
+                                        class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+                                        <span aria-hidden
+                                            class="absolute inset-0 bg-red-600 opacity-50 rounded-full"></span>
+                                        <span class="relative">Borrado</span>
+                                    </span>
+                                </td>
+                            @endif
+
+
                         </tr>
                     @endforeach
                 @endif
@@ -131,7 +179,7 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="case_title" required>
                         @error('case_title')
-                            <span class="error">{{ $message }}</span>
+                            <span class="error text-red-600">{{ $message }}</span>
                         @enderror
 
                     </div>
@@ -149,7 +197,7 @@
                             @endforeach
                         </select>
                         @error('selectedClass')
-                            <span class="error">{{ $message }}</span>
+                            <span class="error text-red-600">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -166,7 +214,7 @@
                                 @endforeach
                             </select>
                             @error('selectedSection')
-                                <span class="error">s{{ $message }}</span>
+                                <span class="error text-red-600">{{ $message }}</span>
                             @enderror
 
                         </div>
@@ -187,7 +235,7 @@
                             <option value="Petitioner">Demandante</option>
                         </select>
                         @error('client_position')
-                            <span class="error">{{ $message }}</span>
+                            <span class="error text-red-600">{{ $message }}</span>
                         @enderror
 
                     </div>
@@ -202,18 +250,18 @@
                         @if ($oldDoc)
 
 
-                        @if (strpos(Storage::url($oldDoc), '.pdf') !== false  )
-                        <a href="{{Storage::url($oldDoc)}}" target="_blank">
-                            <iframe src="{{ Storage::url($oldDoc) }}" width="100%" height="300"></iframe>
-                        </a>
-                        @else
-                        <img src="{{ Storage::url($oldDoc) }}" width="50%" height="200">
+                            @if (strpos(Storage::url($oldDoc), '.pdf') !== false)
+                                <a href="{{ Storage::url($oldDoc) }}" target="_blank">
+                                    <iframe src="{{ Storage::url($oldDoc) }}" width="100%" height="300"></iframe>
+                                </a>
+                            @else
+                                <img src="{{ Storage::url($oldDoc) }}" width="50%" height="200">
+                            @endif
+
                         @endif
 
-                    @endif
-
                         @error('case_document')
-                            <span class="error">{{ $message }}</span>
+                            <span class="error text-red-600">{{ $message }}</span>
                         @enderror
 
                     </div>
@@ -228,7 +276,7 @@
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Your description..."></textarea>
                         @error('description')
-                            <span class="error">{{ $message }}</span>
+                            <span class="error text-red-600">{{ $message }}</span>
                         @enderror
 
                     </div>
