@@ -1,4 +1,8 @@
 <div>
+    <x-jet-button wire:click='ProximosCasos'> {{__('Proximas Citas')}} </x-jet-button>
+    <x-jet-button wire:click='CasosPorConfirmar'> {{__('Por confirmar Citas')}} </x-jet-button>
+    <x-jet-button wire:click='HistoricoDeCitas'> {{__('Historial de Citas')}} </x-jet-button>
+
     <div class="flex justify-end m-2 p-2">
 
         <table class="w-full divide-y divide-gray-200">
@@ -38,7 +42,7 @@
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
 
-                {{-- @foreach ($casesstatus as $status)
+             @foreach ($casesstatus as $status)
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
@@ -174,10 +178,10 @@
 
                     </tr>
                 @endforeach
- --}}
+
             </tbody>
         </table>
-{{$casesstatus}}
+
 
     </div>
 

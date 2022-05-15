@@ -29,20 +29,41 @@ class CasesStatusLaw extends Component
     public $extra_info;
 
 
+
+
+    public $search='Active';
+
+    public function ProximosCasos() { $this->search = 'Active'; }
+
+    public function CasosPorConfirmar() { $this->search = 'Pending'; }
+
+    public function HistoricoDeCitas() { $this->search = 'Todos'; }
+
     public function render()
     {
-        $casesstatus = NormalCasesStatus::all();
+ // $casesstatus = NormalCasesStatus::find(1)->normalcases->where('status','Rejected')->get();
+// normalstatus
+$casesstatus = NormalCasesStatus::whereHas('normalcases', function ($query) {
+
+    if ($this->search == 'Todos') {
+        $query->where('user_id_abogado',Auth::user()->id);
+
+    }
+    else
+    $query->where([['user_id_abogado',Auth::user()->id],['status',$this->search]]);
+
+
+})->get();
 
 
 
-      //  $cases = NormalCases::find();
         return view('livewire.lawyer.cases-status-law',compact('casesstatus'));
     }
 
 
     public function showCaseModal()
     {
-        $this->reset();
+        $this->resetExcept('search');
         $this->showingCaseStatusModal = true;
     }
 
@@ -84,7 +105,7 @@ public function updateCaseStatus()
             'status'=>'Active'
         ]);
 
-        $this->reset();
+        $this->resetExcept('search');
 
     } catch (\Throwable $th) {
             throw $th;
@@ -123,7 +144,7 @@ public function rejectCaseStatus()
             'is_active'=>false,
             'status'=>'Rejected'
         ]);
-     $this->reset();
+     $this->resetExcept('search');
 
     } catch (\Throwable $th) {
             throw $th;
@@ -134,7 +155,7 @@ public function rejectCaseStatus()
 
 public function showCaseStatusInfoModal($id)
 {
-    $this->reset();
+    $this->resetExcept('search');
 //    $this->info = Appoiments::findOrFail($id);
     $this->showingCaseStatusInfoModal = true;
 }

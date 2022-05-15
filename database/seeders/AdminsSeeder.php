@@ -33,7 +33,7 @@ class AdminsSeeder extends Seeder
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'gender_id' => 4,
 
-    ])->assignRole('Abogado');
+    ])->assignRole('Abogado','Derecho Civil','Derecho Penal','Derecho Laboral','Derecho Administrativo','Derecho Patrimonial');
 
     User::create([
         'name' => 'client',
