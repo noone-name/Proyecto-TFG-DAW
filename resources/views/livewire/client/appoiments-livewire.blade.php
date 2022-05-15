@@ -4,6 +4,11 @@
         <x-jet-button wire:click='showAppoimentModal'> {{__('Create')}} </x-jet-button>
     </div>
 
+    <x-jet-button wire:click='ProximasCitas'> {{__('Proximas Citas')}} </x-jet-button>
+    <x-jet-button wire:click='CitasPorConfirmar'> {{__('Por confirmar Citas')}} </x-jet-button>
+    <x-jet-button wire:click='HistoricoDeCitas'> {{__('Historial de Citas')}} </x-jet-button>
+
+    {{-- <x-jet-button wire:click='searchValue'> {{__('Create')}} </x-jet-button> --}}
 
     <div class="flex justify-end m-2 p-2">
 
@@ -160,8 +165,6 @@
             <x-slot name='content'>
                 <form>
                     @csrf
-
-                    @csrf
                     <div class="mt-3">
                         <label for="input-group-1"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Título de la
@@ -201,6 +204,7 @@
                         </select>
 
                     </div>
+
                     <div class="mt-3">
                         <label for="input-group-1"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Start
@@ -223,29 +227,7 @@
                                 placeholder="Breve descripción del evento">
                         </div>
                     </div>
-                    {{-- <div class="mt-3">
-                        <label for="input-group-1"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">End
-                            Date/Time</label>
-                        @error('end_date')
-                            <span class="error text-red-600">{{ $message }}</span>
-                        @enderror
-                        <div class="relative mb-6">
-                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                    </path>
-                                </svg>
-                            </div>
-                            <input required type="datetime-local" id="end" wire:model.lazy='end_date'
-                                min="{{ Carbon\Carbon::now()->format('Y-m-d\Th:i') }}"
-                                class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Breve descripción del evento">
-                        </div>
 
-                    </div> --}}
                     <div class="mt-3">
                         <label for="input-group-1"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">All Day?</label>
@@ -281,10 +263,6 @@
 
                         </div>
                     </div>
-
-
-
-
 
                 </form>
             </x-slot>

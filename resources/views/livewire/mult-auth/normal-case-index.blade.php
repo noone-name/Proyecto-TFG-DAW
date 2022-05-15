@@ -5,6 +5,11 @@
     </div>
 
 
+    <x-jet-button wire:click='ProximosCasos'> {{__('Proximas Citas')}} </x-jet-button>
+    <x-jet-button wire:click='CasosPorConfirmar'> {{__('Por confirmar Citas')}} </x-jet-button>
+    <x-jet-button wire:click='HistoricoDeCitas'> {{__('Historial de Citas')}} </x-jet-button>
+
+
     <div class="flex justify-end m-2 p-2">
 
 
@@ -88,6 +93,16 @@
                                             <span class="relative">Borrado
                                             </span>
                                         </span>
+                                    @endif
+
+                                    @if ($case->status == 'Rejected')
+                                    <span
+                                        class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+                                        <span aria-hidden
+                                            class="absolute inset-0 bg-red-500 opacity-50 rounded-full"></span>
+                                        <span class="relative">Rechazado
+                                        </span>
+                                    </span>
                                     @endif
 
                                     @if ($case->status == 'Pending')

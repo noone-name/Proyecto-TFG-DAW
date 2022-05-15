@@ -4,6 +4,9 @@
         <x-jet-button wire:click='showAppoimentModal'> {{__('Create')}} </x-jet-button>
     </div>
 
+    <x-jet-button wire:click='ProximasCitas'> {{__('Proximas Citas')}} </x-jet-button>
+    <x-jet-button wire:click='CitasPorConfirmar'> {{__('Por confirmar Citas')}} </x-jet-button>
+    <x-jet-button wire:click='HistoricoDeCitas'> {{__('Historial de Citas')}} </x-jet-button>
 
     <div class="flex justify-end m-2 p-2">
 

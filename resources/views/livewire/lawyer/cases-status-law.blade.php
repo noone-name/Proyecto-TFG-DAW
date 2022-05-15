@@ -38,7 +38,7 @@
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
 
-                @foreach ($casesstatus as $status)
+                {{-- @foreach ($casesstatus as $status)
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
@@ -174,11 +174,10 @@
 
                     </tr>
                 @endforeach
-
-
+ --}}
             </tbody>
         </table>
-
+{{$casesstatus}}
 
     </div>
 

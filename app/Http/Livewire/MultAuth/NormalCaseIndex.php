@@ -36,6 +36,15 @@ class NormalCaseIndex extends Component
 
 
 
+
+    public $search='Active';
+
+    public function ProximosCasos() { $this->search = 'Active'; }
+
+    public function CasosPorConfirmar() { $this->search = 'Pending'; }
+
+    public function HistoricoDeCitas() { $this->search = 'Todos'; }
+
     public function updatedSelectedClass($class_id)
     {
         $caseCategory = CaseType::where('id',$class_id)->value('case_category');
@@ -43,10 +52,17 @@ class NormalCaseIndex extends Component
       $this->sections = User::role($caseCategory)->get();
     }
 
+
+
     public function render()
     {
         $case_types = CaseType::all();
-        $cases = NormalCases::where([['user_id_cliente',Auth::user()->id],['is_active',true]])->get();;
+        if ($this->search == 'Todos') {
+            $cases = NormalCases::where('user_id_cliente',Auth::user()->id)->get();;
+
+        }
+            else
+            $cases = NormalCases::where([['user_id_cliente',Auth::user()->id],['status',$this->search]])->get();;
 
 
         return view('livewire.mult-auth.normal-case-index',
@@ -59,7 +75,7 @@ class NormalCaseIndex extends Component
 
     public function showCaseModal()
     {
-        $this->reset();
+        $this->resetExcept('search');
         $this->showingCaseModal = true;
     }
 
@@ -100,7 +116,7 @@ class NormalCaseIndex extends Component
                     'normal_cases_id' =>$id
                 ]);
 
-                $this->reset();
+                $this->resetExcept('search');
 
         } catch (\Throwable $th) {
             throw $th;
@@ -151,7 +167,7 @@ public function updateCase()
             'description'=>$this->description,
             'case_document'=>$doc,
     ]);
-    $this->reset();
+    $this->resetExcept('search');
 }
 
 
@@ -163,7 +179,7 @@ public function deleteCase($id)
         'is_active'=>false,
         'status'=>'Cancelled'
     ]);
-    $this->reset();
+    $this->resetExcept('search');
 }
 
 
@@ -171,7 +187,7 @@ public function deleteCase($id)
 
 public function showCaseStatusInfoModal($id)
 {
-    $this->reset();
+    $this->resetExcept('search');
 //    $this->info = Appoiments::findOrFail($id);
     $this->showingCaseStatusInfoModal = true;
 }

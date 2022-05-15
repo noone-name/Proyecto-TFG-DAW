@@ -32,6 +32,9 @@ class CasesStatusLaw extends Component
     public function render()
     {
         $casesstatus = NormalCasesStatus::all();
+
+
+
       //  $cases = NormalCases::find();
         return view('livewire.lawyer.cases-status-law',compact('casesstatus'));
     }

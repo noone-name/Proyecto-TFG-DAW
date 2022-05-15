@@ -23,11 +23,22 @@ class AppoimentsLivewire extends Component
     public $checkbox_time;
     public $description;
 
+    public $search='Active';
+
+    public function ProximasCitas() { $this->search = 'Active'; }
+
+    public function CitasPorConfirmar() { $this->search = 'Pending'; }
+
+    public function HistoricoDeCitas() { $this->search = 'Todos'; }
 
     public function render()
     {
         $clients = User::role('Cliente')->get();
-        $citas = Appoiments::where('user_id_solicitante',Auth::user()->id)->get();;
+        if ($this->search == 'Todos') {
+            $citas = Appoiments::where('user_id_solicitante',Auth::user()->id)->get();;
+            }
+            else
+            $citas = Appoiments::where([['user_id_solicitante',Auth::user()->id],['status',$this->search]])->get();;
 
         return view('livewire.lawyer.appoiments-livewire',compact('clients','citas'));
     }
@@ -35,7 +46,7 @@ class AppoimentsLivewire extends Component
 
     public function showAppoimentModal()
     {
-        $this->reset();
+        $this->resetExcept('search');
         $this->showingAppoimentModal = true;
     }
 
@@ -64,7 +75,7 @@ class AppoimentsLivewire extends Component
 
         ]);
 
-        $this->reset();
+        $this->resetExcept('search');
 
 
     }
@@ -106,7 +117,7 @@ public function updateAppoiment()
             'checkbox_time'=>$this->checkbox_time,
             'description'=>$this->description,
     ]);
-    $this->reset();
+    $this->resetExcept('search');
 }
 
 
@@ -117,14 +128,14 @@ public function deleteAppoiment($id)
         'is_active'=>false,
         'status'=>'Cancelled'
     ]);
-    $this->reset();
+    $this->resetExcept('search');
 }
 
 
 
 public function showAppoimentInfoModal($id)
 {
-    $this->reset();
+    $this->resetExcept('search');
     $this->info = Appoiments::findOrFail($id);
     $this->showingAppoimentInfoModal = true;
 }
