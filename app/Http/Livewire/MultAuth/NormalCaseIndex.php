@@ -31,6 +31,10 @@ class NormalCaseIndex extends Component
     public $description;
     public $oldDoc;
 
+    public $showingCaseStatusInfoModal = false;
+    public $info;
+
+
 
     public function updatedSelectedClass($class_id)
     {
@@ -161,5 +165,26 @@ public function deleteCase($id)
     ]);
     $this->reset();
 }
+
+
+
+
+public function showCaseStatusInfoModal($id)
+{
+    $this->reset();
+//    $this->info = Appoiments::findOrFail($id);
+    $this->showingCaseStatusInfoModal = true;
+}
+
+public function closeCaseStatusInfoModal()
+{
+    $this->showingCaseStatusInfoModal = false;
+}
+
+
+
+
+
+
 
 }

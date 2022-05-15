@@ -91,22 +91,22 @@
                                     @endif
 
                                     @if ($case->status == 'Pending')
-                                    <span
-                                    class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
-                                    <span aria-hidden
-                                        class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"></span>
-                                    <span class="relative">Pendiente</span>
-                                </span>
-                                @endif
+                                        <span
+                                            class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
+                                            <span aria-hidden
+                                                class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"></span>
+                                            <span class="relative">Pendiente</span>
+                                        </span>
+                                    @endif
 
-                                @if ($case->status == 'Active')
-                                <span
-                                class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                <span aria-hidden
-                                    class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                <span class="relative">Activo</span>
-                                 </span>
-                                 @endif
+                                    @if ($case->status == 'Active')
+                                        <span
+                                            class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                            <span aria-hidden
+                                                class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                                            <span class="relative">Activo</span>
+                                        </span>
+                                    @endif
 
 
                                 </div>
@@ -130,12 +130,22 @@
                                     @endif
                                 </td>
                                 <td>
+                                    @if ($case->is_active != false)
+                                        @if ($case->status == 'Pending')
+                                            <x-jet-button wire:click='showEditCaseModal({{ $case->id }})'>
+                                                {{ __('Edit') }}</x-jet-button>
 
-                                    <x-jet-button wire:click='showEditCaseModal({{ $case->id }})'>
-                                        {{ __('Edit') }}</x-jet-button>
+                                            <x-jet-button class='bg-red-700'
+                                                wire:click='deleteCase({{ $case->id }})'>
+                                                {{ __('Delete') }}</x-jet-button>
+                                        @else
+                                            <x-jet-button
+                                                wire:click='showCaseStatusInfoModal({{ $case->id }})'>
+                                                {{ __('Información') }}
+                                            </x-jet-button>
+                                        @endif
+                                    @endif
 
-                                    <x-jet-button class='bg-red-700' wire:click='deleteCase({{ $case->id }})'>
-                                        {{ __('Delete') }}</x-jet-button>
                                 </td>
                             @else
                                 <td>
@@ -291,6 +301,24 @@
                 @else
                     <x-jet-button wire:click='storeCase'>{{ __('Save') }}</x-jet-button>
                 @endif
+            </x-slot>
+
+        </x-jet-dialog-modal>
+    </div>
+
+
+    <div>
+        <x-jet-dialog-modal wire:model='showingCaseStatusInfoModal'>
+
+            <x-slot name='title'>{{ __('Case Info') }}</x-slot>
+
+            <x-slot name='content'>
+
+
+            </x-slot>
+
+            <x-slot name='footer'>
+                <x-jet-button wire:click='closeAppoimentInfoModal'>{{ __('Close') }}</x-jet-button>
             </x-slot>
 
         </x-jet-dialog-modal>

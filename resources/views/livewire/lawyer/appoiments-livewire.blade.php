@@ -18,7 +18,7 @@
 
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        User_id_solicitado
+                        Nombre del CLiente
                     </th>
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -33,7 +33,7 @@
 
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Status
+                        Estatus
                     </th>
 
                     <th scope="col"
@@ -166,8 +166,6 @@
             <x-slot name='content'>
                 <form>
                     @csrf
-
-                    @csrf
                     <div class="mt-3">
                         <label for="input-group-1"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Título de la
@@ -193,8 +191,7 @@
 
                     <div class="mt-3">
                         <label for="user_id_cliente"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Elige tu tipo de
-                            caso</label>
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Elige al Cliente</label>
                         @error('user_id_cliente')
                             <span class="error text-red-600">{{ $message }}</span>
                         @enderror
@@ -209,8 +206,7 @@
                     </div>
                     <div class="mt-3">
                         <label for="input-group-1"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Start
-                            Date/Time</label>
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Día de la reunión</label>
                         @error('start_date')
                             <span class="error text-red-600">{{ $message }}</span>
                         @enderror
@@ -233,7 +229,7 @@
 
                     <div class="mt-3">
                         <label for="input-group-1"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">All Day?</label>
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Desea reservar todo el día?</label>
                         <div class="relative mb-6">
                             @error('checkbox_time')
                                 <span class="error text-red-600">{{ $message }}</span>
@@ -243,8 +239,7 @@
                                     wire:model.lazy='checkbox_time'
                                     class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="checkbox"
-                                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">All
-                                    day</label>
+                                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Todo el día</label>
                             </div>
 
                         </div>
@@ -254,9 +249,7 @@
                         <div class="relative mb-6">
 
                             <label for="description"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Breve
-                                descripcion
-                                del caso</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Breve descripcion del caso</label>
                             @error('description')
                                 <span class="error text-red-600">{{ $message }}</span>
                             @enderror

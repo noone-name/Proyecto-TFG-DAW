@@ -32,10 +32,15 @@ class NormalCases extends Model
         return $this->belongsToMany(User::class, 'normal_cases', 'user_id_abogado', 'user_id_cliente');
     }
 
+
+
     public function normalstatus()
     {
         return $this->hasOne(NormalCasesStatus::class);
     }
+
+
+
 
     public function casecategory()
     {

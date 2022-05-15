@@ -10,11 +10,19 @@ class NormalCasesStatus extends Model
     use HasFactory;
 
     protected $fillable=[
-        'normal_cases_id'
+        'normal_cases_id',
+        'lawyer_docs_requirements',
+        'potential_resolution',
+        'extra_info',
+        'cancel_answer',
+
     ];
+
+
+
     public function normalcases()
     {
-        return $this->belongsTo(NormalCases::class);
+        return $this->belongsTo(NormalCases::class, 'normal_cases_id');
     }
 
     public function caseinvoce()

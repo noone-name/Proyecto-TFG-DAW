@@ -25,12 +25,12 @@ class Appoiments extends Model
 
     public function lawyer()
     {
-        return $this->belongsToMany(Role::class, 'appoiments', 'user_id_cliente', 'user_id_abogado');
+        return $this->belongsToMany(User::class, 'appoiments', 'user_id_cliente', 'user_id_abogado');
     }
 
     public function client()
     {
-        return $this->belongsToMany(Role::class, 'appoiments', 'user_id_abogado', 'user_id_cliente');
+        return $this->belongsToMany(User::class, 'appoiments', 'user_id_abogado', 'user_id_cliente');
     }
 
 
