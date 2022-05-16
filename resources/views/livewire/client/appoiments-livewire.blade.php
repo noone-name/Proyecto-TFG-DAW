@@ -26,10 +26,6 @@
                         Asunto de la cita
                     </th>
 
-
-
-
-
                     @if ($appoimentLawyer === true)
                         <th scope="col"
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -83,7 +79,6 @@
                             </div>
                         </td>
 
-
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                                 {{ $cita->title_appoiment }}
@@ -109,6 +104,7 @@
                                 {{ $cita->start_date }}
                             </div>
                         </td>
+
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                                 {{ $cita->description }}
@@ -155,11 +151,8 @@
                                     </span>
                                 @endif
 
-
                             </div>
                         </td>
-
-
 
                         @if ($cita->is_active != false)
                             <td>
@@ -208,12 +201,9 @@
                             </td>
                         @else
                             <td>
-                                <span
-                                    class="relative items-center inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
-                                    <span aria-hidden
-                                        class="absolute inset-0 bg-red-600 opacity-50 rounded-full"></span>
-                                    <span class="relative">Cancelado</span>
-                                </span>
+                                <x-jet-button wire:click='showAppoimentInfoModal({{ $cita->id }})'>
+                                    {{ __('Información') }}
+                                </x-jet-button>
                             </td>
                         @endif
 
@@ -361,14 +351,165 @@
 
 
             <x-slot name='content'>
+
+
                 @if ($info)
 
-                    <p>Título de la cita: {{ $info->title_appoiment }}</p>
-                    <p>Fecha de la cita :{{ $info->start_date }}</p>
-                    <p>Estado: {{ $info->status }}</p>
-                    <p>Abogado: {{ $info->user_id_solicitado }} </p>
-                    @if ($info->checkbox_time == true)
-                        <p>Cita concertada para todo el dia</p>
+                    @if ($appoimentLawyer === true || Auth::user()->id === $info->users_solicitado->id)
+
+                        <span
+                            class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+
+                            <div class="flex flex-col justify-between p-4 leading-normal">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                    {{ __('Cita: ') }} {{ $info->title_appoiment }}
+                                </h5>
+                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                    <br> <span class="font-bold"> Fecha de la cita:</span>
+                                    {{ $info->start_date }}
+                                    <br> <span class="font-bold"> Estado:</span> {{ $info->status }}
+                                    @if ($info->checkbox_time == true)
+                                        <br> <span class="font-bold"> Cita concertada para todo el dia</span>
+                                    @endif
+                                </p>
+                            </div>
+                        </span>
+
+                        <span
+                            class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                            <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+                                src="{{ $info->users_solicitado->profile_photo_url }}" alt="">
+                            <div class="flex flex-col justify-between p-4 leading-normal">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                    {{ __('Cita Asignada a: ') }} {{ $info->users_solicitado->name }}
+                                </h5>
+                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                    <br> <span class="font-bold"> Género:</span>
+                                    {{ $info->users_solicitado->gender->name }}
+                                    <br> <span class="font-bold"> Correo:</span>
+                                    {{ $info->users_solicitado->email }}
+                                    <br> <span class="font-bold"> DNI / NIF:</span>
+                                    {{ $info->users_solicitado->client_dni }}
+                                    <br> <span class="font-bold"> Fecha de Nacimiento:</span>
+                                    {{ $info->users_solicitado->client_birth_date }}
+                                    <br> <span class="font-bold"> Dirección de Factura:</span>
+                                    {{ $info->users_solicitado->client_declarated_address }}
+                                    <br> <span class="font-bold"> Dirección de Casa:</span>
+                                    {{ $info->users_solicitado->client_home_address }}
+                                    <br> <span class="font-bold"> Número de Teléfono:</span>
+                                    {{ $info->users_solicitado->client_mobile_phone }}
+                                </p>
+                            </div>
+                        </span>
+
+                        <span
+                            class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                            <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+                                src="{{ $info->users_solicitante->profile_photo_url }}" alt="">
+                            <div class="flex flex-col justify-between p-4 leading-normal">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                    {{ __('Cita creada por: ') }} {{ $info->users_solicitante->name }}
+                                </h5>
+                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                    <br> <span class="font-bold"> Género:</span>
+                                    {{ $info->users_solicitante->gender->name }}
+                                    <br> <span class="font-bold"> Correo:</span>
+                                    {{ $info->users_solicitante->email }}
+                                    <br> <span class="font-bold"> DNI:</span>
+                                    {{ $info->users_solicitante->lawyer_dni }}
+                                    <br> <span class="font-bold"> Número de Teléfono:</span>
+                                    {{ $info->users_solicitante->lawyer_mobile_phone }}
+                                    <br> <span class="font-bold"> Número de Licencia:</span>
+                                    {{ $info->users_solicitante->lawyer_licence_number }}
+                                    <br> <span class="font-bold"> Especialidad:</span>
+                                    {{ $info->users_solicitante->lawyer_specialty }}
+                                    <br> <span class="font-bold"> Nombre Oficina:</span>
+                                    {{ $info->users_solicitante->lawyer_office_name }}
+                                    <br> <span class="font-bold"> Biografía:</span>
+                                    {{ $info->users_solicitante->lawyer_biography }}
+                                    <br> <span class="font-bold"> Días de Trabajo:</span>
+                                    {{ $info->users_solicitante->lawyer_work_days }}
+                                </p>
+                            </div>
+                        </span>
+                    @else
+                        <span
+                            class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+
+                            <div class="flex flex-col justify-between p-4 leading-normal">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                    {{ __('Cita: ') }} {{ $info->title_appoiment }}
+                                </h5>
+                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+
+                                    <br> <span class="font-bold"> Fecha de la cita:</span>
+                                    {{ $info->start_date }}
+                                    <br> <span class="font-bold"> Estado:</span> {{ $info->status }}
+                                    @if ($info->checkbox_time == true)
+                                        <br> <span class="font-bold"> Cita concertada para todo el dia</span>
+                                    @endif
+                                </p>
+                            </div>
+                        </span>
+
+                        <span
+                            class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                            <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+                                src="{{ $info->users_solicitado->profile_photo_url }}" alt="">
+                            <div class="flex flex-col justify-between p-4 leading-normal">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                    {{ __('Cita Asignada a: ') }} {{ $info->users_solicitado->name }}
+                                </h5>
+                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                    <br> <span class="font-bold"> Género:</span>
+                                    {{ $info->users_solicitado->gender->name }}
+                                    <br> <span class="font-bold"> Correo:</span>
+                                    {{ $info->users_solicitado->email }}
+                                    <br> <span class="font-bold"> DNI:</span>
+                                    {{ $info->users_solicitado->lawyer_dni }}
+                                    <br> <span class="font-bold"> Número de Teléfono:</span>
+                                    {{ $info->users_solicitado->lawyer_mobile_phone }}
+                                    <br> <span class="font-bold"> Número de Licencia:</span>
+                                    {{ $info->users_solicitado->lawyer_licence_number }}
+                                    <br> <span class="font-bold"> Especialidad:</span>
+                                    {{ $info->users_solicitado->lawyer_specialty }}
+                                    <br> <span class="font-bold"> Nombre Oficina:</span>
+                                    {{ $info->users_solicitado->lawyer_office_name }}
+                                    <br> <span class="font-bold"> Biografía:</span>
+                                    {{ $info->users_solicitado->lawyer_biography }}
+                                    <br> <span class="font-bold"> Días de Trabajo:</span>
+                                    {{ $info->users_solicitado->lawyer_work_days }}
+                                </p>
+                            </div>
+                        </span>
+
+                        <span
+                            class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                            <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+                                src="{{ $info->users_solicitante->profile_photo_url }}" alt="">
+                            <div class="flex flex-col justify-between p-4 leading-normal">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                    {{ __('Cita creada por: ') }} {{ $info->users_solicitante->name }}
+                                </h5>
+                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                    <br> <span class="font-bold"> Género:</span>
+                                    {{ $info->users_solicitante->gender->name }}
+                                    <br> <span class="font-bold"> Correo:</span>
+                                    {{ $info->users_solicitante->email }}
+                                    <br> <span class="font-bold"> DNI / NIF:</span>
+                                    {{ $info->users_solicitante->client_dni }}
+                                    <br> <span class="font-bold"> Fecha de Nacimiento:</span>
+                                    {{ $info->users_solicitante->client_birth_date }}
+                                    <br> <span class="font-bold"> Dirección de Factura:</span>
+                                    {{ $info->users_solicitante->client_declarated_address }}
+                                    <br> <span class="font-bold"> Dirección de Casa:</span>
+                                    {{ $info->users_solicitante->client_home_address }}
+                                    <br> <span class="font-bold"> Número de Teléfono:</span>
+                                    {{ $info->users_solicitante->client_mobile_phone }}
+                                </p>
+                            </div>
+                        </span>
+
                     @endif
 
                 @endif

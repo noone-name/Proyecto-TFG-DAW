@@ -31,6 +31,8 @@ class Appoiments extends Model
     public function users_solicitante()
         {
             return $this->belongsTo(User::class,'user_id_solicitante');
+            //            return $this->belongsTo(User::class,'user_id_solicitante')->select(array('name','email','client_dni','client_birth_date','client_declarated_address','client_home_address','client_mobile_phone','gender_id'        ));
+
         }
 
     public function users_solicitado()

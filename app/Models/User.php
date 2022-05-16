@@ -86,9 +86,9 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function gender(): HasOne
+    public function gender()
     {
-        return $this->hasOne(Gender::class, 'gender_id', 'gender_id');
+        return $this->belongsTo(Gender::class,'gender_id');
     }
 
 
