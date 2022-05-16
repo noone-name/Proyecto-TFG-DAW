@@ -25,7 +25,7 @@ class AppoimentsLivewire extends Component
     public $checkbox_time;
     public $description;
 
-    public $status='Pending';
+    public $status='Active';
     public $manageUser='user_id_solicitante';
     public $appoimentLawyer=false;
 
@@ -61,8 +61,17 @@ class AppoimentsLivewire extends Component
     {
         $abogados = User::role('Abogado')->get();
 
-        if ($this->status == 'Todos') { $citas = Appoiments::where($this->manageUser,Auth::user()->id)->get(); }
-        else $citas = Appoiments::where([[$this->manageUser,Auth::user()->id],['status',$this->status]])->get();
+        if ($this->status == 'Active') {
+            $citas = Appoiments::where([[$this->manageUser,Auth::user()->id],['status',$this->status]])->orWhere([['user_id_solicitado',Auth::user()->id],['status',$this->status]])->get();
+
+        } else {
+            if ($this->status == 'Todos') {
+                $citas = Appoiments::where($this->manageUser,Auth::user()->id)->orWhere('user_id_solicitado',Auth::user()->id)->get();
+            }
+            else $citas = Appoiments::where([[$this->manageUser,Auth::user()->id],['status',$this->status]])->get();
+        }
+
+
 
         return view('livewire.client.appoiments-livewire',compact('abogados','citas'));
     }

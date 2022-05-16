@@ -1,28 +1,41 @@
 <div>
     {{-- Be like water. --}}
     <div class="flex justify-end m-2 p-2">
-        <x-jet-button wire:click='showAppoimentModal'> {{__('Create')}} </x-jet-button>
+        <x-jet-button wire:click='showAppoimentModal'> {{ __('Create') }} </x-jet-button>
     </div>
 
-    <x-jet-button wire:click='ProximasCitas'> {{__('Proximas Citas')}} </x-jet-button>
-    <x-jet-button wire:click='CitasPorConfirmar'> {{__('Por confirmar Citas')}} </x-jet-button>
-    <x-jet-button wire:click='HistoricoDeCitas'> {{__('Historial de Citas')}} </x-jet-button>
+    <x-jet-button wire:click='ProximasCitas'> {{ __('Proximas Citas') }} </x-jet-button>
+    <x-jet-button wire:click='CitasPendientesAceptar'> {{ __('Citas no confirmadas') }} </x-jet-button>
+    <x-jet-button wire:click='HistoricoDeCitas'> {{ __('Historial de Citas') }} </x-jet-button>
+    <x-jet-button wire:click='CitasPorConfirmar'> {{ __('Citas por Aceptar') }} </x-jet-button>
 
     <div class="flex justify-end m-2 p-2">
 
-        <table class="w-full divide-y divide-gray-200">
+        <table class="w-full divide-y divide-gray-200 table-fixed">
             <thead class="bg-gray-50">
                 <tr>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Creado por
+                    </th>
 
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Asunto de la cita
                     </th>
 
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Nombre del CLiente
-                    </th>
+                    @if ($appoimentClient === true)
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            {{ __('Solicitado por') }}
+                        </th>
+                    @else
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Cliente
+                        </th>
+                    @endif
+
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Dia de la Cita
@@ -33,10 +46,9 @@
                         Descripción de la cita
                     </th>
 
-
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Estatus
+                        Status
                     </th>
 
                     <th scope="col"
@@ -52,14 +64,38 @@
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
+                                @if ($appoimentClient === true || Auth::user()->id === $cita->users_solicitado->id)
+                                    <span
+                                        class="flex rounded-full bg-teal-500 px-2 py-1 text-sm font-bold mr-3 text-slate-50">
+                                        {{ __('Cliente') }}</span>
+                                @else
+                                    <span
+                                        class="flex rounded-full bg-orange-600 px-2 py-1 text-sm font-bold mr-3 text-slate-50">
+                                        {{ __('Abogado') }}</span>
+                                @endif
+                            </div>
+                        </td>
+
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex items-center">
                                 {{ $cita->title_appoiment }}
                             </div>
                         </td>
+
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
-                                {{ $cita->users_appo->name }}
+                                @if ($appoimentClient === true)
+                                    {{ $cita->users_solicitante->name }}
+                                @else
+                                    @if (Auth::user()->id === $cita->users_solicitado->id)
+                                        {{ $cita->users_solicitante->name }}
+                                    @else
+                                        {{ $cita->users_solicitado->name }}
+                                    @endif
+                                @endif
                             </div>
                         </td>
+
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                                 {{ $cita->start_date }}
@@ -75,22 +111,22 @@
                             <div class="flex items-center">
 
                                 @if ($cita->status == 'Rejected')
-                                <span
-                                    class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
-                                    <span aria-hidden
-                                        class="absolute inset-0 bg-red-500 opacity-50 rounded-full"></span>
-                                    <span class="relative">Rechazado
+                                    <span
+                                        class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+                                        <span aria-hidden
+                                            class="absolute inset-0 bg-red-500 opacity-50 rounded-full"></span>
+                                        <span class="relative">Rechazado
+                                        </span>
                                     </span>
-                                </span>
-                            @endif
+                                @endif
 
                                 @if ($cita->status == 'Cancelled')
-                                <span
-                                class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
-                                <span aria-hidden
-                                    class="absolute inset-0 bg-red-300 opacity-50 rounded-full"></span>
-                                <span class="relative">Borrado</span>
-                            </span>
+                                    <span
+                                        class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+                                        <span aria-hidden
+                                            class="absolute inset-0 bg-red-300 opacity-50 rounded-full"></span>
+                                        <span class="relative">Borrado</span>
+                                    </span>
                                 @endif
 
                                 @if ($cita->status == 'Pending')
@@ -111,30 +147,58 @@
                                     </span>
                                 @endif
 
-
                             </div>
                         </td>
-
-
-
 
                         @if ($cita->is_active != false)
                             <td>
                                 @if ($cita->status == 'Pending')
-                                    <x-jet-button wire:click='showEditAppoimentModal({{ $cita->id }})'>
-                                        {{ __('Edit') }}
-                                    </x-jet-button>
-                                    <x-jet-button class='bg-red-700' wire:click='deleteAppoiment({{ $cita->id }})'>
-                                        {{ __('Delete') }}</x-jet-button>
+                                    @if ($appoimentClient)
+                                        <button type="button"
+                                            wire:click='confirmAppoimentFromLawyyers({{ $cita->id }})'
+                                            class="text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-4 py-2.5 text-center mr-1 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M5 13l4 4L19 7">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                        <button type="button"
+                                            wire:click='rejectAppoimentFromLawyyers({{ $cita->id }})'
+                                            class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-4 py-2.5 text-center mr-1 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M6 18L18 6M6 6l12 12"></path>
+                                            </svg>
+                                        </button>
+                                    @else
+                                        @if (Auth::user()->id === $cita->users_solicitado->id)
+                                            <span
+                                                class="relative items-center inline-block px-3 py-1 font-semibold text-blue-900 leading-tight">
+                                                <span aria-hidden
+                                                    class="absolute inset-0 bg-blue-600 opacity-50 rounded-full"></span>
+                                                <span class="relative">Gestionado por Abogado</span>
+                                            </span>
+                                        @else
+                                            <x-jet-button wire:click='showEditAppoimentModal({{ $cita->id }})'>
+                                                {{ __('Edit') }}
+                                            </x-jet-button>
+                                            <x-jet-button wire:click='deleteAppoiment({{ $cita->id }})'>
+                                                {{ __('Delete') }}</x-jet-button>
+                                        @endif
+                                    @endif
                                 @else
-                                <x-jet-button wire:click='showAppoimentInfoModal({{ $cita->id }})'>
-                                    {{ __('Información') }}
-                                </x-jet-button>
+                                    <x-jet-button wire:click='showAppoimentInfoModal({{ $cita->id }})'>
+                                        {{ __('Información') }}
+                                    </x-jet-button>
                                 @endif
                             </td>
                         @else
                             <td>
-                                <span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+                                <span
+                                    class="relative items-center inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
                                     <span aria-hidden
                                         class="absolute inset-0 bg-red-600 opacity-50 rounded-full"></span>
                                     <span class="relative">Cancelado</span>
@@ -142,20 +206,12 @@
                             </td>
                         @endif
 
-
-
-
-
-
                     </tr>
                 @endforeach
 
             </tbody>
         </table>
-
-
     </div>
-
 
 
     <div>
@@ -194,7 +250,8 @@
 
                     <div class="mt-3">
                         <label for="user_id_cliente"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Elige al Cliente</label>
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Elige al
+                            Cliente</label>
                         @error('user_id_cliente')
                             <span class="error text-red-600">{{ $message }}</span>
                         @enderror
@@ -209,7 +266,8 @@
                     </div>
                     <div class="mt-3">
                         <label for="input-group-1"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Día de la reunión</label>
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Día de la
+                            reunión</label>
                         @error('start_date')
                             <span class="error text-red-600">{{ $message }}</span>
                         @enderror
@@ -232,7 +290,8 @@
 
                     <div class="mt-3">
                         <label for="input-group-1"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Desea reservar todo el día?</label>
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Desea reservar todo
+                            el día?</label>
                         <div class="relative mb-6">
                             @error('checkbox_time')
                                 <span class="error text-red-600">{{ $message }}</span>
@@ -242,7 +301,8 @@
                                     wire:model.lazy='checkbox_time'
                                     class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="checkbox"
-                                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Todo el día</label>
+                                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Todo el
+                                    día</label>
                             </div>
 
                         </div>
@@ -252,7 +312,8 @@
                         <div class="relative mb-6">
 
                             <label for="description"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Breve descripcion del caso</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Breve
+                                descripcion del caso</label>
                             @error('description')
                                 <span class="error text-red-600">{{ $message }}</span>
                             @enderror
@@ -290,13 +351,13 @@
             <x-slot name='content'>
                 @if ($info)
 
-                <p>Título de la cita: {{$info->title_appoiment}}</p>
-                <p>Fecha de la cita :{{$info->start_date}}</p>
-                <p>Estado: {{$info->status}}</p>
-                <p>Cliente: {{$info->user_id_solicitado}} </p>
-                @if ($info->checkbox_time ==true)
-                    <p>Cita concertada para todo el dia</p>
-                @endif
+                    <p>Título de la cita: {{ $info->title_appoiment }}</p>
+                    <p>Fecha de la cita :{{ $info->start_date }}</p>
+                    <p>Estado: {{ $info->status }}</p>
+                    <p>Cliente: {{ $info->user_id_solicitado }} </p>
+                    @if ($info->checkbox_time == true)
+                        <p>Cita concertada para todo el dia</p>
+                    @endif
 
                 @endif
 
