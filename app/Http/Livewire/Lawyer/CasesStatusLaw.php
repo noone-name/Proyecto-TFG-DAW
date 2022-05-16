@@ -31,7 +31,7 @@ class CasesStatusLaw extends Component
 
 
 
-    public $search='Active';
+    public $search='Pending';
 
     public function ProximosCasos() { $this->search = 'Active'; }
 

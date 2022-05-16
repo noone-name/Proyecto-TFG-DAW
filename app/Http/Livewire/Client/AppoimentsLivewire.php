@@ -25,7 +25,7 @@ class AppoimentsLivewire extends Component
     public $checkbox_time;
     public $description;
 
-    public $status='Active';
+    public $status='Pending';
     public $manageUser='user_id_solicitante';
     public $appoimentLawyer=false;
 
