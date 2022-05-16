@@ -57,7 +57,7 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
-                                {{ $cita->user_id_solicitado }}
+                                {{ $cita->users_appo->name }}
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">

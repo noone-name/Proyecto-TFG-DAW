@@ -23,16 +23,20 @@ class Appoiments extends Model
     ];
 
 
-    public function lawyer()
+    public function users_appo()
     {
-        return $this->belongsToMany(User::class, 'appoiments', 'user_id_cliente', 'user_id_abogado');
+        return $this->belongsTo(User::class,'user_id_solicitado');
     }
 
-    public function client()
-    {
-        return $this->belongsToMany(User::class, 'appoiments', 'user_id_abogado', 'user_id_cliente');
-    }
+    public function users_solicitante()
+        {
+            return $this->belongsTo(User::class,'user_id_solicitante');
+        }
 
+    public function users_solicitado()
+        {
+            return $this->belongsTo(User::class,'user_id_solicitado');
+        }
 
 
 

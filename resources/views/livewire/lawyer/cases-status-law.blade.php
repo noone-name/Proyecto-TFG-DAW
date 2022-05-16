@@ -1,7 +1,7 @@
 <div>
-    <x-jet-button wire:click='ProximosCasos'> {{__('Proximas Citas')}} </x-jet-button>
-    <x-jet-button wire:click='CasosPorConfirmar'> {{__('Por confirmar Citas')}} </x-jet-button>
-    <x-jet-button wire:click='HistoricoDeCitas'> {{__('Historial de Citas')}} </x-jet-button>
+    <x-jet-button wire:click='ProximosCasos'> {{ __('Proximas Citas') }} </x-jet-button>
+    <x-jet-button wire:click='CasosPorConfirmar'> {{ __('Por confirmar Citas') }} </x-jet-button>
+    <x-jet-button wire:click='HistoricoDeCitas'> {{ __('Historial de Citas') }} </x-jet-button>
 
     <div class="flex justify-end m-2 p-2">
 
@@ -19,6 +19,10 @@
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Description
+                    </th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Tipo de Caso
                     </th>
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -42,7 +46,7 @@
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
 
-             @foreach ($casesstatus as $status)
+                @foreach ($casesstatus as $status)
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
@@ -58,6 +62,12 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                                 {{ $status->normalcases->description }}
+                            </div>
+                        </td>
+
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex items-center">
+                                {{ $status->normalcases->casetype->name }}
                             </div>
                         </td>
 
@@ -129,12 +139,11 @@
                             </td>
                         @else
                             <td>
-                                <span
-                                class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
-                                <span aria-hidden
-                                    class="absolute inset-0 bg-red-300 opacity-50 rounded-full"></span>
-                                <span class="relative">Borrado</span>
-                            </span>
+                                <span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+                                    <span aria-hidden
+                                        class="absolute inset-0 bg-red-300 opacity-50 rounded-full"></span>
+                                    <span class="relative">Borrado</span>
+                                </span>
                             </td>
                         @endif
 
@@ -149,8 +158,7 @@
                                                 d="M5 13l4 4L19 7"></path>
                                         </svg>
                                     </button>
-                                    <button type="button"
-                                        wire:click='showRejectCaseStatusModal({{ $status->normalcases->id }})'
+                                    <button type="button" wire:click='showRejectCaseStatusModal({{ $status->id }})'
                                         class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-4 py-2.5 text-center mr-1 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

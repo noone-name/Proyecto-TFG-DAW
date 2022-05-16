@@ -108,7 +108,7 @@ public function updateCaseStatus()
         $this->resetExcept('search');
 
     } catch (\Throwable $th) {
-            throw $th;
+        abort(403, 'Bad Request');
         }
 
 }
@@ -147,8 +147,8 @@ public function rejectCaseStatus()
      $this->resetExcept('search');
 
     } catch (\Throwable $th) {
-            throw $th;
-        }
+        abort(403, 'Bad Request');
+    }
 }
 
 

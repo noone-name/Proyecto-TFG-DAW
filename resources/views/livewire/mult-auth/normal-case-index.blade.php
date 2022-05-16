@@ -61,13 +61,13 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
-                                    {{ $case->user_id_abogado }}
+                                    {{ $case->users_abogado->name }}
                                 </div>
                             </td>
 
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
-                                    {{ $case->case_types_id }}
+                                    {{ $case->casetype->name }}
                                 </div>
                             </td>
 

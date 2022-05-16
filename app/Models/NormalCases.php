@@ -22,16 +22,23 @@ class NormalCases extends Model
 
 
 
-    public function lawyer()
-    {
-        return $this->belongsToMany(User::class, 'normal_cases', 'user_id_cliente', 'user_id_abogado');
-    }
 
-    public function client()
-    {
-        return $this->belongsToMany(User::class, 'normal_cases', 'user_id_abogado', 'user_id_cliente');
-    }
 
+    public function users_abogado()
+        {
+            return $this->belongsTo(User::class,'user_id_abogado');
+        }
+
+    public function users_cliente()
+        {
+            return $this->belongsTo(User::class,'user_id_cliente');
+        }
+
+
+    public function casetype()
+    {
+        return $this->belongsTo(CaseType::class, 'case_types_id');
+    }
 
 
     public function normalstatus()

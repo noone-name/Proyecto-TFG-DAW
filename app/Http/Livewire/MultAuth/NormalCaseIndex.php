@@ -118,7 +118,7 @@ class NormalCaseIndex extends Component
                 $this->resetExcept('search');
 
         } catch (\Throwable $th) {
-            throw $th;
+            abort(403, 'Bad Request');
         }
     }
 

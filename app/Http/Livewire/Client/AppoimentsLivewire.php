@@ -25,23 +25,44 @@ class AppoimentsLivewire extends Component
     public $checkbox_time;
     public $description;
 
-    public $search='Active';
+    public $status='Active';
+    public $manageUser='user_id_solicitante';
+    public $appoimentLawyer=false;
 
-    public function ProximasCitas() { $this->search = 'Active'; }
 
-    public function CitasPorConfirmar() { $this->search = 'Pending'; }
+    public function ProximasCitas() {
+        $this->status = 'Active';
+        $this->manageUser = 'user_id_solicitante';
+        $this->appoimentLawyer=false;
+    }
 
-    public function HistoricoDeCitas() { $this->search = 'Todos'; }
+    public function CitasPendientesAceptar() {
+        $this->status = 'Pending';
+        $this->manageUser = 'user_id_solicitante';
+        $this->appoimentLawyer=false;
+
+    }
+
+    public function HistoricoDeCitas() {
+        $this->status = 'Todos';
+        $this->manageUser = 'user_id_solicitante';
+        $this->appoimentLawyer=false;
+    }
+
+    public function CitasPorConfirmar() {
+        $this->status = 'Pending';
+        $this->manageUser = 'user_id_solicitado';
+        $this->appoimentLawyer = true;
+
+    }
+
 
     public function render()
     {
         $abogados = User::role('Abogado')->get();
 
-        if ($this->search == 'Todos') {
-        $citas = Appoiments::where('user_id_solicitante',Auth::user()->id)->get();;
-        }
-        else
-        $citas = Appoiments::where([['user_id_solicitante',Auth::user()->id],['status',$this->search]])->get();;
+        if ($this->status == 'Todos') { $citas = Appoiments::where($this->manageUser,Auth::user()->id)->get(); }
+        else $citas = Appoiments::where([[$this->manageUser,Auth::user()->id],['status',$this->status]])->get();
 
         return view('livewire.client.appoiments-livewire',compact('abogados','citas'));
     }
@@ -51,7 +72,8 @@ class AppoimentsLivewire extends Component
 
     public function showAppoimentModal()
     {
-        $this->resetExcept('search');
+                $this->resetExcept(['status','manageUser']);
+
         $this->showingAppoimentModal = true;
     }
 
@@ -82,7 +104,7 @@ class AppoimentsLivewire extends Component
 
         ]);
 
-        $this->resetExcept('search');
+        $this->resetExcept(['status','manageUser']);
 
 
     }
@@ -123,7 +145,8 @@ public function updateAppoiment()
             'checkbox_time'=>$this->checkbox_time,
             'description'=>$this->description,
     ]);
-    $this->resetExcept('search');
+            $this->resetExcept(['status','manageUser']);
+
 }
 
 
@@ -134,13 +157,15 @@ public function deleteAppoiment($id)
         'is_active'=>false,
         'status'=>'Cancelled'
     ]);
-    $this->resetExcept('search');
+            $this->resetExcept(['status','manageUser']);
+
 }
 
 
 public function showAppoimentInfoModal($id)
 {
-    $this->resetExcept('search');
+            $this->resetExcept(['status','manageUser']);
+
     $this->info = Appoiments::findOrFail($id);
     $this->showingAppoimentInfoModal = true;
 }
@@ -150,5 +175,29 @@ public function closeAppoimentInfoModal()
     $this->showingAppoimentInfoModal = false;
 }
 
+public function confirmAppoimentFromLawyyers($id)
+{
+    $confirmAppoiment = Appoiments::findOrFail($id);
+    $confirmAppoiment->update([
+        'is_active'=>true,
+        'status'=>'Active'
+    ]);
+    $this->resetExcept(['status','manageUser']);
 
 }
+
+public function rejectAppoimentFromLawyyers($id)
+{
+         $rejecAppoiment = Appoiments::findOrFail($id);
+         $rejecAppoiment->update([
+             'is_active'=>false,
+             'status'=>'Rejected'
+         ]);
+         $this->resetExcept(['status','manageUser']);
+
+
+}
+
+
+}
+
