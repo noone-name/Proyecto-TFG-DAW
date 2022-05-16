@@ -5,9 +5,9 @@
     </div>
 
 
-    <x-jet-button wire:click='ProximosCasos'> {{__('Proximas Citas')}} </x-jet-button>
-    <x-jet-button wire:click='CasosPorConfirmar'> {{__('Por confirmar Citas')}} </x-jet-button>
-    <x-jet-button wire:click='HistoricoDeCitas'> {{__('Historial de Citas')}} </x-jet-button>
+    <x-jet-button wire:click='ProximosCasos'> {{__('Proximas Casos')}} </x-jet-button>
+    <x-jet-button wire:click='CasosPorConfirmar'> {{__('Casos por confirmar')}} </x-jet-button>
+    <x-jet-button wire:click='HistoricoDeCasos'> {{__('Historial de Casos')}} </x-jet-button>
 
 
     <div class="flex justify-end m-2 p-2">

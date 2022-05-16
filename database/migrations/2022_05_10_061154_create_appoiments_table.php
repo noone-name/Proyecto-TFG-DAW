@@ -22,7 +22,7 @@ return new class extends Migration
             $table->dateTime('end_date');
             $table->boolean('checkbox_time')->nullable()->default(false);
             $table->text('description');
-            $table->enum('status',array('Pending','Active','Cancelled','Rejected'))->default('Pending');
+            $table->enum('status',array('Pending','Active','Cancelled','Rejected','PendingTo'))->default('Pending');
             $table->boolean('is_active')->nullable()->default(true);
 
 

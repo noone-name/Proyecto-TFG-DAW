@@ -43,7 +43,7 @@ class NormalCaseIndex extends Component
 
     public function CasosPorConfirmar() { $this->search = 'Pending'; }
 
-    public function HistoricoDeCitas() { $this->search = 'Todos'; }
+    public function HistoricoDeCasos() { $this->search = 'Todos'; }
 
     public function updatedSelectedClass($class_id)
     {
@@ -51,7 +51,6 @@ class NormalCaseIndex extends Component
 
       $this->sections = User::role($caseCategory)->get();
     }
-
 
 
     public function render()
