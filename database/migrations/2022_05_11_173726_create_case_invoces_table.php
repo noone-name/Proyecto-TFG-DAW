@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('case_invoces', function (Blueprint $table) {
             $table->id();
             $table->text('sub_total_amount');
-            $table->unsignedBigInteger('normal_cases_id');      // caso
+            $table->unsignedBigInteger('normal_cases_id');
 
 
             $table->text('tax_amount')->default('21%');
@@ -25,9 +25,7 @@ return new class extends Migration
             $table->date('due_date');
             $table->date('inv_date');
 
-
-            $table->foreign('normal_cases_id')->references('id')->on('normal_cases_statuses')->onDelete('cascade');;
-
+            $table->foreign('normal_cases_id')->references('id')->on('normal_cases')->onDelete('cascade');
 
 
 
