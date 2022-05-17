@@ -13,20 +13,19 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
     @livewireStyles
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+    <script src="https://unpkg.com/flowbite@1.4.5/dist/flowbite.js"></script>
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}" defer></script>
 
-
     <!-- Scripts para FullCalendar-->
-    <link rel="stylesheet" href="{{ asset('css/fullcalendar/main.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/fullcalendar/main.css') }}">
     <script src="{{ asset('js/fullcalendar/main.js') }}" defer></script>
     <script src="{{ asset('js/fullcalendar/locales-all.js') }}" defer></script>
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js" ></script> --}}
 
 </head>
 
@@ -50,10 +49,12 @@
             {{ $slot }}
         </main>
     </div>
+    {{-- <script src="{{ asset('js/fullcalendar/schedule.js') }}" defer></script> --}}
 
     @stack('modals')
-
     @livewireScripts
+
+
 </body>
 
 </html>

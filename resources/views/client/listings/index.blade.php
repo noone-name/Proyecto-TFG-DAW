@@ -1,4 +1,4 @@
-<x-lawyer-layout>
+<x-client-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Courses List') }}
@@ -14,4 +14,4 @@
 
         </div>
     </div>
-</x-lawyer-layout>
+</x-client-layout>
