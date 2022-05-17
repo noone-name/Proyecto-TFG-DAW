@@ -19,6 +19,8 @@ class ClientsTable extends Component
      public $search ='';
      public $perPage ='10';
 
+     public $info;
+     public  $showingClientInfoModal = false;
 
     public function render()
     {
@@ -39,4 +41,21 @@ class ClientsTable extends Component
         $this->perPage = 10;
 
     }
+
+
+
+    public function showClientInfoModal($id)
+    {
+    $this->resetExcept(['search','page','perPage']);
+
+      $this->info = User::findOrFail($id);
+        $this->showingClientInfoModal = true;
+    }
+
+    public function closeClientInfoModal()
+    {
+        $this->showingClientInfoModal = false;
+    }
+
+
 }
