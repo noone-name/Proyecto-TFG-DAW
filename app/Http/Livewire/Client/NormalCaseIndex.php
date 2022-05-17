@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\MultAuth;
+namespace App\Http\Livewire\Client;
 
 use Livewire\Component;
 use App\Models\CaseType;
@@ -64,7 +64,7 @@ class NormalCaseIndex extends Component
             $cases = NormalCases::where([['user_id_cliente',Auth::user()->id],['status',$this->search]])->get();;
 
 
-        return view('livewire.mult-auth.normal-case-index',
+        return view('livewire.client.normal-case-index',
         [
             'classes' => $case_types,
         ]
