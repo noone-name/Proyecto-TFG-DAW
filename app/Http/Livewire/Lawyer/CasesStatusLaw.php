@@ -45,13 +45,8 @@ class CasesStatusLaw extends Component
 // normalstatus
 $casesstatus = NormalCasesStatus::whereHas('normalcases', function ($query) {
 
-    if ($this->search == 'Todos') {
-        $query->where('user_id_abogado',Auth::user()->id);
-
-    }
-    else
-    $query->where([['user_id_abogado',Auth::user()->id],['status',$this->search]]);
-
+    if ($this->search == 'Todos') {  $query->where('user_id_abogado',Auth::user()->id);
+    } else $query->where([['user_id_abogado',Auth::user()->id],['status',$this->search]]);
 
 })->get();
 
