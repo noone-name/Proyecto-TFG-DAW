@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\DB;
 
 class InvocesList extends Component
 {
+    public $showingCaseInvoceModal;
+    public $info;
+
     public function render()
     {
             $invocescli = CaseInvoce::whereHas('normalcases_inc', function ($query) {
@@ -24,4 +27,21 @@ class InvocesList extends Component
 
                 return view('livewire.client.invoces-list',compact('invocescli'));
     }
+
+    public function showCaseInvoceModal($id)
+    {
+    $this->resetExcept(['info']);
+
+    $this->showingCaseInvoceModal = true;
+    $this->info = CaseInvoce::find($id);
+    }
+
+    public function closeClientInfoModal()
+    {
+        $this->showingCaseInvoceModal = false;
+    }
+
+
+
+
 }

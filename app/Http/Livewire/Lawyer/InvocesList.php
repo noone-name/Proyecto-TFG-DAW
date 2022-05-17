@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\DB;
 
 class InvocesList extends Component
 {
-    public $invoqueData;
     public $showingCaseInvoceModal;
+    public $info;
 
     public function render()
     {
@@ -30,10 +30,17 @@ class InvocesList extends Component
     }
 
 
-    public function showCaseInvoceModal()
+    public function showCaseInvoceModal($id)
     {
-        $this->resetExcept('search');
-        $this->showingCaseInvoceModal = true;
+    $this->resetExcept(['info']);
+
+    $this->showingCaseInvoceModal = true;
+    $this->info = CaseInvoce::find($id);
+    }
+
+    public function closeClientInfoModal()
+    {
+        $this->showingCaseInvoceModal = false;
     }
 
 
