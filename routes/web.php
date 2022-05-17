@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AppoimentCalendarController;
+
 use App\Http\Controllers\Admin\AdminIndexController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
@@ -11,14 +13,8 @@ use App\Http\Controllers\Lawyer\ManageController;
 use App\Http\Controllers\Lawyer\NormalCasesStatusController;
 
 
-
-use App\Http\Controllers\AppoimentCalendarController;
-
-
 use App\Http\Controllers\Clients\NormalCasesController;
-use App\Http\Controllers\Clients\PetitionController;
 use App\Http\Controllers\Clients\ClientIndexController;
-use App\Http\Controllers\Clients\ListingController;
 
 
 use App\Http\Controllers\RedirectController;

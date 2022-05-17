@@ -3,6 +3,7 @@
     <x-jet-button wire:click='CasosPorConfirmar'> {{ __('Por confirmar Citas') }} </x-jet-button>
     <x-jet-button wire:click='HistoricoDeCitas'> {{ __('Historial de Citas') }} </x-jet-button>
 
+    {{$test}}
     <div class="flex justify-end m-2 p-2">
 
         <table class="w-full divide-y divide-gray-200">

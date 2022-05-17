@@ -6,10 +6,13 @@ use Livewire\Component;
 use App\Models\CaseType;
 use App\Models\NormalCases;
 use App\Models\NormalCasesStatus;
+use App\Models\CaseInvoce;
+
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class CasesStatusLaw extends Component
@@ -22,6 +25,7 @@ class CasesStatusLaw extends Component
     public $showingCaseStatusInfoModal = false;
     public $info;
 
+    public $test;
 
     public $cancel_answer;
     public $lawyer_docs_requirements;
@@ -49,8 +53,6 @@ $casesstatus = NormalCasesStatus::whereHas('normalcases', function ($query) {
     } else $query->where([['user_id_abogado',Auth::user()->id],['status',$this->search]]);
 
 })->get();
-
-
 
         return view('livewire.lawyer.cases-status-law',compact('casesstatus'));
     }
@@ -82,12 +84,16 @@ $casesstatus = NormalCasesStatus::whereHas('normalcases', function ($query) {
 
 public function updateCaseStatus()
 {
-    try {
+
     $this->validate([
     'lawyer_docs_requirements'=>'required',
             'potential_resolution'=>'required',
             'extra_info'=>'required',
         ]);
+
+        DB::beginTransaction();
+        try {
+
         $this->normal_case_status->update(
             [
                 'lawyer_docs_requirements'=>$this->lawyer_docs_requirements,
@@ -97,15 +103,24 @@ public function updateCaseStatus()
 
         $normal_case = NormalCases::findOrFail($this->normal_case_status->normal_cases_id);
         $normal_case->update([
-            'status'=>'Active'
+            'status'=>'Active',
         ]);
 
-        $this->resetExcept('search');
+        CaseInvoce::create([
+            'tax_amount'=>$normal_case->casetype->amount *0.21,
+            'total_amount'=>$normal_case->casetype->amount + $normal_case->casetype->amount *0.21,
+            'normal_cases_id'=>$normal_case->id ,
 
-    } catch (\Throwable $th) {
-        abort(403, 'Bad Request');
-        }
+        ]);
 
+
+        $this->resetExcept('search','test');
+        DB::commit();
+
+    } catch (\Exception $e) {
+        DB::rollback();
+ $this->test = 'No se ha insertado';
+    }
 }
 
 
@@ -122,28 +137,35 @@ public function showRejectCaseStatusModal($id)
 
 public function rejectCaseStatus()
 {
-        try {
      $this->validate([
          'cancel_answer'=>'required',
      ]);
 
-     $this->normal_case_status->update(
-         [
-             'cancel_answer'=>$this->cancel_answer,
-        ]);
 
+    DB::beginTransaction();
+        try {
 
-        $normal_case = NormalCases::findOrFail($this->normal_case_status->normal_cases_id);
-        Storage::delete($normal_case->case_document);
-        $normal_case->update([
-            'is_active'=>false,
-            'status'=>'Rejected'
-        ]);
-     $this->resetExcept('search');
+        $this->normal_case_status->update(
+            [
+                'cancel_answer'=>$this->cancel_answer,
+            ]);
 
-    } catch (\Throwable $th) {
-        abort(403, 'Bad Request');
-    }
+                $normal_case = NormalCases::findOrFail($this->normal_case_status->normal_cases_id);
+                Storage::delete($normal_case->case_document);
+                $normal_case->update([
+                    'is_active'=>false,
+                    'status'=>'Rejected'
+                ]);
+                $this->resetExcept('search');
+
+                DB::commit();
+
+            } catch (\Exception $e) {
+                    $this->resetExcept('search','test');
+                    DB::rollback();
+                  //  $this->test = 'No se ha insertado';
+            }
+
 }
 
 

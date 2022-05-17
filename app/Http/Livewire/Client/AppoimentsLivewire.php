@@ -7,6 +7,7 @@ use App\Models\Appoiments;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AppoimentsLivewire extends Component
 {
@@ -101,21 +102,28 @@ class AppoimentsLivewire extends Component
 
 
         ]);
+     DB::beginTransaction();
+        try {
+            Appoiments::create([
+                'user_id_solicitante'=>$user_id_solicitante,
+                'user_id_solicitado'=>$this->user_id_abogado,
+                'title_appoiment'=>$this->title_appoiment,
+                'start_date'=>$formatDateStart,
+                'end_date'=>$formatDateStart,
+                'checkbox_time'=>$this->checkbox_time,
+                'description'=>$this->description,
 
-        Appoiments::create([
-            'user_id_solicitante'=>$user_id_solicitante,
-            'user_id_solicitado'=>$this->user_id_abogado,
-            'title_appoiment'=>$this->title_appoiment,
-            'start_date'=>$formatDateStart,
-            'end_date'=>$formatDateStart,
-            'checkbox_time'=>$this->checkbox_time,
-            'description'=>$this->description,
+            ]);
 
-        ]);
-
-        $this->resetExcept(['status','manageUser']);
+            DB::commit();
+            $this->resetExcept(['status','manageUser']);
 
 
+            } catch (\Exception $e) {
+            $this->resetExcept(['status','manageUser']);
+        DB::rollback();
+      //  $this->test = 'No se ha insertado';
+    }
     }
 
 
@@ -144,6 +152,9 @@ public function updateAppoiment()
     ]);
 
     $user_id_solicitante= Auth::user()->id;
+
+     DB::beginTransaction();
+        try {
     $this->appoiment->update(
         [
             'user_id_solicitante'=>$user_id_solicitante,
@@ -154,8 +165,14 @@ public function updateAppoiment()
             'checkbox_time'=>$this->checkbox_time,
             'description'=>$this->description,
     ]);
+    DB::commit();
             $this->resetExcept(['status','manageUser']);
 
+            } catch (\Exception $e) {
+            $this->resetExcept(['status','manageUser']);
+        DB::rollback();
+      //  $this->test = 'No se ha insertado';
+    }
 }
 
 

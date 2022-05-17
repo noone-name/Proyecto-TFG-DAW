@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class NormalCaseIndex extends Component
@@ -80,7 +81,7 @@ class NormalCaseIndex extends Component
 
     public function storeCase()
     {
-        try {
+
 
             $user_id_cliente = Auth::user()->id;
             if(!empty($this->case_document)){
@@ -98,28 +99,37 @@ class NormalCaseIndex extends Component
 
                 ]);
 
-            $caseId = NormalCases::create([
-                    'case_title'=>$this->case_title,
-                    'user_id_cliente'=>$user_id_cliente,
-                    'case_types_id'=>$this->selectedClass,
-                    'user_id_abogado'=>$this->selectedSection,
-                    'client_position'=>$this->client_position,
-                    'description'=>$this->description,
-                    'case_document'=>$doc,
+     DB::beginTransaction();
+        try {
+                 $caseId = NormalCases::create([
+                        'case_title'=>$this->case_title,
+                        'user_id_cliente'=>$user_id_cliente,
+                        'case_types_id'=>$this->selectedClass,
+                        'user_id_abogado'=>$this->selectedSection,
+                        'client_position'=>$this->client_position,
+                        'description'=>$this->description,
+                        'case_document'=>$doc,
 
-                ]);
+                    ]);
 
-                $id = $caseId->id;
+                    $id = $caseId->id;
 
-                NormalCasesStatus::create([
-                    'normal_cases_id' =>$id
-                ]);
+                    NormalCasesStatus::create([
+                        'normal_cases_id' =>$id
+                    ]);
 
-                $this->resetExcept('search');
+                    DB::commit();
 
-        } catch (\Throwable $th) {
-            abort(403, 'Bad Request');
-        }
+                    $this->resetExcept('search');
+
+
+            } catch (\Exception $e) {
+        $this->resetExcept('search','test');
+        DB::rollback();
+      //  $this->test = 'No se ha insertado';
+    }
+
+
     }
 
 
@@ -146,8 +156,6 @@ public function updateCase()
         'client_position'=>'required',
         'description'=>'required',
         'case_document'=>'mimes:jpg,jpeg,bmp,png,gif,svg,pdf|max:10240',
-
-
     ]);
 
     $doc =  $this->normal_case->case_document;
@@ -155,18 +163,31 @@ public function updateCase()
         $doc = $this->case_document->store('public/docs');
     }
 
-    $user_id_cliente = Auth::user()->id;
-    $this->normal_case->update(
-        [
-            'case_title'=>$this->case_title,
-            'user_id_cliente'=>$user_id_cliente,
-            'case_types_id'=>$this->selectedClass,
-            'user_id_abogado'=>$this->selectedSection,
-            'client_position'=>$this->client_position,
-            'description'=>$this->description,
-            'case_document'=>$doc,
-    ]);
-    $this->resetExcept('search');
+      DB::beginTransaction();
+        try {
+            $user_id_cliente = Auth::user()->id;
+                $this->normal_case->update(
+                    [
+                        'case_title'=>$this->case_title,
+                        'user_id_cliente'=>$user_id_cliente,
+                        'case_types_id'=>$this->selectedClass,
+                        'user_id_abogado'=>$this->selectedSection,
+                        'client_position'=>$this->client_position,
+                        'description'=>$this->description,
+                        'case_document'=>$doc,
+                ]);
+
+                DB::commit();
+
+            $this->resetExcept('search');
+
+            } catch (\Exception $e) {
+        $this->resetExcept('search','test');
+        DB::rollback();
+      //  $this->test = 'No se ha insertado';
+    }
+
+
 }
 
 

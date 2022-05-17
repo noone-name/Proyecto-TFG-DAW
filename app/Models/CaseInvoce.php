@@ -9,6 +9,12 @@ class CaseInvoce extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'normal_cases_id',
+        'tax_amount',
+        'total_amount',
+    ];
+
 
 
     public function normalcasesstatus()
