@@ -29,7 +29,7 @@ return new class extends Migration
             $table->text('description')->nullable()->default('text');
             $table->string('case_document');
 
-            $table->enum('status',array('Pending','Active','Cancelled','Rejected'))->default('Pending');
+            $table->enum('status',array('Pending','Active','Cancelled','Rejected','Completed'))->default('Pending');
 
             $table->boolean('is_active')->nullable()->default(true);
 

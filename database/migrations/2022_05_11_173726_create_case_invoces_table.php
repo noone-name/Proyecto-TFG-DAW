@@ -20,6 +20,10 @@ return new class extends Migration
 
             $table->float('total_amount');
             $table->float('tax_amount');
+            $table->float('amount_paid')->default(0);
+            $table->float('amount_slope')->default(0);
+
+
 
             $table->enum('inv_status',array('Due','Partially Paid','Paid'))->default('Due');
 

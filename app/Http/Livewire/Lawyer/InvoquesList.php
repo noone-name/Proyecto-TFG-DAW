@@ -18,35 +18,30 @@ use Illuminate\Support\Facades\DB;
 class InvoquesList extends Component
 {
     public $invoqueData;
+    public $showingCaseInvoceModal;
+
     public function render()
     {
+            $invoces = CaseInvoce::whereHas('normalcases_inc', function ($query) {
+                $query->where('user_id_abogado',Auth::user()->id);
+            })->get();
 
-
-    $invoces = CaseInvoce::whereHas('normalcases_inc', function ($query) {
-
-        $query->where('user_id_abogado',Auth::user()->id);
-
-
-      })->get();
-
-        // $casesstatus = NormalCasesStatus::whereHas('normalcases', function ($query) {
-
-        // $query->where('user_id_abogado',Auth::user()->id);
-        //
-
-        // })->get();
-
-
-
-        return view('livewire.lawyer.invoques-list',compact('invoces'));
+                return view('livewire.lawyer.invoques-list',compact('invoces'));
     }
+
+
+    public function showCaseInvoceModal()
+    {
+        $this->resetExcept('search');
+        $this->showingCaseInvoceModal = true;
+    }
+
+
+
+
 }
 
 
 
 
 
-
-
-// if ($this->search == 'Todos') {
-// } else $query->where([['user_id_abogado',Auth::user()->id],['status',$this->search]]);
