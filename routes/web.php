@@ -11,12 +11,12 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Lawyer\LawyerIndexController;
 use App\Http\Controllers\Lawyer\ManageController;
 use App\Http\Controllers\Lawyer\NormalCasesStatusController;
-use App\Http\Controllers\Lawyer\InvoquesLawyerController;
+use App\Http\Controllers\Lawyer\InvocesLawyerController;
 
 
 use App\Http\Controllers\Clients\NormalCasesController;
 use App\Http\Controllers\Clients\ClientIndexController;
-use App\Http\Controllers\Clients\InvoquesClientController;
+use App\Http\Controllers\Clients\InvocesClientController;
 
 
 
@@ -51,7 +51,7 @@ Route::group(['middleware' => 'auth'], function() {
 
        Route::resource('/normal_cases', NormalCasesController::class);
        Route::resource('/appoiments', AppoimentCalendarController::class);
-       Route::resource('/invoques', InvoquesClientController::class);
+       Route::resource('/invoces', InvocesClientController::class);
 
 
     });
@@ -61,7 +61,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('/manages', ManageController::class);
     Route::resource('/appoiments', AppoimentCalendarController::class);
     Route::resource('/normal_cases_status', NormalCasesStatusController::class);
-    Route::resource('/invoques', InvoquesLawyerController::class);
+    Route::resource('/invoces', InvocesLawyerController::class);
 
 
 

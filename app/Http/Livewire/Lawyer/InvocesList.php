@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 
-class InvoquesList extends Component
+class InvocesList extends Component
 {
     public $invoqueData;
     public $showingCaseInvoceModal;
@@ -26,7 +26,7 @@ class InvoquesList extends Component
                 $query->where('user_id_abogado',Auth::user()->id);
             })->get();
 
-                return view('livewire.lawyer.invoques-list',compact('invoces'));
+                return view('livewire.lawyer.invoces-list',compact('invoces'));
     }
 
 
@@ -37,11 +37,4 @@ class InvoquesList extends Component
     }
 
 
-
-
 }
-
-
-
-
-

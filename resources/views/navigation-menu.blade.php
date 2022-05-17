@@ -44,8 +44,8 @@
                         </x-jet-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('lawyer.invoques.index') }}" :active="request()->routeIs('lawyer.invoques.index')">
-                            {{ __('Invoques') }}
+                        <x-jet-nav-link href="{{ route('lawyer.invoces.index') }}" :active="request()->routeIs('lawyer.invoces.index')">
+                            {{ __('Invoces') }}
                         </x-jet-nav-link>
                     </div>
                 @endrole
@@ -63,8 +63,8 @@
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('client.invoques.index') }}" :active="request()->routeIs('client.invoques.index')">
-                            {{ __('Invoques') }}
+                        <x-jet-nav-link href="{{ route('client.invoces.index') }}" :active="request()->routeIs('client.invoces.index')">
+                            {{ __('Invoces') }}
                         </x-jet-nav-link>
                     </div>
                 @endrole

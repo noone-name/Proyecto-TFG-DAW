@@ -14,17 +14,14 @@ use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class InvoquesList extends Component
+class InvocesList extends Component
 {
-    public $invoqueData;
-
-
     public function render()
     {
             $invocescli = CaseInvoce::whereHas('normalcases_inc', function ($query) {
                 $query->where('user_id_cliente',Auth::user()->id);
             })->get();
 
-                return view('livewire.client.invoques-list',compact('invocescli'));
+                return view('livewire.client.invoces-list',compact('invocescli'));
     }
 }
