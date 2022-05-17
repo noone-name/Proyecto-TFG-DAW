@@ -17,9 +17,9 @@ class CaseInvoce extends Model
 
 
 
-    public function normalcasesstatus()
+    public function normalcases_inc()
     {
-        return $this->belongsTo(NormalCasesStatus::class);
+        return $this->belongsTo(NormalCases::class, 'normal_cases_id');
     }
 
 }

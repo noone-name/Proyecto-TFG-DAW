@@ -12,6 +12,7 @@
 
             </div>
             <div class="mt-4 bg-white p-5 overflow-hidden shadow-xl sm:rounded-lg">
+                @livewire('lawyer.invoques-list')
 
             </div>
         </div>

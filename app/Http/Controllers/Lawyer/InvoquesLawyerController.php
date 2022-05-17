@@ -7,5 +7,11 @@ use Illuminate\Http\Request;
 
 class InvoquesLawyerController extends Controller
 {
-    //
+    public function index()
+    {
+        //
+        return view('lawyer.invoques.index');
+
+    }
+
 }
