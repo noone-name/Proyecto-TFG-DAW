@@ -23,13 +23,16 @@ return new class extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
 
-            $table->string('client_dni')->nullable();
+        // Estos campos pertenecen al cliente
+            $table->string('client_dni')->unique()->nullable();
             $table->date('client_birth_date')->nullable();
             $table->string('client_declarated_address')->nullable();
             $table->string('client_home_address')->nullable();
             $table->string('client_mobile_phone')->nullable();
 
-            $table->string('lawyer_dni')->nullable();
+
+        // Estos campos pertenecen al abogado
+            $table->string('lawyer_dni')->unique()->nullable();
             $table->string('lawyer_mobile_phone')->nullable();
             $table->string('lawyer_licence_number')->nullable();
             $table->string('lawyer_specialty')->nullable();
