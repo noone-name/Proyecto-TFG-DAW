@@ -24,10 +24,8 @@ return new class extends Migration
             $table->text('description');
             $table->enum('status',array('Pending','Active','Cancelled','Rejected'))->default('Pending');
             $table->boolean('is_active')->nullable()->default(true);
-
-
-
-            $table->foreign('user_id_solicitante')->references('id')->on('users')->onDelete('cascade'); // cliente
+        //Definición de la FK
+            $table->foreign('user_id_solicitante')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('user_id_solicitado')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();

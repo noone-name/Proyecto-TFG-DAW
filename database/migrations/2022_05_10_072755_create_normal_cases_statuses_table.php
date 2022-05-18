@@ -17,18 +17,12 @@ return new class extends Migration
             $table->id();
 
             $table->unsignedBigInteger('normal_cases_id');
-
-
             $table->text('cancel_answer')->nullable();
             $table->text('lawyer_docs_requirements')->nullable();
             $table->text('potential_resolution')->nullable();
             $table->text('extra_info')->nullable();
-
-
+        //Definición de la FK
             $table->foreign('normal_cases_id')->references('id')->on('normal_cases')->onDelete('cascade');
-
-
-
             $table->timestamps();
         });
     }

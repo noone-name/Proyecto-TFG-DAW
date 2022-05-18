@@ -20,18 +20,16 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id_abogado');
             $table->unsignedBigInteger('case_types_id');
             $table->enum('client_position',array('Respondent','Petitioner'));
-
-            $table->foreign('case_types_id')->references('id')->on('case_types')->onDelete('cascade'); // cliente
-            $table->foreign('user_id_cliente')->references('id')->on('users')->onDelete('cascade'); // cliente
-            $table->foreign('user_id_abogado')->references('id')->on('users')->onDelete('cascade');
-
-
             $table->text('description')->nullable()->default('text');
             $table->string('case_document');
-
             $table->enum('status',array('Pending','Active','Cancelled','Rejected','Completed'))->default('Pending');
-
             $table->boolean('is_active')->nullable()->default(true);
+
+            $table->foreign('case_types_id')->references('id')->on('case_types')->onDelete('cascade');
+
+            $table->foreign('user_id_cliente')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id_abogado')->references('id')->on('users')->onDelete('cascade');
+
 
             $table->timestamps();
         });

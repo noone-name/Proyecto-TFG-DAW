@@ -16,22 +16,16 @@ return new class extends Migration
         Schema::create('case_invoces', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('normal_cases_id');
-
-
             $table->float('total_amount');
             $table->float('tax_amount');
             $table->float('amount_paid')->default(0);
             $table->float('amount_slope')->default(0);
-
-
-
             $table->enum('inv_status',array('Due','Partially Paid','Paid'))->default('Due');
+            $table->enum('is_active',array('Yes','No'))->default('Yes');
 
+        //Definición de la FK
             $table->foreign('normal_cases_id')->references('id')->on('normal_cases')->onDelete('cascade');
 
-
-
-            $table->enum('is_active',array('Yes','No'))->default('Yes');
             $table->timestamps();
         });
     }
