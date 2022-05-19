@@ -20,11 +20,13 @@ class RedirectController extends Controller
             }
 
             if( Auth::user()->hasRole('Cliente') ){
-                return view('client.index');
+                $user = Auth::user();
+                return view('client.index',compact('user'));
             }
 
             if( Auth::user()->hasRole('Abogado') ){
-                return view('lawyer.index');
+                $user = Auth::user();
+                return view('lawyer.index',compact('user'));
             }
         }
 

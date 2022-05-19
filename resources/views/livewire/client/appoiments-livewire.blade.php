@@ -158,8 +158,7 @@
                             <td>
                                 @if ($cita->status == 'Pending')
                                     @if ($appoimentLawyer)
-                                        <button type="button"
-                                            wire:click='confirmAppoimentFromLawyyers({{ $cita->id }})'
+                                        <button type="button" wire:click='confirmAppoimentFromLawyyers({{ $cita->id }})'
                                             class="text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-4 py-2.5 text-center mr-1 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor"
                                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -168,8 +167,7 @@
                                                 </path>
                                             </svg>
                                         </button>
-                                        <button type="button"
-                                            wire:click='rejectAppoimentFromLawyyers({{ $cita->id }})'
+                                        <button type="button" wire:click='rejectAppoimentFromLawyyers({{ $cita->id }})'
                                             class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-4 py-2.5 text-center mr-1 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor"
                                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -329,7 +327,6 @@
 
                 </form>
             </x-slot>
-
             <x-slot name='footer'>
                 @if ($isEditMode)
                     <x-jet-button wire:click='updateAppoiment'>{{ __('Update') }}</x-jet-button>
@@ -337,19 +334,12 @@
                     <x-jet-button wire:click='storeAppoiment'>{{ __('Save') }}</x-jet-button>
                 @endif
             </x-slot>
-
         </x-jet-dialog-modal>
     </div>
 
-
-
     <div>
         <x-jet-dialog-modal wire:model='showingAppoimentInfoModal'>
-
             <x-slot name='title'>{{ __('Appoiment Info') }}</x-slot>
-
-
-
             <x-slot name='content'>
 
 
@@ -515,12 +505,9 @@
                 @endif
 
             </x-slot>
-
             <x-slot name='footer'>
-
                 <x-jet-button wire:click='closeAppoimentInfoModal'>{{ __('Close') }}</x-jet-button>
             </x-slot>
-
         </x-jet-dialog-modal>
     </div>
 

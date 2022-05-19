@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-gray-900 border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -209,6 +209,46 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
+
+            @role('Abogado')
+                <x-jet-responsive-nav-link href="{{ route('lawyer.manages.index') }}" :active="request()->routeIs('lawyer.manages.index')">
+                    {{ __('Manages') }}
+                </x-jet-responsive-nav-link>
+
+                <x-jet-responsive-nav-link href="{{ route('lawyer.appoiments.index') }}" :active="request()->routeIs('lawyer.appoiments.index')">
+                    {{ __('Appoiments') }}
+                </x-jet-responsive-nav-link>
+
+                <x-jet-responsive-nav-link href="{{ route('lawyer.normal_cases_status.index') }}" :active="request()->routeIs('lawyer.normal_cases_status.index')">
+                    {{ __('Cases Status') }}
+                </x-jet-responsive-nav-link>
+
+                <x-jet-responsive-nav-link href="{{ route('lawyer.invoces.index') }}" :active="request()->routeIs('lawyer.invoces.index')">
+                    {{ __('Invoces') }}
+                </x-jet-responsive-nav-link>
+            @endrole
+
+            @role('Cliente')
+            <x-jet-responsive-nav-link href="{{ route('client.normal_cases.index') }}" :active="request()->routeIs('client.court_cases.index')">
+                {{ __('Normal Cases') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('client.appoiments.index') }}" :active="request()->routeIs('client.appoiments.index')">
+                {{ __('Appoiments') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('client.invoces.index') }}" :active="request()->routeIs('client.invoces.index')">
+                {{ __('Invoces') }}
+            </x-jet-responsive-nav-link>
+            @endrole
+
+
+
+
+
+
+
+
+
+
         </div>
 
         <!-- Responsive Settings Options -->

@@ -173,8 +173,12 @@ public function rejectCaseStatus()
 public function showCaseStatusInfoModal($id)
 {
     $this->resetExcept('search');
-//    $this->info = Appoiments::findOrFail($id);
+   $this->info = NormalCases::findOrFail($id);
     $this->showingCaseStatusInfoModal = true;
+
+
+
+
 }
 
 public function closeCaseStatusInfoModal()

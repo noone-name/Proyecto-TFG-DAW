@@ -132,9 +132,14 @@
                     <td class="px-6 py-4 ">
                         <div class="flex items-center">
                             <x-jet-button wire:click='showCaseInvoceModal({{ $invoce->id }})'>
-                                {{ __('Infon') }}
+                                {{ __('Información') }}
                             </x-jet-button>
-                            <x-jet-button> {{ __('asd') }} </x-jet-button>
+                            <button class="ml-6 form-input rounded-md shadow-sm mt-1 block "
+                                wire:click='FinishCaseStatus'>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                  </svg>
+                            </button>
                         </div>
                     </td>
 

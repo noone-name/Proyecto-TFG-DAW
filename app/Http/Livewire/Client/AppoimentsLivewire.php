@@ -11,16 +11,12 @@ use Illuminate\Support\Facades\DB;
 
 class AppoimentsLivewire extends Component
 {
-
     public $appoiment;
     public $showingAppoimentModal = false;
     public $showingAppoimentInfoModal = false;
-    public $info;
-
     public $isEditMode = false;
 
-
-    public $user_id_abogado; // al cual se le asignara la cita
+    public $user_id_abogado;
     public $title_appoiment;
     public $start_date;
     public $checkbox_time;
@@ -29,6 +25,7 @@ class AppoimentsLivewire extends Component
     public $status='Active';
     public $manageUser='user_id_solicitante';
     public $appoimentLawyer=false;
+    public $info;
 
 
     public function ProximasCitas() {
@@ -63,16 +60,23 @@ class AppoimentsLivewire extends Component
         $abogados = User::role('Abogado')->get();
 
         if ($this->status == 'Active') {
-            $citas = Appoiments::where([[$this->manageUser,Auth::user()->id],['status',$this->status]])->orWhere([['user_id_solicitado',Auth::user()->id],['status',$this->status]])->get();
+            $citas = Appoiments::where([
+                [$this->manageUser,Auth::user()->id],
+                ['status',$this->status]])
+                ->orWhere(
+                    [['user_id_solicitado',Auth::user()->id],
+                    ['status',$this->status]])
+                ->get();
 
         } else {
             if ($this->status == 'Todos') {
-                $citas = Appoiments::where($this->manageUser,Auth::user()->id)->orWhere('user_id_solicitado',Auth::user()->id)->get();
+                $citas = Appoiments::where($this->manageUser,Auth::user()->id)
+                            ->orWhere('user_id_solicitado',Auth::user()->id)->get();
             }
-            else $citas = Appoiments::where([[$this->manageUser,Auth::user()->id],['status',$this->status]])->get();
+            else $citas = Appoiments::where([
+                [$this->manageUser,Auth::user()->id],
+                ['status',$this->status]])->get();
         }
-
-
 
         return view('livewire.client.appoiments-livewire',compact('abogados','citas'));
     }
@@ -89,7 +93,7 @@ class AppoimentsLivewire extends Component
 
 
 
-    public function storeAppoiment()
+public function storeAppoiment()
     {
     $user_id_solicitante= Auth::user()->id;
     $formatDateStart = date('Y-m-d h:i', strtotime($this->start_date));
@@ -99,8 +103,6 @@ class AppoimentsLivewire extends Component
             'title_appoiment'=>'required',
             'start_date'=>'required|after_or_equal:today',
             'description'=>'required',
-
-
         ]);
      DB::beginTransaction();
         try {
@@ -114,14 +116,11 @@ class AppoimentsLivewire extends Component
                 'description'=>$this->description,
 
             ]);
-
-            DB::commit();
-            $this->resetExcept(['status','manageUser']);
-
-
-            } catch (\Exception $e) {
-            $this->resetExcept(['status','manageUser']);
-        DB::rollback();
+              DB::commit();
+              $this->resetExcept(['status','manageUser']);
+         } catch (\Exception $e) {
+              $this->resetExcept(['status','manageUser']);
+              DB::rollback();
       //  $this->test = 'No se ha insertado';
     }
     }
