@@ -7,6 +7,14 @@ use App\Http\Controllers\Admin\AdminIndexController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AppoimentAdminController;
+use App\Http\Controllers\Admin\CaseStatusAdminController;
+use App\Http\Controllers\Admin\CaseAdminController;
+use App\Http\Controllers\Admin\InvocesCaseController;
+
+
+
+
 
 use App\Http\Controllers\Lawyer\LawyerIndexController;
 use App\Http\Controllers\Lawyer\ManageController;
@@ -17,6 +25,8 @@ use App\Http\Controllers\Lawyer\InvocesLawyerController;
 use App\Http\Controllers\Clients\NormalCasesController;
 use App\Http\Controllers\Clients\ClientIndexController;
 use App\Http\Controllers\Clients\InvocesClientController;
+
+
 
 
 
@@ -92,6 +102,11 @@ Route::group(['middleware' => 'auth'], function() {
             ->name('permissions.roles');
      Route::delete('/permissions/{permission}/roles/{role}', [PermissionController::class, 'removeRole'])
             ->name('permissions.roles.remove');
+
+     Route::resource('/appoiments', AppoimentAdminController::class);
+     Route::resource('/casesstatus', CaseStatusAdminController::class);
+     Route::resource('/cases', CaseAdminController::class);
+     Route::resource('/invocescases', CaseAdminController::class);
 
     });
 

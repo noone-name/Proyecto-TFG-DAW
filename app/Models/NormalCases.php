@@ -20,10 +20,6 @@ class NormalCases extends Model
         'case_document',];
 
 
-
-
-
-
     public function users_abogado()
         {
             return $this->belongsTo(User::class,'user_id_abogado');
@@ -45,9 +41,6 @@ class NormalCases extends Model
     {
         return $this->hasOne(NormalCasesStatus::class);
     }
-
-
-
 
     public function casecategory()
     {
