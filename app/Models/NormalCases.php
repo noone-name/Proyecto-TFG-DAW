@@ -17,8 +17,8 @@ class NormalCases extends Model
         'case_types_id',
         'client_position',
         'description',
-        'case_document',];
-
+        'case_document',
+    ];
 
     public function users_abogado()
         {
@@ -29,22 +29,20 @@ class NormalCases extends Model
         {
             return $this->belongsTo(User::class,'user_id_cliente');
         }
-
-
+//
     public function casetype()
-    {
-        return $this->belongsTo(CaseType::class, 'case_types_id');
-    }
-
+        {
+            return $this->belongsTo(CaseType::class, 'case_types_id');
+        }
 
     public function normalstatus()
-    {
-        return $this->hasOne(NormalCasesStatus::class);
-    }
+        {
+            return $this->hasOne(NormalCasesStatus::class);
+        }
 
-    public function casecategory()
-    {
-        return $this->hasOne(CaseCategory::class);
-    }
+    public function caseinvoce()
+        {
+            return $this->hasOne(CaseInvoce::class);
+        }
 
 }

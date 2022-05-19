@@ -15,7 +15,7 @@ class CaseType extends Model
 
     public function normalcases()
     {
-       return $this->belongsTo(CaseCategory::class);
+       return $this->belongsTo(NormalCases::class);
     }
 
 

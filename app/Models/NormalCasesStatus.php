@@ -18,16 +18,8 @@ class NormalCasesStatus extends Model
 
     ];
 
-
-
     public function normalcases()
     {
         return $this->belongsTo(NormalCases::class, 'normal_cases_id');
     }
-
-    public function caseinvoce()
-    {
-        return $this->hasOne(CaseInvoce::class);
-    }
-
 }

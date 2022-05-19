@@ -2,24 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Appoiments extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'user_id_solicitante',
-        'user_id_solicitado',
-        'title_appoiment',
-        'start_date',
-        'end_date',
-        'checkbox_time',
-        'description',
-        'is_active',
+        'user_id_solicitante', 'user_id_solicitado',
+        'title_appoiment','start_date',
+        'end_date', 'checkbox_time',
+        'description','is_active',
         'status',
-
     ];
 
 
