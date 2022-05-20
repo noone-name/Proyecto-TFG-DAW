@@ -5,19 +5,19 @@
         <thead class="bg-gray-50">
             <tr>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    case_title
+                    Titulo del caso
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    users_abogado->name
+                    Cliente
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    users_abogado->email
+                    Correo del Cliente
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    normalcases_inc->client_position
+                    Posición en el caso
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    casetype->name
+                    Nombre del caso
                 </th>
 
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -79,23 +79,40 @@
 
 
                     {{-- Estado del Pago --}}
+
+                    {{-- Estado del Pago --}}
                     @if ($invoce->inv_status == 'Due')
                         <td class="px-6 py-4 ">
                             <div class="flex items-center">
-                                {{ __('Pendiente de Pago') }}
+                                <span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+                                    <span aria-hidden
+                                        class="absolute inset-0 bg-red-300 opacity-50 rounded-full"></span>
+                                    <span class="relative">{{ __('Pendiente de Pago') }}</span>
+                                </span>
                             </div>
                         </td>
                     @else
                         @if ($invoce->inv_status == 'Partially Paid')
                             <td class="px-6 py-4 ">
                                 <div class="flex items-center">
-                                    {{ __('Pagado a medias') }}
+                                    <span
+                                        class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
+                                        <span aria-hidden
+                                            class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"></span>
+                                        <span class="relative"> {{ __('Pagado a medias') }}</span>
+                                    </span>
                                 </div>
                             </td>
                         @else
                             <td class="px-6 py-4 ">
                                 <div class="flex items-center">
-                                    {{ __('Pagado') }}
+                                    <span
+                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                        <span aria-hidden
+                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                                        <span class="relative">{{ __('Pagado') }}</span>
+                                    </span>
+
                                 </div>
                             </td>
                         @endif
@@ -126,12 +143,32 @@
                     @endif
 
 
+
                     <td class="px-6 py-4 ">
                         <div class="flex items-center">
-                            {{ $invoce->normalcases_inc->status }}
+
+
+                            @if ($invoce->normalcases_inc->status == 'Active')
+                                <span
+                                    class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                    <span aria-hidden
+                                        class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                                    <span class="relative">Activo</span>
+                                </span>
+                            @endif
+
+
+                            @if ($invoce->normalcases_inc->status == 'Completed')
+                                <span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+                                    <span aria-hidden
+                                        class="absolute inset-0 bg-red-300 opacity-50 rounded-full"></span>
+                                    <span class="relative">Borrado</span>
+                                </span>
+                            @endif
+
+
                         </div>
                     </td>
-
 
 
                     <td class="px-6 py-4 ">
@@ -232,7 +269,36 @@
                     </span>
 
 
-
+                    <span
+                        class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                        <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+                            src="{{ $info->normalcases_inc->users_abogado->profile_photo_url }}" alt="">
+                        <div class="flex flex-col justify-between p-4 leading-normal">
+                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                {{ __('Cita creada por: ') }} {{ $info->normalcases_inc->users_abogado->name }}
+                            </h5>
+                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                <br> <span class="font-bold"> Género:</span>
+                                {{ $info->normalcases_inc->users_abogado->gender->name }}
+                                <br> <span class="font-bold"> Correo:</span>
+                                {{ $info->normalcases_inc->users_abogado->email }}
+                                <br> <span class="font-bold"> DNI:</span>
+                                {{ $info->normalcases_inc->users_abogado->lawyer_dni }}
+                                <br> <span class="font-bold"> Número de Teléfono:</span>
+                                {{ $info->normalcases_inc->users_abogado->lawyer_mobile_phone }}
+                                <br> <span class="font-bold"> Número de Licencia:</span>
+                                {{ $info->normalcases_inc->users_abogado->lawyer_licence_number }}
+                                <br> <span class="font-bold"> Especialidad:</span>
+                                {{ $info->normalcases_inc->users_abogado->lawyer_specialty }}
+                                <br> <span class="font-bold"> Nombre Oficina:</span>
+                                {{ $info->normalcases_inc->users_abogado->lawyer_office_name }}
+                                <br> <span class="font-bold"> Biografía:</span>
+                                {{ $info->normalcases_inc->users_abogado->lawyer_biography }}
+                                <br> <span class="font-bold"> Días de Trabajo:</span>
+                                {{ $info->normalcases_inc->users_abogado->lawyer_work_days }}
+                            </p>
+                        </div>
+                    </span>
 
 
                     <span
@@ -265,36 +331,7 @@
 
 
 
-                    <span
-                        class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                        <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                            src="{{ $info->normalcases_inc->users_abogado->profile_photo_url }}" alt="">
-                        <div class="flex flex-col justify-between p-4 leading-normal">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                {{ __('Cita creada por: ') }} {{ $info->normalcases_inc->users_abogado->name }}
-                            </h5>
-                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                                <br> <span class="font-bold"> Género:</span>
-                                {{ $info->normalcases_inc->users_abogado->gender->name }}
-                                <br> <span class="font-bold"> Correo:</span>
-                                {{ $info->normalcases_inc->users_abogado->email }}
-                                <br> <span class="font-bold"> DNI:</span>
-                                {{ $info->normalcases_inc->users_abogado->lawyer_dni }}
-                                <br> <span class="font-bold"> Número de Teléfono:</span>
-                                {{ $info->normalcases_inc->users_abogado->lawyer_mobile_phone }}
-                                <br> <span class="font-bold"> Número de Licencia:</span>
-                                {{ $info->normalcases_inc->users_abogado->lawyer_licence_number }}
-                                <br> <span class="font-bold"> Especialidad:</span>
-                                {{ $info->normalcases_inc->users_abogado->lawyer_specialty }}
-                                <br> <span class="font-bold"> Nombre Oficina:</span>
-                                {{ $info->normalcases_inc->users_abogado->lawyer_office_name }}
-                                <br> <span class="font-bold"> Biografía:</span>
-                                {{ $info->normalcases_inc->users_abogado->lawyer_biography }}
-                                <br> <span class="font-bold"> Días de Trabajo:</span>
-                                {{ $info->normalcases_inc->users_abogado->lawyer_work_days }}
-                            </p>
-                        </div>
-                    </span>
+
                 @endif
 
 

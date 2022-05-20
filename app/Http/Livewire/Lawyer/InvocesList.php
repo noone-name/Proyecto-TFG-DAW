@@ -19,6 +19,7 @@ class InvocesList extends Component
 {
     public $showingCaseInvoceModal;
     public $info;
+    public $test;
 
     public function render()
     {
@@ -42,6 +43,18 @@ class InvocesList extends Component
     {
         $this->showingCaseInvoceModal = false;
     }
+
+    public function FinishCaseStatus($invoce)
+    {
+        $this->test = $caso->normalcases_inc;
+        $caso = CaseInvoce::find($invoce);
+
+        $caso->update([
+            'status'=>'Completed',
+        ]);;
+    }
+
+
 
 
 }

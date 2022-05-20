@@ -1,24 +1,25 @@
 <div>
     {{-- A good traveler has no fixed plans and is not intent upon arriving. --}}
 
+    {{ $test }}
 
     <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
             <tr>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    case_title
+                    Titulo del caso
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    users_cliente->name
+                    Cliente
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    users_cliente->email
+                    Correo del Cliente
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    normalcases_inc->client_position
+                    Posición en el caso
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    casetype->name
+                    Nombre del caso
                 </th>
 
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -79,20 +80,35 @@
                     @if ($invoce->inv_status == 'Due')
                         <td class="px-6 py-4 ">
                             <div class="flex items-center">
-                                {{ __('Pendiente de Pago') }}
+                                <span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+                                    <span aria-hidden
+                                        class="absolute inset-0 bg-red-300 opacity-50 rounded-full"></span>
+                                    <span class="relative">{{ __('Pendiente de Pago') }}</span>
+                                </span>
                             </div>
                         </td>
                     @else
                         @if ($invoce->inv_status == 'Partially Paid')
                             <td class="px-6 py-4 ">
                                 <div class="flex items-center">
-                                    {{ __('Pagado a medias') }}
+                                    <span
+                                        class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
+                                        <span aria-hidden
+                                            class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"></span>
+                                        <span class="relative"> {{ __('Pagado a medias') }}</span>
+                                    </span>
                                 </div>
                             </td>
                         @else
                             <td class="px-6 py-4 ">
                                 <div class="flex items-center">
-                                    {{ __('Pagado') }}
+                                    <span
+                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                        <span aria-hidden
+                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                                        <span class="relative">{{ __('Pagado') }}</span>
+                                    </span>
+
                                 </div>
                             </td>
                         @endif
@@ -125,9 +141,30 @@
 
                     <td class="px-6 py-4 ">
                         <div class="flex items-center">
-                            {{ $invoce->normalcases_inc->status }}
+
+
+                            @if ($invoce->normalcases_inc->status == 'Active')
+                                <span
+                                    class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                    <span aria-hidden
+                                        class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                                    <span class="relative">Activo</span>
+                                </span>
+                            @endif
+
+
+                            @if ($invoce->normalcases_inc->status == 'Completed')
+                                <span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+                                    <span aria-hidden
+                                        class="absolute inset-0 bg-red-300 opacity-50 rounded-full"></span>
+                                    <span class="relative">Borrado</span>
+                                </span>
+                            @endif
+
+
                         </div>
                     </td>
+
 
                     <td class="px-6 py-4 ">
                         <div class="flex items-center">
@@ -135,10 +172,13 @@
                                 {{ __('Información') }}
                             </x-jet-button>
                             <button class="ml-6 form-input rounded-md shadow-sm mt-1 block "
-                                wire:click='FinishCaseStatus'>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                  </svg>
+                                wire:click='FinishCaseStatus({{ $invoce->id }})'>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
                             </button>
                         </div>
                     </td>
