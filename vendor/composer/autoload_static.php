@@ -129,6 +129,7 @@ class ComposerStaticInit7638287e5c30175fb955fa12de0a680d
             'Laravel\\Sail\\' => 13,
             'Laravel\\Jetstream\\' => 18,
             'Laravel\\Fortify\\' => 16,
+            'LaravelLang\\Lang\\' => 17,
         ),
         'J' => 
         array (
@@ -441,6 +442,10 @@ class ComposerStaticInit7638287e5c30175fb955fa12de0a680d
         array (
             0 => __DIR__ . '/..' . '/laravel/fortify/src',
         ),
+        'LaravelLang\\Lang\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel-lang/lang/src',
+        ),
         'Jenssegers\\Agent\\' => 
         array (
             0 => __DIR__ . '/..' . '/jenssegers/agent/src',
@@ -637,6 +642,7 @@ class ComposerStaticInit7638287e5c30175fb955fa12de0a680d
         'App\\View\\Components\\AdminLayout' => __DIR__ . '/../..' . '/app/View/Components/AdminLayout.php',
         'App\\View\\Components\\AppLayout' => __DIR__ . '/../..' . '/app/View/Components/AppLayout.php',
         'App\\View\\Components\\ClientLayout' => __DIR__ . '/../..' . '/app/View/Components/ClientLayout.php',
+        'App\\View\\Components\\FashAlerts' => __DIR__ . '/../..' . '/app/View/Components/FashAlerts.php',
         'App\\View\\Components\\GuestLayout' => __DIR__ . '/../..' . '/app/View/Components/GuestLayout.php',
         'App\\View\\Components\\LawyerLayout' => __DIR__ . '/../..' . '/app/View/Components/LawyerLayout.php',
         'App\\View\\Components\\Tutorial\\channelName\\Alert' => __DIR__ . '/../..' . '/app/View/Components/Tutorial/channelName/Alert.php',
@@ -2759,6 +2765,18 @@ class ComposerStaticInit7638287e5c30175fb955fa12de0a680d
         'Jenssegers\\Agent\\Agent' => __DIR__ . '/..' . '/jenssegers/agent/src/Agent.php',
         'Jenssegers\\Agent\\AgentServiceProvider' => __DIR__ . '/..' . '/jenssegers/agent/src/AgentServiceProvider.php',
         'Jenssegers\\Agent\\Facades\\Agent' => __DIR__ . '/..' . '/jenssegers/agent/src/Facades/Agent.php',
+        'LaravelLang\\Lang\\Plugins\\Breeze' => __DIR__ . '/..' . '/laravel-lang/lang/src/Plugins/Breeze.php',
+        'LaravelLang\\Lang\\Plugins\\Cashier' => __DIR__ . '/..' . '/laravel-lang/lang/src/Plugins/Cashier.php',
+        'LaravelLang\\Lang\\Plugins\\Fortify' => __DIR__ . '/..' . '/laravel-lang/lang/src/Plugins/Fortify.php',
+        'LaravelLang\\Lang\\Plugins\\Jetstream' => __DIR__ . '/..' . '/laravel-lang/lang/src/Plugins/Jetstream.php',
+        'LaravelLang\\Lang\\Plugins\\Laravel' => __DIR__ . '/..' . '/laravel-lang/lang/src/Plugins/Laravel.php',
+        'LaravelLang\\Lang\\Plugins\\Lumen' => __DIR__ . '/..' . '/laravel-lang/lang/src/Plugins/Lumen.php',
+        'LaravelLang\\Lang\\Plugins\\Nova' => __DIR__ . '/..' . '/laravel-lang/lang/src/Plugins/Nova.php',
+        'LaravelLang\\Lang\\Plugins\\SparkPaddle' => __DIR__ . '/..' . '/laravel-lang/lang/src/Plugins/SparkPaddle.php',
+        'LaravelLang\\Lang\\Plugins\\SparkStripe' => __DIR__ . '/..' . '/laravel-lang/lang/src/Plugins/SparkStripe.php',
+        'LaravelLang\\Lang\\Plugins\\Ui' => __DIR__ . '/..' . '/laravel-lang/lang/src/Plugins/Ui.php',
+        'LaravelLang\\Lang\\Provider' => __DIR__ . '/..' . '/laravel-lang/lang/src/Provider.php',
+        'LaravelLang\\Lang\\ServiceProvider' => __DIR__ . '/..' . '/laravel-lang/lang/src/ServiceProvider.php',
         'Laravel\\Fortify\\Actions\\AttemptToAuthenticate' => __DIR__ . '/..' . '/laravel/fortify/src/Actions/AttemptToAuthenticate.php',
         'Laravel\\Fortify\\Actions\\CompletePasswordReset' => __DIR__ . '/..' . '/laravel/fortify/src/Actions/CompletePasswordReset.php',
         'Laravel\\Fortify\\Actions\\ConfirmPassword' => __DIR__ . '/..' . '/laravel/fortify/src/Actions/ConfirmPassword.php',

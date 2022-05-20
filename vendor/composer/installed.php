@@ -400,6 +400,15 @@
                 0 => '*',
             ),
         ),
+        'laravel-lang/lang' => array(
+            'pretty_version' => '10.9.0',
+            'version' => '10.9.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laravel-lang/lang',
+            'aliases' => array(),
+            'reference' => '4f485c38c3617178079db8866014491d7a09a0d4',
+            'dev_requirement' => true,
+        ),
         'laravel/fortify' => array(
             'pretty_version' => 'v1.12.0',
             'version' => '1.12.0.0',

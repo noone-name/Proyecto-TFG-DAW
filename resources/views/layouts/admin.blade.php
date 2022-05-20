@@ -84,6 +84,13 @@
                     :active="request()->routeIs('admin.permissions.index')">Permissions</x-admin-link>
                 <x-admin-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">Users
                 </x-admin-link>
+                <x-admin-link :href="route('admin.cases.index')" :active="request()->routeIs('admin.cases.index')">Casos
+                </x-admin-link>
+                <x-admin-link :href="route('admin.appoiments.index')" :active="request()->routeIs('admin.appoiments.index')">Citas
+                </x-admin-link>
+                <x-admin-link :href="route('admin.casesstatus.index')" :active="request()->routeIs('admin.casesstatus.index')">Información
+                </x-admin-link>
+
                 <div class="ml-3 relative">
                     <x-jet-dropdown >
                         <x-slot name="trigger">

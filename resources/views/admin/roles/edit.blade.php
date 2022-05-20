@@ -6,7 +6,7 @@
                 <div class="flex flex-col p-2 bg-slate-100">
                     <div class="flex p-2">
                         <a href="{{ route('admin.roles.index') }}"
-                            class="inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out">Role Index</a>
+                            class="inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out">Volver Atrás</a>
                     </div>
 
 
@@ -15,7 +15,7 @@
                             @csrf
                             @method('PUT')
                             <div class="sm:col-span-6">
-                                <label for="name" class="block text-sm font-medium text-gray-700"> Role name </label>
+                                <label for="name" class="block text-sm font-medium text-gray-700"> Nombre del Rol </label>
                                 <div class="mt-1">
                                     <input type="text" id="name" name="name" value="{{ $role->name }}"
                                         class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
@@ -26,7 +26,7 @@
                             </div>
                             <div class="sm:col-span-6 pt-5">
                                 <button type="submit"
-                                    class="inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out">Update</button>
+                                    class="inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out">Actualizar</button>
                             </div>
                         </form>
                     </div>
@@ -34,7 +34,7 @@
                     <x-jet-section-border />
 
 
-                    <h2 class="text-2xl font-semibold">Role Permissions</h2>
+                    <h2 class="text-2xl font-semibold">Permisos del rol</h2>
                     <div class="flex space-x-2 mt-4 p-2">
                         @if ($role->permissions)
                             @foreach ($role->permissions as $role_permission)
@@ -53,7 +53,7 @@
                             @csrf
                             <div class="sm:col-span-6">
                                 <label for="permission"
-                                    class="block text-sm font-medium text-gray-700">Permission</label>
+                                    class="block text-sm font-medium text-gray-700">Añadir Permisos</label>
                                 <select id="permission" name="permission" autocomplete="permission-name"
                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                     @foreach ($permissions as $permission)
