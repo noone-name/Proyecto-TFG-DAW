@@ -46,12 +46,11 @@ class InvocesList extends Component
 
     public function FinishCaseStatus($invoce)
     {
-        $this->test = $caso->normalcases_inc;
-        $caso = CaseInvoce::find($invoce);
+        $caso = NormalCases::findOrFail($invoce);
 
-        $caso->update([
-            'status'=>'Completed',
-        ]);;
+         $caso->update([
+             'status'=>'Completed',
+         ]);;
     }
 
 

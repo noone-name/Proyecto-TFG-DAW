@@ -122,7 +122,14 @@
                                             <span class="relative">Activo</span>
                                         </span>
                                     @endif
-
+                                    @if ($status->normalcases->status == 'Completed')
+                                    <span
+                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                        <span aria-hidden
+                                            class="absolute inset-0 bg-green-500 opacity-50 rounded-full"></span>
+                                        <span class="relative">Finalizado</span>
+                                    </span>
+                                @endif
 
                                 </div>
                             </td>
